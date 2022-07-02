@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import CreatorInfo from '../components/CreatorInfo'
-
 import { creators } from '../creators'
 
 const Home: NextPage = () => {
