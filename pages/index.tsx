@@ -1,17 +1,26 @@
-import type { NextPage } from "next";
-import CreatorInfo from "../components/CreatorInfo";
-import { shortenAddress } from "../helpers";
-import { creators } from "../creators";
+import type { NextPage } from 'next'
+import CreatorInfo from '../components/CreatorInfo'
+
+import { creators } from '../creators'
 
 const Home: NextPage = () => {
-  console.log("creators: ", creators);
-  return (
-    <div className="flex justify-center h-screen">
-      <div>
-        <CreatorInfo />
-      </div>
-    </div>
-  );
-};
+  console.log('creators: ', creators)
 
-export default Home;
+  const creatorCards = creators.map((el) => (
+    <CreatorInfo
+      key={el.address}
+      address={el.address}
+      name={el.name}
+      description={el.description}
+      profilePicture={el.profilePicture}
+    />
+  ))
+
+  return (
+    <div className="flex justify-center">
+      <div className="grid grid-cols-4 gap-4">{creatorCards}</div>
+    </div>
+  )
+}
+
+export default Home
