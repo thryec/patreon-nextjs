@@ -18,7 +18,7 @@ const Home: NextPage = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="grid grid-cols-4 gap-4">{creatorCards}</div>
+      <div className="grid grid-cols-4 gap-6 mx-60 mt-16">{creatorCards}</div>
     </div>
   )
 }
