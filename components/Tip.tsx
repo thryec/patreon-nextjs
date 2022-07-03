@@ -5,15 +5,11 @@ const Tip = () => {
   const { data } = useAccount()
 
   return (
-    <div>
-      <h2>To: creator address</h2>
-      <h2>
-        From: <code>{shortenAddress(data?.address)}</code>
-      </h2>
-      <label htmlFor="amount">Amount to tip: </label>
+    <div className="space-y-4">
+      <label htmlFor="amount block">Amount to tip: </label>
       <input
         type="text"
-        className="border border-slate-200 rounded-md"
+        className="border border-slate-200 rounded-md block"
         placeholder="0.00"
       />{' '}
       ETH

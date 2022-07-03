@@ -15,23 +15,25 @@ const ContributeModal = (props: ContributeModalProps) => {
       <div className="absolute bg-black opacity-50 inset-0 z-0" />
       <div className="w-full max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg bg-white">
         <div className="flex place-content-between">
-          <h1 className="font-bold text-2xl">Contribute to creator</h1>
+          <h1 className="font-bold text-2xl">
+            Contribute to <code>creator</code>
+          </h1>
           <XIcon
-            className="h-6 w-6 text-slate-500 cursor-pointer hover:text-slate-800"
+            className="h-6 w-6 text-slate-500 cursor-pointer hover:text-slate-900"
             onClick={() => props.setContributeModal(false)}
           />
         </div>
         <div className="flex place-content-center space-x-8">
           {recurring ? (
             <button
-              className="border-2 border-slate-100 rounded-lg px-4 py-2 font-bold"
+              className="hover:border-2 hover:border-slate-100 border-2 border-white rounded-lg px-4 py-2 font-bold"
               onClick={() => setRecurring(false)}
             >
               Tip
             </button>
           ) : (
             <button
-              className="border-2 border-white  bg-slate-100 rounded-lg px-4 py-2 font-bold"
+              className="border-2 border-white bg-slate-100 rounded-lg px-4 py-2 font-bold"
               onClick={() => setRecurring(false)}
             >
               Tip
@@ -39,14 +41,14 @@ const ContributeModal = (props: ContributeModalProps) => {
           )}
           {recurring ? (
             <button
-              className="border-2 border-white  bg-slate-100 rounded-lg px-4 py-2 font-bold"
+              className="border-2 border-white bg-slate-100 rounded-lg px-4 py-2 font-bold"
               onClick={() => setRecurring(true)}
             >
               Subscribe
             </button>
           ) : (
             <button
-              className="border-2 border-slate-100 rounded-lg px-4 py-2 font-bold"
+              className="hover:border-2 hover:border-slate-100 border-2 border-white rounded-lg px-4 py-2 font-bold"
               onClick={() => setRecurring(true)}
             >
               Subscribe
