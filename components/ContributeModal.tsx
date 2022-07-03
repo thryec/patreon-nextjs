@@ -15,7 +15,7 @@ const ContributeModal = (props: ContributeModalProps) => {
       <div className="absolute bg-black opacity-50 inset-0 z-0" />
       <div className="w-full max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg bg-white">
         <div className="flex place-content-between">
-          <h1 className="font-bold text-2xl">
+          <h1 className="font-bold text-2xl mb-3">
             Contribute to <code>creator</code>
           </h1>
           <XIcon
@@ -23,7 +23,7 @@ const ContributeModal = (props: ContributeModalProps) => {
             onClick={() => props.setContributeModal(false)}
           />
         </div>
-        <div className="flex place-content-center space-x-8">
+        <div className="flex place-content-center space-x-8 mb-4">
           {recurring ? (
             <button
               className="hover:border-2 hover:border-slate-100 border-2 border-white rounded-lg px-4 py-2 font-bold"

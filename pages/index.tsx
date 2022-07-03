@@ -3,8 +3,6 @@ import CreatorInfo from '../components/CreatorInfo'
 import { creators } from '../creators'
 
 const Home: NextPage = () => {
-  console.log('creators: ', creators)
-
   const creatorCards = creators.map((el) => (
     <CreatorInfo
       key={el.address}
