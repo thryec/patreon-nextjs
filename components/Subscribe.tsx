@@ -1,9 +1,9 @@
-import { useAccount } from "wagmi";
-import { shortenAddress } from "../helpers";
+import { useAccount } from 'wagmi'
+import { shortenAddress } from '../helpers'
 
 const Subscribe = () => {
   // once a month "subscription"
-  const { data } = useAccount();
+  const { data } = useAccount()
 
   return (
     <div>
@@ -19,7 +19,7 @@ const Subscribe = () => {
           type="text"
           className="border border-slate-200 rounded-md"
           placeholder="0.00"
-        />{" "}
+        />{' '}
         ETH
       </div>
       <div>
@@ -28,14 +28,14 @@ const Subscribe = () => {
           type="text"
           className="border border-slate-200 rounded-md"
           placeholder="0"
-        />{" "}
+        />{' '}
         Months
       </div>
       <button className="px-4 py-2 bg-blue-500 rounded-md text-white font-bold block">
-        Tip
+        Subscribe
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default Subscribe;
+export default Subscribe

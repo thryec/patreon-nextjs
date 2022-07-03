@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { XIcon } from "@heroicons/react/solid";
-import Tip from "./Tip";
-import Subscribe from "./Subscribe";
+import { useState } from 'react'
+import { XIcon } from '@heroicons/react/solid'
+import Tip from './Tip'
+import Subscribe from './Subscribe'
 
 interface ContributeModalProps {
-  setContributeModal: (a: boolean) => void;
+  setContributeModal: (a: boolean) => void
 }
 
 const ContributeModal = (props: ContributeModalProps) => {
-  const [recurring, setRecurring] = useState<boolean>();
+  const [recurring, setRecurring] = useState<boolean>()
 
   return (
     <div className="min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
@@ -56,7 +56,7 @@ const ContributeModal = (props: ContributeModalProps) => {
         {recurring ? <Subscribe /> : <Tip />}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ContributeModal;
+export default ContributeModal

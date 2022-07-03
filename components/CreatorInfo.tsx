@@ -15,27 +15,35 @@ const CreatorInfo = (creator: CreatorProps) => {
   const [contributeModal, setContributeModal] = useState<boolean>()
 
   return (
-    <Link href={'/creator/' + creator.address} passHref>
-      <div className="border-4 rounded-lg border-slate-200 p-5 space-y-5 cursor-pointer">
-        <div className="flex place-content-between items-center">
-          <UserCircleIcon className="h-10 w-10 text-slate-400 inline" />
+    <div className="border-4 rounded-lg border-slate-200 p-5 space-y-5 cursor-pointer">
+      <div className="flex place-content-between items-center">
+        <div className="flex items-center">
+          <UserCircleIcon className="h-10 w-10 mr-3 text-slate-400 inline" />
           <h1 className="text-xl font-bold inline"> {creator.name}</h1>
-          <span className="text-sm text-slate-500">
-            {shortenAddress(creator.address)}
-          </span>
         </div>
-        <div>{creator.description}</div>
+        <span className="text-sm text-slate-500">
+          {shortenAddress(creator.address)}
+        </span>
+      </div>
+      <div>{creator.description}</div>
+      <div className="flex place-content-between">
         <button
-          className="bg-gradient-to-r from-pink-500 to-yellow-500  py-2 px-4 rounded-lg text-white font-bold"
+          className="bg-gradient-to-r from-pink-500 to-yellow-500 py-2 px-4 rounded-lg text-white font-bold"
           onClick={() => setContributeModal(true)}
         >
-          Send ETH
+          Contribute
         </button>
-        {contributeModal && (
-          <ContributeModal setContributeModal={setContributeModal} />
-        )}
+        <Link href={'/creator/' + creator.address} passHref>
+          <button className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-2 px-4 rounded-lg text-white font-bold">
+            View Profile
+          </button>
+        </Link>
       </div>
-    </Link>
+
+      {contributeModal && (
+        <ContributeModal setContributeModal={setContributeModal} />
+      )}
+    </div>
   )
 }
 
