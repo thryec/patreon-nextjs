@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import Link from 'next/link'
 import CreatorInfo from '../components/CreatorInfo'
 import { creators } from '../creators'
 
@@ -15,7 +16,20 @@ const Home: NextPage = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="grid grid-cols-4 gap-6 mx-60">{creatorCards}</div>
+      <div>
+        <div className="flex justify-center space-x-6 mb-20">
+          <Link href="/register" passHref>
+            <button className="bg-pink-400 py-2 px-4 rounded-lg text-white font-bold">
+              I&apos;m a Creator
+            </button>
+          </Link>
+
+          <button className="bg-pink-400 py-2 px-4 rounded-lg text-white font-bold">
+            I&apos;m a Suppporter
+          </button>
+        </div>
+        <div className="grid grid-cols-4 gap-6 mx-60">{creatorCards}</div>
+      </div>
     </div>
   )
 }
