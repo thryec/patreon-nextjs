@@ -12,6 +12,7 @@ const client = create(url)
 type FormData = {
   name: string
   description: string
+  walletAddress: string | undefined
   avatar: string
   twitter: string
   instagram: string
@@ -38,6 +39,7 @@ const Register: NextPage = () => {
   })
 
   const onSubmit = async (data: any) => {
+    data.walletAddress = account?.address
     try {
       const { cid } = await client.add({ content: JSON.stringify(data) })
       const url = `https://ipfs.infura.io/ipfs/${cid}`
