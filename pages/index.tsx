@@ -23,7 +23,6 @@ const Home: NextPage = () => {
               I&apos;m a Creator
             </button>
           </Link>
-
           <button className="bg-pink-400 py-2 px-4 rounded-lg text-white font-bold">
             I&apos;m a Suppporter
           </button>

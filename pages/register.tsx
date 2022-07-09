@@ -34,6 +34,10 @@ const Register: NextPage = () => {
   const onSubmit = async (data: any) => {
     console.log('data: ', data)
     try {
+      console.log('adding profile data to ipfs...')
+      const { cid } = await client.add({ content: JSON.stringify(data) })
+      const url = `https://ipfs.infura.io/ipfs/${cid}`
+      console.log('url: ', url)
     } catch (err) {
       console.log(err)
     }
@@ -78,7 +82,6 @@ const Register: NextPage = () => {
                   />
                   <input
                     type="file"
-                    // className="hidden"
                     accept=".jpeg,.jpg,.png,.gif"
                     {...register('avatar')}
                     onChange={onFileUpload}
