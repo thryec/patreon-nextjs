@@ -18,9 +18,6 @@ const Home: NextPage = () => {
   const fetchAllProfiles = async () => {
     const profiles = await contract.getAllProfiles()
     console.log('profiles: ', profiles)
-
-    const addresses = await contract.getAddressList()
-    console.log('addresses: ', addresses)
   }
 
   const creatorCards = creators.map((el) => (
@@ -33,11 +30,11 @@ const Home: NextPage = () => {
     />
   ))
 
-  // useEffect(() => {
-  //   if (contract && signer) {
-  //     fetchAllProfiles()
-  //   }
-  // }, [contract, signer])
+  useEffect(() => {
+    if (contract && signer) {
+      fetchAllProfiles()
+    }
+  }, [contract, signer])
 
   return (
     <div className="flex justify-center">
@@ -50,13 +47,6 @@ const Home: NextPage = () => {
           </Link>
           <button className="bg-pink-400 py-2 px-4 rounded-lg text-white font-bold">
             I&apos;m a Suppporter
-          </button>
-
-          <button
-            onClick={fetchAllProfiles}
-            className="bg-pink-400 py-2 px-4 rounded-lg text-white font-bold"
-          >
-            fetch data
           </button>
         </div>
         <div className="grid grid-cols-4 gap-6 mx-60">{creatorCards}</div>

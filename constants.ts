@@ -1,4 +1,4 @@
-export const TESTNET_ADDRESS = '0x0d33ee90ab5eec40e27b139eec7e2cb52ac80bf6'
+export const TESTNET_ADDRESS = '0xc19cb63a3f80dd1e7f3a6df6e2899d8f5bd206d5'
 
 export const CONTRACT_ABI = [
   {
@@ -225,19 +225,6 @@ export const CONTRACT_ABI = [
     name: 'deleteProfile',
     outputs: [],
     stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'getAddressList',
-    outputs: [
-      {
-        internalType: 'address[]',
-        name: '',
-        type: 'address[]',
-      },
-    ],
-    stateMutability: 'view',
     type: 'function',
   },
   {
