@@ -5,6 +5,7 @@ import { UserCircleIcon } from '@heroicons/react/outline'
 const Creator: NextPage = () => {
   const router = useRouter()
   const { id } = router.query
+  console.log('id', id)
 
   return (
     <div className="flex mx-72">

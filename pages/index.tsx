@@ -23,7 +23,7 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
     profiles.map(async (el: string) => {
       const data = await fetch(el)
       const res = await data.json()
-      console.log('data: ', res)
+      // console.log('data: ', res)
     })
   }
 

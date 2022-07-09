@@ -1,10 +1,11 @@
 import type { NextPage } from 'next'
 import { useState } from 'react'
+import path from 'path'
+import { promises as fs } from 'fs'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { create } from 'ipfs-http-client'
 import { useContract, useSigner, useAccount } from 'wagmi'
-import { TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 
 const url: string | any = 'https://ipfs.infura.io:5001/api/v0'
 const client = create(url)
@@ -20,7 +21,7 @@ type FormData = {
   github: string
 }
 
-const Register: NextPage = () => {
+const Register: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
   const [imageURL, setImageURL] = useState('')
   const {
     register,
@@ -199,3 +200,35 @@ const Register: NextPage = () => {
 }
 
 export default Register
+
+export const getStaticProps = async () => {
+  let TESTNET_ADDRESS
+  let CONTRACT_ABI
+  let props = {}
+
+  const abiDirectory = path.join(
+    process.cwd(),
+    '../patreon-foundry/out/Patreon.sol'
+  )
+  const abiFile = path.join(abiDirectory, 'Patreon.json')
+  const abiDetails = await fs.readFile(abiFile, 'utf8')
+  CONTRACT_ABI = JSON.parse(abiDetails.toString())
+
+  const addressDirectory = path.join(
+    process.cwd(),
+    '../patreon-foundry/broadcast/Patreon.s.sol/69'
+  )
+  const addressFile = path.join(addressDirectory, 'run-latest.json')
+  const addressDetails = await fs.readFile(addressFile, 'utf8')
+  TESTNET_ADDRESS = JSON.parse(addressDetails.toString())
+
+  props = {
+    ...props,
+    CONTRACT_ABI: CONTRACT_ABI.abi,
+    TESTNET_ADDRESS: TESTNET_ADDRESS.transactions[0].contractAddress,
+  }
+
+  return {
+    props,
+  }
+}
