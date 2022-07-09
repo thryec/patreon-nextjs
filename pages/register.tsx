@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { create } from 'ipfs-http-client'
 import { validateAddress } from '../helpers'
-
-// socials: twitter, instagram, github, mirror, youtube, lenster, radicle, opensea, fxhash
+import { useContract, useSigner, useAccount } from 'wagmi'
+import { TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 
 const url: string | any = 'https://ipfs.infura.io:5001/api/v0'
 const client = create(url)
@@ -23,7 +23,6 @@ type FormData = {
 
 const Register: NextPage = () => {
   const [imageURL, setImageURL] = useState('')
-
   const {
     register,
     handleSubmit,
@@ -31,15 +30,27 @@ const Register: NextPage = () => {
     formState: { errors },
   } = useForm<FormData>({})
 
+  const { data: signer, isError, isLoading } = useSigner()
+  const { data: account } = useAccount()
+
+  const contract = useContract({
+    addressOrName: TESTNET_ADDRESS,
+    contractInterface: CONTRACT_ABI,
+    signerOrProvider: signer,
+  })
+
   const onSubmit = async (data: any) => {
     console.log('data: ', data)
     try {
       console.log('adding profile data to ipfs...')
       const { cid } = await client.add({ content: JSON.stringify(data) })
       const url = `https://ipfs.infura.io/ipfs/${cid}`
-      console.log('url: ', url)
+      console.log('address: ', account?.address, 'url: ', url)
+      const txn = await contract.addProfile(account?.address, url)
+      const receipt = await txn.wait()
+      console.log('txn', receipt)
     } catch (err) {
-      console.log(err)
+      console.log('error adding profile:', err)
     }
   }
 
@@ -58,8 +69,6 @@ const Register: NextPage = () => {
       console.log('url: ', url)
       setImageURL(url)
       setValue('avatar', url)
-      // https://ipfs.infura.io/ipfs/bafybeibzskkckk5p5e7b67ja3hbxieya64ii2el63grnapm3k3l2rncuum
-      // https://ipfs.infura.io/ipfs/bafybohb6aonpga2pjp3zlnlybejlnti5qnletves7y65gkq4i3sa
     } catch (e) {
       console.error('Error uploading file: ', e)
     }

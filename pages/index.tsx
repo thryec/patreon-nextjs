@@ -2,8 +2,24 @@ import type { NextPage } from 'next'
 import Link from 'next/link'
 import CreatorInfo from '../components/CreatorInfo'
 import { creators } from '../creators'
+import { useEffect } from 'react'
+import { useContract, useSigner } from 'wagmi'
+import { TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 
 const Home: NextPage = () => {
+  const { data: signer, isError, isLoading } = useSigner()
+
+  const contract = useContract({
+    addressOrName: TESTNET_ADDRESS,
+    contractInterface: CONTRACT_ABI,
+    signerOrProvider: signer,
+  })
+
+  const fetchAllProfiles = async () => {
+    const data = await contract.getAllProfiles()
+    console.log('data: ', data)
+  }
+
   const creatorCards = creators.map((el) => (
     <CreatorInfo
       key={el.address}
@@ -13,6 +29,12 @@ const Home: NextPage = () => {
       profilePicture={el.profilePicture}
     />
   ))
+
+  // useEffect(() => {
+  //   if (contract && signer) {
+  //     fetchAllProfiles()
+  //   }
+  // }, [contract, signer])
 
   return (
     <div className="flex justify-center">
@@ -25,6 +47,13 @@ const Home: NextPage = () => {
           </Link>
           <button className="bg-pink-400 py-2 px-4 rounded-lg text-white font-bold">
             I&apos;m a Suppporter
+          </button>
+
+          <button
+            onClick={fetchAllProfiles}
+            className="bg-pink-400 py-2 px-4 rounded-lg text-white font-bold"
+          >
+            fetch data
           </button>
         </div>
         <div className="grid grid-cols-4 gap-6 mx-60">{creatorCards}</div>
