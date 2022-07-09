@@ -3,7 +3,6 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { create } from 'ipfs-http-client'
-import { validateAddress } from '../helpers'
 import { useContract, useSigner, useAccount } from 'wagmi'
 import { TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 
@@ -13,7 +12,6 @@ const client = create(url)
 type FormData = {
   name: string
   description: string
-  walletAddress: string
   avatar: string
   twitter: string
   instagram: string
@@ -40,9 +38,7 @@ const Register: NextPage = () => {
   })
 
   const onSubmit = async (data: any) => {
-    console.log('data: ', data)
     try {
-      console.log('adding profile data to ipfs...')
       const { cid } = await client.add({ content: JSON.stringify(data) })
       const url = `https://ipfs.infura.io/ipfs/${cid}`
       console.log('address: ', account?.address, 'url: ', url)
@@ -57,7 +53,6 @@ const Register: NextPage = () => {
   const onFileUpload = async (e: any) => {
     const file = e.target.files[0]
     try {
-      console.log(`adding ${file.name} to ipfs....`)
       const { cid } = await client.add(
         { content: file },
         {
@@ -69,8 +64,8 @@ const Register: NextPage = () => {
       console.log('url: ', url)
       setImageURL(url)
       setValue('avatar', url)
-    } catch (e) {
-      console.error('Error uploading file: ', e)
+    } catch (err) {
+      console.error('Error uploading file: ', err)
     }
   }
 
@@ -153,24 +148,6 @@ const Register: NextPage = () => {
                   Please do not leave this field blank
                 </div>
               )}
-            </div>
-            <div>
-              <label className="block mb-1">Wallet Address</label>
-              <input
-                type="text"
-                id="walletAddress"
-                className="border border-slate-200 outline-none rounded-md w-full mt-2 px-4 py-2"
-                {...register('walletAddress', {
-                  required: true,
-                  validate: validateAddress,
-                })}
-              />
-              {errors.walletAddress &&
-                errors.walletAddress.type === 'validate' && (
-                  <div className="text-pink-500">
-                    Please enter a valid wallet address
-                  </div>
-                )}
             </div>
             <div>
               <label className="block mb-1">Twitter</label>

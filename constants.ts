@@ -1,4 +1,4 @@
-export const TESTNET_ADDRESS = '0xd8387b859f44e1becb22279a3169ab8baad21c2d'
+export const TESTNET_ADDRESS = '0x0d33ee90ab5eec40e27b139eec7e2cb52ac80bf6'
 
 export const CONTRACT_ABI = [
   {
@@ -229,8 +229,27 @@ export const CONTRACT_ABI = [
   },
   {
     inputs: [],
+    name: 'getAddressList',
+    outputs: [
+      {
+        internalType: 'address[]',
+        name: '',
+        type: 'address[]',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
     name: 'getAllProfiles',
-    outputs: [],
+    outputs: [
+      {
+        internalType: 'string[]',
+        name: '',
+        type: 'string[]',
+      },
+    ],
     stateMutability: 'view',
     type: 'function',
   },

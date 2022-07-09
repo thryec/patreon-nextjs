@@ -16,8 +16,11 @@ const Home: NextPage = () => {
   })
 
   const fetchAllProfiles = async () => {
-    const data = await contract.getAllProfiles()
-    console.log('data: ', data)
+    const profiles = await contract.getAllProfiles()
+    console.log('profiles: ', profiles)
+
+    const addresses = await contract.getAddressList()
+    console.log('addresses: ', addresses)
   }
 
   const creatorCards = creators.map((el) => (
