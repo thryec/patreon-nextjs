@@ -38,8 +38,6 @@ const Register: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
   const { data: signer, isError, isLoading } = useSigner()
   const { address } = useAccount()
 
-  console.log('address: ', address)
-
   const contract = useContract({
     addressOrName: TESTNET_ADDRESS,
     contractInterface: CONTRACT_ABI,

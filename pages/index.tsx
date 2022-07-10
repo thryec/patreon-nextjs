@@ -1,11 +1,12 @@
 import type { NextPage } from 'next'
 import path from 'path'
+import { ethers } from 'ethers'
 import { promises as fs } from 'fs'
 import CreatorInfo from '../components/CreatorInfo'
 import Link from 'next/link'
 import Direction from '../components/Direction'
 import { useState, useEffect } from 'react'
-import { useContract, useSigner, useContractRead } from 'wagmi'
+import { useContract, useSigner } from 'wagmi'
 import { useRef } from 'react'
 
 const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
@@ -14,16 +15,14 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
   const { data: signer } = useSigner()
 
+  const provider = new ethers.providers.JsonRpcProvider(
+    process.env.KOVAN_RPC_URL
+  )
+
   const contract = useContract({
     addressOrName: TESTNET_ADDRESS,
     contractInterface: CONTRACT_ABI,
-    signerOrProvider: signer,
-  })
-
-  const { data, isError, isLoading } = useContractRead({
-    addressOrName: TESTNET_ADDRESS,
-    contractInterface: CONTRACT_ABI,
-    functionName: 'getAllProfiles',
+    signerOrProvider: provider,
   })
 
   const fetchAllProfiles = async () => {
@@ -42,10 +41,10 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
   }
 
   useEffect(() => {
-    if (contract && signer) {
+    if (contract) {
       fetchAllProfiles()
     }
-  }, [contract, signer])
+  }, [contract])
 
   const profileCards = profileData.map((el: any) => {
     return (
