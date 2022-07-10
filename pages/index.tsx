@@ -32,7 +32,7 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
   }
 
   const handleSupporterClick = () => {
-    ref.current?.scrollIntoView({ behavior: 'auto' })
+    ref.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
         address={el.walletAddress}
         name={el.name}
         description={el.description}
-        profilePicture={el.profilePicture}
+        profilePicture={el.avatar}
       />
     )
   })
@@ -56,20 +56,9 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
   return (
     <div className="flex justify-center">
       <div>
-        <div className="flex justify-center space-x-6 mt-40 mb-40">
-          <Link href="/register" passHref>
-            <button className="bg-pink-400 py-2 px-4 rounded-lg text-white font-bold">
-              I&apos;m a Creator
-            </button>
-          </Link>
-          <button
-            className="bg-pink-400 py-2 px-4 rounded-lg text-white font-bold"
-            onClick={handleSupporterClick}
-          >
-            I&apos;m a Suppporter
-          </button>
-        </div>
-        <div ref={ref} className="grid grid-cols-4 gap-6 mx-60">
+        <Direction handleSupporterClick={handleSupporterClick} />
+
+        <div ref={ref} className="grid grid-cols-3 gap-10 mx-60">
           {isLoaded && profileCards}
         </div>
       </div>

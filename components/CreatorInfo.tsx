@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import ContributeModal from './ContributeModal'
-import { UserCircleIcon } from '@heroicons/react/outline'
 import { shortenAddress } from '../helpers'
+import Image from 'next/image'
 
 interface CreatorProps {
   address: string
@@ -17,8 +17,14 @@ const CreatorInfo = (creator: CreatorProps) => {
   return (
     <div className="border-4 rounded-lg border-slate-200 p-5 space-y-5 cursor-pointer">
       <div className="flex place-content-between items-center">
-        <div className="flex items-center">
-          <UserCircleIcon className="h-10 w-10 mr-3 text-slate-400 inline" />
+        <div className="flex items-center space-x-3">
+          <Image
+            src={creator.profilePicture}
+            alt={creator.name}
+            className="rounded-full"
+            width="50px"
+            height="50px"
+          />
           <h1 className="text-xl font-bold inline"> {creator.name}</h1>
         </div>
         <span className="text-sm text-slate-500">
