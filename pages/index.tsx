@@ -13,7 +13,7 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
   const ref = useRef<HTMLDivElement>(null)
   const [profileData, setProfileData] = useState<any>([])
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
-  const { data: signer } = useSigner()
+  // const { data: signer } = useSigner()
 
   const provider = new ethers.providers.JsonRpcProvider(
     process.env.KOVAN_RPC_URL
@@ -28,12 +28,14 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
   const fetchAllProfiles = async () => {
     const profiles = await contract.getAllProfiles()
     console.log('all profiles:', profiles)
+    const result: any = []
     profiles.map(async (el: string) => {
+      console.log('mapping through el:', el)
       const data = await fetch(el)
       const res = await data.json()
-      setProfileData((profileData: any) => [...profileData, res])
+      result.push(res)
+      setProfileData(result)
     })
-    setIsLoaded(true)
   }
 
   const handleSupporterClick = () => {
@@ -41,10 +43,14 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
   }
 
   useEffect(() => {
-    if (contract) {
-      fetchAllProfiles()
+    // if (contract) {
+    const fetchData = async () => {
+      await fetchAllProfiles()
+      setIsLoaded(true)
     }
-  }, [contract])
+    fetchData()
+    // }
+  }, [])
 
   const profileCards = profileData.map((el: any) => {
     return (
