@@ -5,7 +5,7 @@ import CreatorInfo from '../components/CreatorInfo'
 import Link from 'next/link'
 import Direction from '../components/Direction'
 import { useState, useEffect } from 'react'
-import { useContract, useSigner } from 'wagmi'
+import { useContract, useSigner, useContractRead } from 'wagmi'
 import { useRef } from 'react'
 
 const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
@@ -18,6 +18,12 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
     addressOrName: TESTNET_ADDRESS,
     contractInterface: CONTRACT_ABI,
     signerOrProvider: signer,
+  })
+
+  const { data, isError, isLoading } = useContractRead({
+    addressOrName: TESTNET_ADDRESS,
+    contractInterface: CONTRACT_ABI,
+    functionName: 'getAllProfiles',
   })
 
   const fetchAllProfiles = async () => {

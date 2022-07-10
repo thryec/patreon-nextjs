@@ -2,7 +2,7 @@ import { useAccount } from 'wagmi'
 import { shortenAddress } from '../helpers'
 
 const Subscribe = () => {
-  const { data: account } = useAccount()
+  const { address } = useAccount()
 
   return (
     <div>

@@ -18,7 +18,7 @@ const ContributeModal = ({
   const [recurring, setRecurring] = useState<boolean>()
 
   const { data: signer, isError, isLoading } = useSigner()
-  const { data: account } = useAccount()
+  // const { data: account } = useAccount()
 
   const contract = useContract({
     addressOrName: TESTNET_ADDRESS,

@@ -36,7 +36,9 @@ const Register: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
   })
 
   const { data: signer, isError, isLoading } = useSigner()
-  const { data: account } = useAccount()
+  const { address } = useAccount()
+
+  console.log('address: ', address)
 
   const contract = useContract({
     addressOrName: TESTNET_ADDRESS,
@@ -45,12 +47,12 @@ const Register: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
   })
 
   const onSubmit = async (data: any) => {
-    data.walletAddress = account?.address
+    data.walletAddress = address
     try {
       const { cid } = await client.add({ content: JSON.stringify(data) })
       const url = `https://ipfs.infura.io/ipfs/${cid}`
-      console.log('address: ', account?.address, 'url: ', url)
-      const txn = await contract.addProfile(account?.address, url)
+      console.log('address: ', address, 'url: ', url)
+      const txn = await contract.addProfile(address, url)
       const receipt = await txn.wait()
       console.log('txn', receipt)
     } catch (err) {
