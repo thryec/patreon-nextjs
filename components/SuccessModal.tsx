@@ -13,7 +13,12 @@ const Success = ({ setSuccessModal, walletAddress }: SuccessModalProps) => {
         <div className="text-lg">
           Success! View your profile{' '}
           <Link href={`creator/${walletAddress}`} passHref>
-            <span className="underline cursor-pointer">here</span>
+            <span
+              className="underline cursor-pointer font-semibold"
+              onClick={() => setSuccessModal(false)}
+            >
+              here
+            </span>
           </Link>
         </div>
       </div>

@@ -2,7 +2,7 @@ const Spinner = () => {
   return (
     <div className="p-10">
       <svg
-        className="w-20 h-20 mr-2 text-gray-200 animate-spin fill-gray-400"
+        className="w-20 h-20 text-gray-200 animate-spin fill-gray-400"
         viewBox="0 0 100 101"
         fill="none"
       >

@@ -24,8 +24,7 @@ type FormData = {
 
 const Register: NextPage = () => {
   const [loadingModal, setLoadingModal] = useState<boolean>()
-  const [successModal, setSuccessModal] = useState<boolean>(true)
-
+  const [successModal, setSuccessModal] = useState<boolean>()
   const [imageURL, setImageURL] = useState('')
 
   const {
@@ -63,7 +62,10 @@ const Register: NextPage = () => {
       const txn = await contract.addProfile(address, url)
       const receipt = await txn.wait()
       console.log('txn', receipt)
-      setLoadingModal(false)
+      if (receipt) {
+        setLoadingModal(false)
+        setSuccessModal(true)
+      }
     } catch (err) {
       console.log('error adding profile:', err)
     }
