@@ -2,7 +2,7 @@ import { useAccount } from 'wagmi'
 import { shortenAddress } from '../helpers'
 
 const Tip = () => {
-  const { data } = useAccount()
+  const { data: account } = useAccount()
 
   return (
     <div className="flex justify-center">

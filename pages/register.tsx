@@ -28,7 +28,12 @@ const Register: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<FormData>({})
+  } = useForm<FormData>({
+    defaultValues: {
+      avatar:
+        'https://ipfs.infura.io/ipfs/bafkrohcwcm5gxrmu4xps2gtdgq23giyhj2fy3ws7tbvbkooel33a',
+    },
+  })
 
   const { data: signer, isError, isLoading } = useSigner()
   const { data: account } = useAccount()
@@ -213,7 +218,6 @@ export const getStaticProps = async () => {
   const abiFile = path.join(abiDirectory, 'Patreon.json')
   const abiDetails = await fs.readFile(abiFile, 'utf8')
   CONTRACT_ABI = JSON.parse(abiDetails.toString())
-
   const addressDirectory = path.join(
     process.cwd(),
     '../patreon-foundry/broadcast/Patreon.s.sol/69'

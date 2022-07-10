@@ -2,13 +2,26 @@ import { useState } from 'react'
 import { XIcon } from '@heroicons/react/solid'
 import Tip from './Tip'
 import Subscribe from './Subscribe'
+import { useContract, useSigner, useAccount } from 'wagmi'
+import { TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 
 interface ContributeModalProps {
   setContributeModal: (a: boolean) => void
 }
 
-const ContributeModal = (props: ContributeModalProps) => {
+const ContributeModal = ({ setContributeModal }: ContributeModalProps) => {
   const [recurring, setRecurring] = useState<boolean>()
+
+  const { data: signer, isError, isLoading } = useSigner()
+  const { data: account } = useAccount()
+
+  const contract = useContract({
+    addressOrName: TESTNET_ADDRESS,
+    contractInterface: CONTRACT_ABI,
+    signerOrProvider: signer,
+  })
+
+  console.log('contribute modal contract: ', contract)
 
   return (
     <div className="fixed left-0 top-0 flex items-center inset-0 z-50 outline-none">
@@ -20,7 +33,7 @@ const ContributeModal = (props: ContributeModalProps) => {
           </h1>
           <XIcon
             className="h-6 w-6 text-slate-500 cursor-pointer hover:text-slate-900"
-            onClick={() => props.setContributeModal(false)}
+            onClick={() => setContributeModal(false)}
           />
         </div>
         <div className="flex place-content-center space-x-8 mb-4">

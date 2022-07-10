@@ -3,6 +3,7 @@ import { useState } from 'react'
 import ContributeModal from './ContributeModal'
 import { shortenAddress } from '../helpers'
 import Image from 'next/image'
+import ContractInterface from 'wagmi'
 
 interface CreatorProps {
   address: string

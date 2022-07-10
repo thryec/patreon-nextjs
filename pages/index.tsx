@@ -22,7 +22,7 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
 
   const fetchAllProfiles = async () => {
     const profiles = await contract.getAllProfiles()
-    // console.log('profiles: ', profiles)
+    console.log('all profiles:', profiles)
     profiles.map(async (el: string) => {
       const data = await fetch(el)
       const res = await data.json()
@@ -57,7 +57,6 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
     <div className="flex justify-center">
       <div>
         <Direction handleSupporterClick={handleSupporterClick} />
-
         <div ref={ref} className="grid grid-cols-3 gap-10 mx-60">
           {isLoaded && profileCards}
         </div>

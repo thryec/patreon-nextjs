@@ -1,4 +1,4 @@
-export const TESTNET_ADDRESS = '0xc19cb63a3f80dd1e7f3a6df6e2899d8f5bd206d5'
+export const TESTNET_ADDRESS = '0xdF70FFc0706E62fB2445396C6914767E84360360'
 
 export const CONTRACT_ABI = [
   {
@@ -466,24 +466,6 @@ export const CONTRACT_ABI = [
     name: 'tipETH',
     outputs: [],
     stateMutability: 'payable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'user',
-        type: 'address',
-      },
-      {
-        internalType: 'string',
-        name: 'updatedHash',
-        type: 'string',
-      },
-    ],
-    name: 'updateProfile',
-    outputs: [],
-    stateMutability: 'nonpayable',
     type: 'function',
   },
 ]
