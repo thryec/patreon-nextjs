@@ -47,7 +47,10 @@ const CreatorInfo = (creator: CreatorProps) => {
         </Link>
       </div>
       {contributeModal && (
-        <ContributeModal setContributeModal={setContributeModal} />
+        <ContributeModal
+          setContributeModal={setContributeModal}
+          creatorAddress={creator.address}
+        />
       )}
     </div>
   )

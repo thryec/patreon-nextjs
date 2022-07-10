@@ -4,12 +4,17 @@ import Tip from './Tip'
 import Subscribe from './Subscribe'
 import { useContract, useSigner, useAccount } from 'wagmi'
 import { TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
+import { shortenAddress } from '../helpers'
 
 interface ContributeModalProps {
   setContributeModal: (a: boolean) => void
+  creatorAddress: string
 }
 
-const ContributeModal = ({ setContributeModal }: ContributeModalProps) => {
+const ContributeModal = ({
+  setContributeModal,
+  creatorAddress,
+}: ContributeModalProps) => {
   const [recurring, setRecurring] = useState<boolean>()
 
   const { data: signer, isError, isLoading } = useSigner()
@@ -21,15 +26,16 @@ const ContributeModal = ({ setContributeModal }: ContributeModalProps) => {
     signerOrProvider: signer,
   })
 
-  console.log('contribute modal contract: ', contract)
-
   return (
     <div className="fixed left-0 top-0 flex items-center inset-0 z-50 outline-none">
       <div className="absolute bg-black opacity-50 inset-0 z-0" />
       <div className="w-full max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg bg-white">
         <div className="flex place-content-between">
           <h1 className="font-bold text-2xl mb-3">
-            Contribute to <code>creator</code>
+            Contribute to{' '}
+            <code className="font-light text-xl">
+              {shortenAddress(creatorAddress)}
+            </code>
           </h1>
           <XIcon
             className="h-6 w-6 text-slate-500 cursor-pointer hover:text-slate-900"
