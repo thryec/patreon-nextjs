@@ -17,6 +17,12 @@ const CreatorInfo = (creator: CreatorProps) => {
 
   return (
     <div className="border-4 rounded-lg border-slate-200 p-5 space-y-5 cursor-pointer">
+      {contributeModal && (
+        <ContributeModal
+          setContributeModal={setContributeModal}
+          creatorAddress={creator.address}
+        />
+      )}
       <div className="flex place-content-between items-center">
         <div className="flex items-center space-x-3">
           <Image
@@ -46,12 +52,6 @@ const CreatorInfo = (creator: CreatorProps) => {
           </button>
         </Link>
       </div>
-      {contributeModal && (
-        <ContributeModal
-          setContributeModal={setContributeModal}
-          creatorAddress={creator.address}
-        />
-      )}
     </div>
   )
 }

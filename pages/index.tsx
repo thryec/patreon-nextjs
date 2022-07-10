@@ -30,7 +30,6 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
     console.log('all profiles:', profiles)
     const result: any = []
     profiles.map(async (el: string) => {
-      console.log('mapping through el:', el)
       const data = await fetch(el)
       const res = await data.json()
       result.push(res)

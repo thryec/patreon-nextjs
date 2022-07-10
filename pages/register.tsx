@@ -4,6 +4,8 @@ import path from 'path'
 import { promises as fs } from 'fs'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
+import Loading from '../components/LoadingModal'
+import Success from '../components/SuccessModal'
 import { create } from 'ipfs-http-client'
 import { useContract, useSigner, useAccount } from 'wagmi'
 
@@ -22,7 +24,11 @@ type FormData = {
 }
 
 const Register: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
+  const [loadingModal, setLoadingModal] = useState<boolean>()
+  const [successModal, setSuccessModal] = useState<boolean>(true)
+
   const [imageURL, setImageURL] = useState('')
+
   const {
     register,
     handleSubmit,
@@ -45,14 +51,20 @@ const Register: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
   })
 
   const onSubmit = async (data: any) => {
+    if (!signer) {
+      alert('Please Connect Wallet')
+      return
+    }
     data.walletAddress = address
     try {
+      setLoadingModal(true)
       const { cid } = await client.add({ content: JSON.stringify(data) })
       const url = `https://ipfs.infura.io/ipfs/${cid}`
       console.log('address: ', address, 'url: ', url)
       const txn = await contract.addProfile(address, url)
       const receipt = await txn.wait()
       console.log('txn', receipt)
+      setLoadingModal(false)
     } catch (err) {
       console.log('error adding profile:', err)
     }
@@ -79,6 +91,11 @@ const Register: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
 
   return (
     <div className="flex justify-center items-center w-full mt-4 mb-32">
+      {loadingModal && <Loading setLoadingModal={setLoadingModal} />}
+      {successModal && (
+        <Success setSuccessModal={setSuccessModal} walletAddress={address} />
+      )}
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="px-10 pt-8 rounded-xl w-screen max-w-sm">
           <div className="space-y-6">
