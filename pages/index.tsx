@@ -1,15 +1,15 @@
 import type { NextPage } from 'next'
-import Link from 'next/link'
 import path from 'path'
 import { promises as fs } from 'fs'
 import CreatorInfo from '../components/CreatorInfo'
-import { creators } from '../creators'
+import Direction from '../components/Direction'
 import { useState, useEffect } from 'react'
 import { useContract, useSigner } from 'wagmi'
 
 const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
-  const [profiles, setProfiles] = useState()
-  const { data: signer, isError, isLoading } = useSigner()
+  const [profileData, setProfileData] = useState<any>([])
+  const [isLoaded, setIsLoaded] = useState<boolean>(false)
+  const { data: signer } = useSigner()
 
   const contract = useContract({
     addressOrName: TESTNET_ADDRESS,
@@ -19,12 +19,13 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
 
   const fetchAllProfiles = async () => {
     const profiles = await contract.getAllProfiles()
-    console.log('profiles: ', profiles)
+    // console.log('profiles: ', profiles)
     profiles.map(async (el: string) => {
       const data = await fetch(el)
       const res = await data.json()
-      // console.log('data: ', res)
+      setProfileData((profileData: any) => [...profileData, res])
     })
+    setIsLoaded(true)
   }
 
   useEffect(() => {
@@ -33,30 +34,26 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
     }
   }, [contract, signer])
 
-  const creatorCards = creators.map((el) => (
-    <CreatorInfo
-      key={el.address}
-      address={el.address}
-      name={el.name}
-      description={el.description}
-      profilePicture={el.profilePicture}
-    />
-  ))
+  const profileCards = profileData.map((el: any) => {
+    console.log('element: ', el)
+    return (
+      <CreatorInfo
+        key={el.walletAddress}
+        address={el.walletAddress}
+        name={el.name}
+        description={el.description}
+        profilePicture={el.profilePicture}
+      />
+    )
+  })
 
   return (
     <div className="flex justify-center">
       <div>
-        <div className="flex justify-center space-x-6 mb-20">
-          <Link href="/register" passHref>
-            <button className="bg-pink-400 py-2 px-4 rounded-lg text-white font-bold">
-              I&apos;m a Creator
-            </button>
-          </Link>
-          <button className="bg-pink-400 py-2 px-4 rounded-lg text-white font-bold">
-            I&apos;m a Suppporter
-          </button>
+        <Direction />
+        <div className="grid grid-cols-4 gap-6 mx-60">
+          {isLoaded && profileCards}
         </div>
-        <div className="grid grid-cols-4 gap-6 mx-60">{creatorCards}</div>
       </div>
     </div>
   )
