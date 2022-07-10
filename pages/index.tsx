@@ -2,11 +2,14 @@ import type { NextPage } from 'next'
 import path from 'path'
 import { promises as fs } from 'fs'
 import CreatorInfo from '../components/CreatorInfo'
+import Link from 'next/link'
 import Direction from '../components/Direction'
 import { useState, useEffect } from 'react'
 import { useContract, useSigner } from 'wagmi'
+import { useRef } from 'react'
 
 const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
+  const ref = useRef<HTMLDivElement>(null)
   const [profileData, setProfileData] = useState<any>([])
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
   const { data: signer } = useSigner()
@@ -28,6 +31,10 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
     setIsLoaded(true)
   }
 
+  const handleSupporterClick = () => {
+    ref.current?.scrollIntoView({ behavior: 'auto' })
+  }
+
   useEffect(() => {
     if (contract && signer) {
       fetchAllProfiles()
@@ -35,7 +42,6 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
   }, [contract, signer])
 
   const profileCards = profileData.map((el: any) => {
-    console.log('element: ', el)
     return (
       <CreatorInfo
         key={el.walletAddress}
@@ -50,8 +56,20 @@ const Home: NextPage = ({ CONTRACT_ABI, TESTNET_ADDRESS }: any) => {
   return (
     <div className="flex justify-center">
       <div>
-        <Direction />
-        <div className="grid grid-cols-4 gap-6 mx-60">
+        <div className="flex justify-center space-x-6 mt-40 mb-40">
+          <Link href="/register" passHref>
+            <button className="bg-pink-400 py-2 px-4 rounded-lg text-white font-bold">
+              I&apos;m a Creator
+            </button>
+          </Link>
+          <button
+            className="bg-pink-400 py-2 px-4 rounded-lg text-white font-bold"
+            onClick={handleSupporterClick}
+          >
+            I&apos;m a Suppporter
+          </button>
+        </div>
+        <div ref={ref} className="grid grid-cols-4 gap-6 mx-60">
           {isLoaded && profileCards}
         </div>
       </div>
