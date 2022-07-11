@@ -74,7 +74,11 @@ const ContributeModal = ({
             </button>
           )}
         </div>
-        {recurring ? <Subscribe /> : <Tip />}
+        {recurring ? (
+          <Subscribe recipientAddress={creatorAddress} />
+        ) : (
+          <Tip recipientAddress={creatorAddress} />
+        )}
       </div>
     </div>
   )

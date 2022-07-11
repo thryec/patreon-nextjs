@@ -1,9 +1,8 @@
-import { useAccount } from 'wagmi'
-import { shortenAddress } from '../helpers'
+interface SubscribeProps {
+  recipientAddress: string
+}
 
-const Subscribe = () => {
-  const { address } = useAccount()
-
+const Subscribe = ({ recipientAddress }: SubscribeProps) => {
   return (
     <div>
       <div>
