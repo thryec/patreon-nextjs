@@ -52,7 +52,7 @@ const Creator: NextPage = () => {
   return (
     <div>
       {isFetched ? (
-        <div className="flex mx-72">
+        <div className="flex mx-80">
           <div className="w-1/3">
             <Image
               src={profile.avatar}
@@ -61,15 +61,39 @@ const Creator: NextPage = () => {
               alt="avatar"
               className="rounded-full"
             />
-            <h1 className="text-3xl font-semibold">{profile.name}</h1>
+            <h1 className="text-3xl font-semibold mt-10">{profile.name}</h1>
             <span className="text-sm text-slate-500">
               {shortenAddress(profile.walletAddress)}
             </span>
-            <div>
+            <div className="space-y-4 mt-6">
               {!!profile.twitter && (
-                <div>
-                  <h5>Twitter</h5>
-                  <span>Twitter Link</span>
+                <div className="space-y-2">
+                  <h5 className="text-slate-500">Twitter</h5>
+                  <a
+                    href={profile.twitter}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline"
+                  >
+                    @{profile.twitter.substring(20)}
+                  </a>
+                </div>
+              )}
+              {!!profile.instagram && (
+                <div className="space-y-2">
+                  <h5 className="text-slate-500">Instagram</h5>
+                  <a
+                    href={profile.instagram}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline"
+                  >
+                    @
+                    {profile.instagram.substring(
+                      26,
+                      profile.instagram.length - 1
+                    )}
+                  </a>
                 </div>
               )}
             </div>
