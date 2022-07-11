@@ -16,7 +16,6 @@ type FormData = {
 const Subscribe = ({ recipientAddress }: SubscribeProps) => {
   const [ethMonthlyAmount, setEthMonthlyAmount] = useState<any>('0.0')
   const [ethTotalAmount, setEthTotalAmount] = useState<any>('0.0')
-  const [currentTime, setCurrentTime] = useState<any>()
   const [endTime, setEndTime] = useState<any>()
 
   const { address } = useAccount()
@@ -47,7 +46,12 @@ const Subscribe = ({ recipientAddress }: SubscribeProps) => {
   })
 
   const onSubmit = async (data: any) => {
-    console.log('data:', data)
+    const totalEth = data.ethAmount * data.weeks
+    setEthTotalAmount(totalEth.toString())
+    const weeksInSeconds = data.weeks * 7 * 24 * 60 * 60
+    const currentBlocktime = await getCurrentBlockTimestamp()
+    const endBlocktime = currentBlocktime + weeksInSeconds
+    setEndTime(endBlocktime)
   }
 
   const getCurrentBlockTimestamp = async () => {
@@ -56,7 +60,7 @@ const Subscribe = ({ recipientAddress }: SubscribeProps) => {
     )
     const blockNumber = await provider.getBlockNumber()
     const timestamp = (await provider.getBlock(blockNumber)).timestamp
-    setCurrentTime(timestamp)
+    return timestamp
   }
 
   useEffect(() => {
