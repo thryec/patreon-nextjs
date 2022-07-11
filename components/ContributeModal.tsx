@@ -15,16 +15,9 @@ const ContributeModal = ({
   setContributeModal,
   creatorAddress,
 }: ContributeModalProps) => {
-  const [recurring, setRecurring] = useState<boolean>()
+  const [recurring, setRecurring] = useState<boolean>(true)
 
   const { data: signer, isError, isLoading } = useSigner()
-  // const { data: account } = useAccount()
-
-  const contract = useContract({
-    addressOrName: TESTNET_ADDRESS,
-    contractInterface: CONTRACT_ABI,
-    signerOrProvider: signer,
-  })
 
   return (
     <div className="fixed left-0 top-0 flex items-center inset-0 z-50 outline-none">
@@ -45,32 +38,32 @@ const ContributeModal = ({
         <div className="flex place-content-center space-x-8 mb-4">
           {recurring ? (
             <button
-              className="hover:border-2 hover:border-slate-100 border-2 border-white rounded-lg px-4 py-2 font-bold"
-              onClick={() => setRecurring(false)}
+              className="border-2 border-white bg-slate-100 rounded-lg px-4 py-2 font-bold"
+              onClick={() => setRecurring(true)}
             >
-              Tip
+              Subscribe
             </button>
           ) : (
             <button
-              className="border-2 border-white bg-slate-100 rounded-lg px-4 py-2 font-bold"
-              onClick={() => setRecurring(false)}
+              className="hover:border-2 hover:border-slate-100 border-2 border-white rounded-lg px-4 py-2 font-bold"
+              onClick={() => setRecurring(true)}
             >
-              Tip
+              Subscribe
             </button>
           )}
           {recurring ? (
             <button
-              className="border-2 border-white bg-slate-100 rounded-lg px-4 py-2 font-bold"
-              onClick={() => setRecurring(true)}
+              className="hover:border-2 hover:border-slate-100 border-2 border-white rounded-lg px-4 py-2 font-bold"
+              onClick={() => setRecurring(false)}
             >
-              Subscribe
+              Tip
             </button>
           ) : (
             <button
-              className="hover:border-2 hover:border-slate-100 border-2 border-white rounded-lg px-4 py-2 font-bold"
-              onClick={() => setRecurring(true)}
+              className="border-2 border-white bg-slate-100 rounded-lg px-4 py-2 font-bold"
+              onClick={() => setRecurring(false)}
             >
-              Subscribe
+              Tip
             </button>
           )}
         </div>

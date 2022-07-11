@@ -11,7 +11,7 @@ const Tip = ({ recipientAddress }: TipProps) => {
   const [ethAmount, setEthAmount] = useState<any>('0.0')
   const { address } = useAccount()
 
-  const { data, isError, isLoading, write } = useContractWrite({
+  const { write } = useContractWrite({
     addressOrName: TESTNET_ADDRESS,
     chainId: KOVAN_CHAIN_ID,
     contractInterface: CONTRACT_ABI,
@@ -20,6 +20,12 @@ const Tip = ({ recipientAddress }: TipProps) => {
     overrides: {
       from: address,
       value: ethers.utils.parseEther(ethAmount),
+    },
+    onError(error) {
+      console.log('Error', error)
+    },
+    onSuccess(data) {
+      console.log('Success', data)
     },
   })
 

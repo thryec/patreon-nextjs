@@ -1,8 +1,53 @@
+import { useState, useEffect } from 'react'
+import { ethers } from 'ethers'
+import { useContractWrite, useAccount } from 'wagmi'
+import { TESTNET_ADDRESS, CONTRACT_ABI, KOVAN_CHAIN_ID } from '../constants'
+
 interface SubscribeProps {
   recipientAddress: string
 }
 
 const Subscribe = ({ recipientAddress }: SubscribeProps) => {
+  const [ethMonthlyAmount, setEthMonthlyAmount] = useState<any>('0.0')
+  const [ethTotalAmount, setEthTotalAmount] = useState<any>('0.0')
+  const [currentTime, setCurrentTime] = useState<any>()
+  const [endTime, setEndTime] = useState<any>()
+
+  const { address } = useAccount()
+
+  const getCurrentBlockTimestamp = async () => {
+    const provider = new ethers.providers.JsonRpcProvider(
+      process.env.KOVAN_RPC_URL
+    )
+    const blockNumber = await provider.getBlockNumber()
+    console.log(' blocknum:', blockNumber)
+    const timestamp = (await provider.getBlock(blockNumber)).timestamp
+    console.log(' current timestamp:', timestamp)
+    setCurrentTime(timestamp)
+  }
+
+  const { write } = useContractWrite({
+    addressOrName: TESTNET_ADDRESS,
+    chainId: KOVAN_CHAIN_ID,
+    contractInterface: CONTRACT_ABI,
+    functionName: 'createETHStream',
+    args: [recipientAddress],
+    overrides: {
+      from: address,
+      value: ethers.utils.parseEther(ethTotalAmount),
+    },
+    onError(error) {
+      console.log('Error', error)
+    },
+    onSuccess(data) {
+      console.log('Success', data)
+    },
+  })
+
+  useEffect(() => {
+    getCurrentBlockTimestamp()
+  }, [])
+
   return (
     <div>
       <div>
