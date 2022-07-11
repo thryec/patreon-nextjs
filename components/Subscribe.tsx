@@ -14,7 +14,7 @@ type FormData = {
 }
 
 const Subscribe = ({ recipientAddress }: SubscribeProps) => {
-  const [ethTotalAmount, setEthTotalAmount] = useState<any>('0.0')
+  const [depositAmount, setDepositAmount] = useState<any>('0')
   const [startTime, setStartTime] = useState<any>()
   const [endTime, setEndTime] = useState<any>()
 
@@ -35,7 +35,7 @@ const Subscribe = ({ recipientAddress }: SubscribeProps) => {
     args: [recipientAddress, startTime, endTime],
     overrides: {
       from: address,
-      value: ethers.utils.parseEther(ethTotalAmount),
+      value: ethers.utils.parseEther(depositAmount),
     },
     onMutate({ args, overrides }) {
       console.log('Mutate', { args, overrides })
@@ -48,21 +48,21 @@ const Subscribe = ({ recipientAddress }: SubscribeProps) => {
     },
   })
 
-  console.log(
-    'connected address: ',
-    address,
-    'recipient address',
-    recipientAddress
-  )
-
   const onSubmit = async (data: any) => {
-    const totalEth = data.ethAmount * data.weeks
-    setEthTotalAmount(totalEth.toString())
-    const weeksInSeconds = data.weeks * 7 * 24 * 60 * 60
+    const timeDelta = data.weeks * 7 * 24 * 60 * 60
     const currentBlocktime = await getCurrentBlockTimestamp()
-    const endBlocktime = currentBlocktime + weeksInSeconds
+    const endBlocktime = currentBlocktime + timeDelta
     setStartTime(currentBlocktime)
     setEndTime(endBlocktime)
+    const totalAmount = (data.ethAmount * data.weeks).toString()
+    const amountInWei = ethers.utils.parseUnits(totalAmount, 'ether')
+    const remainder = amountInWei.mod(timeDelta)
+    if (remainder.toNumber() !== 0) {
+      const roundedAmount = amountInWei.sub(remainder)
+      setDepositAmount(roundedAmount.toString())
+    } else {
+      setDepositAmount(totalAmount.toString())
+    }
   }
 
   const getCurrentBlockTimestamp = async () => {
@@ -75,10 +75,10 @@ const Subscribe = ({ recipientAddress }: SubscribeProps) => {
   }
 
   useEffect(() => {
-    if (endTime) {
+    if (depositAmount !== '0') {
       write()
     }
-  }, [endTime])
+  }, [depositAmount])
 
   return (
     <div className="space-y-2">
