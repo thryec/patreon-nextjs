@@ -14,8 +14,8 @@ type FormData = {
 }
 
 const Subscribe = ({ recipientAddress }: SubscribeProps) => {
-  const [ethMonthlyAmount, setEthMonthlyAmount] = useState<any>('0.0')
   const [ethTotalAmount, setEthTotalAmount] = useState<any>('0.0')
+  const [startTime, setStartTime] = useState<any>()
   const [endTime, setEndTime] = useState<any>()
 
   const { address } = useAccount()
@@ -32,10 +32,13 @@ const Subscribe = ({ recipientAddress }: SubscribeProps) => {
     chainId: KOVAN_CHAIN_ID,
     contractInterface: CONTRACT_ABI,
     functionName: 'createETHStream',
-    args: [recipientAddress],
+    args: [recipientAddress, startTime, endTime],
     overrides: {
       from: address,
       value: ethers.utils.parseEther(ethTotalAmount),
+    },
+    onMutate({ args, overrides }) {
+      console.log('Mutate', { args, overrides })
     },
     onError(error) {
       console.log('Error', error)
@@ -45,12 +48,20 @@ const Subscribe = ({ recipientAddress }: SubscribeProps) => {
     },
   })
 
+  console.log(
+    'connected address: ',
+    address,
+    'recipient address',
+    recipientAddress
+  )
+
   const onSubmit = async (data: any) => {
     const totalEth = data.ethAmount * data.weeks
     setEthTotalAmount(totalEth.toString())
     const weeksInSeconds = data.weeks * 7 * 24 * 60 * 60
     const currentBlocktime = await getCurrentBlockTimestamp()
     const endBlocktime = currentBlocktime + weeksInSeconds
+    setStartTime(currentBlocktime)
     setEndTime(endBlocktime)
   }
 
@@ -64,8 +75,10 @@ const Subscribe = ({ recipientAddress }: SubscribeProps) => {
   }
 
   useEffect(() => {
-    getCurrentBlockTimestamp()
-  }, [])
+    if (endTime) {
+      write()
+    }
+  }, [endTime])
 
   return (
     <div className="space-y-2">
