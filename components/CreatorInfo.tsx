@@ -3,7 +3,6 @@ import { useState } from 'react'
 import ContributeModal from './ContributeModal'
 import { shortenAddress } from '../helpers'
 import Image from 'next/image'
-import ContractInterface from 'wagmi'
 
 interface CreatorProps {
   address: string
@@ -21,6 +20,7 @@ const CreatorInfo = (creator: CreatorProps) => {
         <ContributeModal
           setContributeModal={setContributeModal}
           creatorAddress={creator.address}
+          creatorName={creator.name}
         />
       )}
       <div className="flex place-content-between items-center">

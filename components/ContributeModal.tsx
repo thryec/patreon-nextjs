@@ -9,11 +9,13 @@ import { shortenAddress } from '../helpers'
 interface ContributeModalProps {
   setContributeModal: (a: boolean) => void
   creatorAddress: string
+  creatorName: string
 }
 
 const ContributeModal = ({
   setContributeModal,
   creatorAddress,
+  creatorName,
 }: ContributeModalProps) => {
   const [recurring, setRecurring] = useState<boolean>(true)
 
@@ -68,9 +70,12 @@ const ContributeModal = ({
           )}
         </div>
         {recurring ? (
-          <Subscribe recipientAddress={creatorAddress} />
+          <Subscribe
+            recipientAddress={creatorAddress}
+            recipientName={creatorName}
+          />
         ) : (
-          <Tip recipientAddress={creatorAddress} />
+          <Tip recipientAddress={creatorAddress} recipientName={creatorName} />
         )}
       </div>
     </div>

@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import Spinner from '../../components/Spinner'
 import { shortenAddress } from '../../helpers'
@@ -62,9 +63,14 @@ const Creator: NextPage = () => {
               className="rounded-full"
             />
             <h1 className="text-3xl font-semibold mt-10">{profile.name}</h1>
-            <span className="text-sm text-slate-500">
+            <span className="text-sm text-slate-500 mb-4 block">
               {shortenAddress(profile.walletAddress)}
             </span>
+            <Link href={'contribute/' + addr} passHref>
+              <button className="px-4 py-2 bg-violet-400 rounded-md text-white font-bold block">
+                subscribe!
+              </button>
+            </Link>
             <div className="space-y-4 mt-6">
               {!!profile.twitter && (
                 <div className="space-y-2">

@@ -5,7 +5,8 @@ import { useContractWrite, useAccount } from 'wagmi'
 import { TESTNET_ADDRESS, CONTRACT_ABI, KOVAN_CHAIN_ID } from '../constants'
 
 interface SubscribeProps {
-  recipientAddress: string
+  recipientAddress: any
+  recipientName: any
 }
 
 type FormData = {
@@ -13,7 +14,7 @@ type FormData = {
   weeks: string
 }
 
-const Subscribe = ({ recipientAddress }: SubscribeProps) => {
+const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
   const [depositAmount, setDepositAmount] = useState<any>('0')
   const [startTime, setStartTime] = useState<any>()
   const [endTime, setEndTime] = useState<any>()
@@ -85,7 +86,8 @@ const Subscribe = ({ recipientAddress }: SubscribeProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <p>
-            I want to subscribe to <code>Creator</code> for
+            I want to subscribe to{' '}
+            <code className="font-semibold underline">{recipientName}</code> for
             <input
               type="number"
               step="0.01"
