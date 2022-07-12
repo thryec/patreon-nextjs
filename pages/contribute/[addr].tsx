@@ -1,8 +1,7 @@
 import type { NextPage } from 'next'
-import { XIcon } from '@heroicons/react/solid'
-import Tip from '../../../components/Tip'
-import Subscribe from '../../../components/Subscribe'
-import { shortenAddress } from '../../../helpers'
+import Tip from '../../components/Tip'
+import Subscribe from '../../components/Subscribe'
+import { shortenAddress } from '../../helpers'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
@@ -11,12 +10,16 @@ const Contribute: NextPage = () => {
   const router = useRouter()
   const { addr } = router.query
 
+  console.log('address: ', addr)
+
   return (
-    <div className="w-full max-w-lg p-5 relative mx-auto my-auto">
+    <div className="w-full max-w-lg p-5 relative mx-auto my-auto h-screen">
       <div className="flex place-content-between">
         <h1 className="font-bold text-2xl mb-3">
           Contribute to{' '}
-          <code className="font-light text-xl">{shortenAddress(addr)}</code>
+          {addr && (
+            <code className="font-light text-xl">{shortenAddress(addr)}</code>
+          )}
         </h1>
       </div>
       <div className="flex place-content-center space-x-8 mb-4">

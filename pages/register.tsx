@@ -91,7 +91,7 @@ const Register: NextPage = () => {
   }
 
   return (
-    <div className="flex justify-center items-center w-full mt-4 mb-32">
+    <div className="flex justify-center items-center w-full pt-4 pb-32">
       {loadingModal && <Loading setLoadingModal={setLoadingModal} />}
       {successModal && (
         <Success setSuccessModal={setSuccessModal} walletAddress={address} />
@@ -209,7 +209,7 @@ const Register: NextPage = () => {
             </div>
             <div className="flex justify-center">
               <button
-                className="bg-pink-400 py-2 px-4 rounded-lg text-white font-bold"
+                className="bg-violet-500 py-2 px-4 rounded-lg text-white font-bold"
                 type="submit"
               >
                 Create

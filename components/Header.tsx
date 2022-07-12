@@ -1,10 +1,17 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import Link from 'next/link'
+import Logo from '../components/Logo'
 
 const Header = () => {
   return (
-    <div className="flex place-content-end pt-14 px-20 pb-16">
-      <div className="mr-48">
+    <div className="flex place-content-between items-center py-16 px-32">
+      <Link href="/" passHref>
+        <span className="cursor-pointer">
+          <Logo />
+        </span>
+      </Link>
+
+      <div>
         <ConnectButton />
       </div>
     </div>

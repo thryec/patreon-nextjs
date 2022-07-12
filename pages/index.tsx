@@ -4,15 +4,13 @@ import CreatorInfo from '../components/CreatorInfo'
 import { TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 import Link from 'next/link'
 import Landing from '../components/Landing'
-import { useState, useEffect } from 'react'
-import { useContract, useSigner } from 'wagmi'
-import { useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { useContract } from 'wagmi'
 
 const Home: NextPage = () => {
   const ref = useRef<HTMLDivElement>(null)
   const [profileData, setProfileData] = useState<any>([])
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
-  // const { data: signer } = useSigner()
 
   const provider = new ethers.providers.JsonRpcProvider(
     process.env.KOVAN_RPC_URL
