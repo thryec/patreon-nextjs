@@ -3,7 +3,7 @@ import { ethers } from 'ethers'
 import CreatorInfo from '../components/CreatorInfo'
 import { TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 import Link from 'next/link'
-import Direction from '../components/Direction'
+import Landing from '../components/Landing'
 import { useState, useEffect } from 'react'
 import { useContract, useSigner } from 'wagmi'
 import { useRef } from 'react'
@@ -63,9 +63,9 @@ const Home: NextPage = () => {
   })
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center bg-gray-100">
       <div>
-        <Direction handleSupporterClick={handleSupporterClick} />
+        <Landing handleSupporterClick={handleSupporterClick} />
         <div ref={ref} className="grid grid-cols-3 gap-10 mx-60">
           {isLoaded && profileCards}
         </div>
