@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { useRef } from 'react'
 
 interface LandingProps {
   handleSupporterClick: () => void
@@ -7,14 +6,14 @@ interface LandingProps {
 
 const Landing = ({ handleSupporterClick }: LandingProps) => {
   return (
-    <div className="flex justify-center space-x-6 mt-40 mb-40 max-h-screen">
+    <div className="flex justify-center space-x-6 pt-32 h-screen">
       <div>
-        <div className="text-7xl font-extrabold  cursor-pointer space-y-4">
+        <div className="text-7xl font-extrabold  cursor-pointer space-y-6">
           <p>Support your favourite creators.</p>
           <p className="text-center">
             This is{' '}
             <span className="text-transparent bg-clip-text font-bold bg-gradient-to-r from-green-400 to-blue-500">
-              Circle Of Life
+              Circle Of Life.
             </span>
           </p>
         </div>
