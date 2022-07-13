@@ -92,10 +92,10 @@ const Contribute: NextPage = () => {
           </button>
         )}
       </div>
-      {recurring ? (
+      {recurring && profile ? (
         <Subscribe recipientAddress={addr} recipientName={profile.name} />
       ) : (
-        <Tip recipientAddress={addr} recipientName={profile.name} />
+        profile && <Tip recipientAddress={addr} recipientName={profile.name} />
       )}
     </div>
   )
