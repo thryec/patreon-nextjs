@@ -3,14 +3,52 @@ import Tip from '../../components/Tip'
 import Subscribe from '../../components/Subscribe'
 import { shortenAddress } from '../../helpers'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useContractRead } from 'wagmi'
+import { TESTNET_ADDRESS, CONTRACT_ABI, KOVAN_CHAIN_ID } from '../../constants'
 
 const Contribute: NextPage = () => {
+  const [profile, setProfile] = useState<any>()
+  const [ipfsHash, setIpfsHash] = useState<any>()
+  const [isFetched, setIsFetched] = useState<boolean>()
+
   const [recurring, setRecurring] = useState<boolean>(true)
   const router = useRouter()
   const { addr } = router.query
 
-  console.log('address: ', addr)
+  const { data, isError, isLoading } = useContractRead({
+    addressOrName: TESTNET_ADDRESS,
+    contractInterface: CONTRACT_ABI,
+    functionName: 'getProfile',
+    args: addr,
+  })
+
+  const fetchIpfsInfo = async () => {
+    if (!!data) {
+      const res = await fetch(ipfsHash)
+      const info = await res.json()
+      console.log('profile info: ', info)
+      setProfile(info)
+    }
+  }
+
+  useEffect(() => {
+    if (!!profile) {
+      setIsFetched(true)
+    }
+  }, [profile])
+
+  useEffect(() => {
+    if (!!ipfsHash) {
+      fetchIpfsInfo()
+    }
+  }, [ipfsHash])
+
+  useEffect(() => {
+    if (!!data) {
+      setIpfsHash(data)
+    }
+  }, [data])
 
   return (
     <div className="w-full max-w-lg p-5 relative mx-auto my-auto h-screen">
@@ -55,9 +93,9 @@ const Contribute: NextPage = () => {
         )}
       </div>
       {recurring ? (
-        <Subscribe recipientAddress={addr} />
+        <Subscribe recipientAddress={addr} recipientName={profile.name} />
       ) : (
-        <Tip recipientAddress={addr} />
+        <Tip recipientAddress={addr} recipientName={profile.name} />
       )}
     </div>
   )

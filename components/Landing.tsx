@@ -6,7 +6,7 @@ interface LandingProps {
 
 const Landing = ({ handleSupporterClick }: LandingProps) => {
   return (
-    <div className="flex justify-center space-x-6 pt-32 h-screen">
+    <div className="flex justify-center space-x-6 md:pt-24 lg:pt-32 h-screen">
       <div>
         <div className="text-7xl font-extrabold  cursor-pointer space-y-6">
           <p>Support your favourite creators.</p>
