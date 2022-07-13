@@ -64,7 +64,7 @@ const Home: NextPage = () => {
     <div className="flex justify-center max-h-screen">
       <div>
         <Landing handleSupporterClick={handleSupporterClick} />
-        <div className="bg-gray-100 h-screen pt-20" ref={ref}>
+        <div className="bg-gray-100 h-screen w-screen pt-20" ref={ref}>
           <div className="grid grid-cols-3 gap-10 px-60">
             {isLoaded && profileCards}
           </div>
