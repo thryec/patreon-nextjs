@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
   const provider = new ethers.providers.JsonRpcProvider(
-    process.env.KOVAN_RPC_URL
+    process.env.GOERLI_RPC_URL
   )
 
   const contract = useContract({

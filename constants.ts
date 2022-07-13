@@ -1,7 +1,7 @@
 export const KOVAN_CHAIN_ID = 69
 export const OPTIMISM_CHAIN_ID = 10
 
-export const TESTNET_ADDRESS = '0x6807274aa1df6cc813a26da561b259e37b05b14f'
+export const TESTNET_ADDRESS = '0x1e843bea1086b1a14ca1fe17b49ae669b1d76cb3'
 
 export const CONTRACT_ABI = [
   {

@@ -28,7 +28,7 @@ const Creator: NextPage = () => {
     if (!!data) {
       const res = await fetch(ipfsHash)
       const info = await res.json()
-      console.log('profile info: ', info)
+      // console.log('profile info: ', info)
       setProfile(info)
     }
   }
@@ -67,7 +67,7 @@ const Creator: NextPage = () => {
             <span className="text-sm text-slate-500 mb-4 block">
               {shortenAddress(profile.walletAddress)}
             </span>
-            <Link href={'contribute/' + addr} passHref>
+            <Link href={'../contribute/' + addr} passHref>
               <button className="px-4 py-2 bg-violet-500 rounded-md text-white font-bold block">
                 subscribe!
               </button>
