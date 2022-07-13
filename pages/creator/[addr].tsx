@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import StreamInfo from '../../components/StreamInfo'
 import Spinner from '../../components/Spinner'
 import { shortenAddress } from '../../helpers'
 import { useContractRead } from 'wagmi'
@@ -53,7 +54,7 @@ const Creator: NextPage = () => {
   return (
     <div>
       {isFetched ? (
-        <div className="flex mx-80 h-screen">
+        <div className="flex mx-72 h-screen">
           <div className="w-1/3">
             <Image
               src={profile.avatar}
@@ -67,7 +68,7 @@ const Creator: NextPage = () => {
               {shortenAddress(profile.walletAddress)}
             </span>
             <Link href={'contribute/' + addr} passHref>
-              <button className="px-4 py-2 bg-violet-400 rounded-md text-white font-bold block">
+              <button className="px-4 py-2 bg-violet-500 rounded-md text-white font-bold block">
                 subscribe!
               </button>
             </Link>
@@ -121,6 +122,9 @@ const Creator: NextPage = () => {
               <h1 className="text-xl text-slate-800 font-semibold">
                 Live Streams
               </h1>
+              <div className="space-y-4 mt-4">
+                <StreamInfo />
+              </div>
             </div>
           </div>
         </div>
