@@ -8,8 +8,8 @@ const Landing = ({ handleSupporterClick }: LandingProps) => {
   return (
     <div className="flex justify-center space-x-6 md:pt-24 lg:pt-32 h-screen">
       <div>
-        <div className="text-7xl font-extrabold  cursor-pointer space-y-6">
-          <p>Support your favourite creators.</p>
+        <div className="text-7xl font-extrabold cursor-pointer space-y-6">
+          <p className="text-center">Support your favourite creators.</p>
           <p className="text-center">
             This is{' '}
             <span className="text-transparent bg-clip-text font-bold bg-gradient-to-r from-green-400 to-blue-500">

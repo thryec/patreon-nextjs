@@ -28,7 +28,6 @@ const Contribute: NextPage = () => {
     if (!!data) {
       const res = await fetch(ipfsHash)
       const info = await res.json()
-      console.log('profile info: ', info)
       setProfile(info)
     }
   }

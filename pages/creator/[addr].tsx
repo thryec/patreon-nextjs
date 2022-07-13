@@ -53,7 +53,7 @@ const Creator: NextPage = () => {
   return (
     <div>
       {isFetched ? (
-        <div className="flex mx-80">
+        <div className="flex mx-80 h-screen">
           <div className="w-1/3">
             <Image
               src={profile.avatar}
