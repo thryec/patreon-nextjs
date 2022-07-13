@@ -125,7 +125,7 @@ const Creator: NextPage = () => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center">
+        <div className="flex justify-center h-screen">
           <Spinner />
         </div>
       )}
