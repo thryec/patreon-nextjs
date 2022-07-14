@@ -141,17 +141,23 @@ const Creator: NextPage = () => {
               )}
             </div>
           </div>
-          <div className="w-2/3 space-y-16">
-            <div className="flex place-content-between">
+          <div className="w-2/3 space-y-10">
+            <div className="flex place-content-around">
               <div>
                 <h1 className="text-xl text-slate-800 font-semibold">
-                  Earned ETH
+                  ETH Received
                 </h1>
+                <div className="rounded-md p-8 m-2 font-bold text-xl bg-white">
+                  10 ETH
+                </div>
               </div>
               <div>
                 <h1 className="text-xl text-slate-800 font-semibold">
                   Claimable ETH
                 </h1>
+                <div className="rounded-md p-8 m-2 font-bold text-xl bg-white">
+                  10 ETH
+                </div>
               </div>
             </div>
             <div>
