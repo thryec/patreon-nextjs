@@ -50,8 +50,6 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
     },
     onSuccess(data) {
       console.log('Success', data)
-      // const receipt = await data.wait()
-      // console.log('receipt: ', receipt)
     },
   })
 
