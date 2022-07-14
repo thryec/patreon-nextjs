@@ -1,7 +1,12 @@
 export const KOVAN_CHAIN_ID = 69
 export const OPTIMISM_CHAIN_ID = 10
+export const GOERLI_CHAIN_ID = 5
 
-export const TESTNET_ADDRESS = '0x1e843bea1086b1a14ca1fe17b49ae669b1d76cb3'
+export const GOERLI_TESTNET_ADDRESS =
+  '0x1e843bea1086b1a14ca1fe17b49ae669b1d76cb3'
+
+export const KOVAN_TESTNET_ADDRESS =
+  '0xD20F8d928E8EdBb3c7e5855B78950221eb75fbB7'
 
 export const CONTRACT_ABI = [
   {

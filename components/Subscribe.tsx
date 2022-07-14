@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
 import { useContractWrite, useAccount } from 'wagmi'
-import { TESTNET_ADDRESS, CONTRACT_ABI, KOVAN_CHAIN_ID } from '../constants'
+import {
+  GOERLI_TESTNET_ADDRESS,
+  CONTRACT_ABI,
+  GOERLI_CHAIN_ID,
+} from '../constants'
 
 interface SubscribeProps {
   recipientAddress: any
@@ -29,14 +33,14 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
   } = useForm<FormData>({})
 
   const { write } = useContractWrite({
-    addressOrName: TESTNET_ADDRESS,
-    chainId: KOVAN_CHAIN_ID,
+    addressOrName: GOERLI_TESTNET_ADDRESS,
+    chainId: GOERLI_CHAIN_ID,
     contractInterface: CONTRACT_ABI,
     functionName: 'createETHStream',
     args: [recipientAddress, startTime, endTime],
     overrides: {
       from: address,
-      value: ethers.utils.parseEther(depositAmount),
+      value: depositAmount,
     },
     onMutate({ args, overrides }) {
       console.log('Mutate', { args, overrides })
@@ -60,6 +64,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
     const remainder = amountInWei.mod(timeDelta)
     if (remainder.toNumber() !== 0) {
       const roundedAmount = amountInWei.sub(remainder)
+      console.log('rounded amount: ', roundedAmount)
       setDepositAmount(roundedAmount.toString())
     } else {
       setDepositAmount(totalAmount.toString())
@@ -72,7 +77,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
     )
     const blockNumber = await provider.getBlockNumber()
     const timestamp = (await provider.getBlock(blockNumber)).timestamp
-    return timestamp + 300
+    return timestamp
   }
 
   useEffect(() => {
