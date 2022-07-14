@@ -192,7 +192,8 @@ const Creator: NextPage = () => {
                   {receivingStreams &&
                     receivingStreams.map((stream: any, index: any) => (
                       <StreamInfo
-                        key={index}
+                        key={stream.streamId}
+                        streamId={stream.streamId}
                         sender={stream.sender}
                         recipient={stream.recipient}
                         isActive={stream.isActive}

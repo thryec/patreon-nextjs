@@ -8,6 +8,7 @@ import {
 } from '../constants'
 
 interface StreamInfoProps {
+  streamId: number
   sender: string
   recipient: string
   isActive: boolean
@@ -18,9 +19,8 @@ interface StreamInfoProps {
 }
 
 const StreamInfo = ({
+  streamId,
   sender,
-  recipient,
-  isActive,
   deposit,
   remainingBalance,
   startTime,

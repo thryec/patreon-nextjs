@@ -6,7 +6,7 @@ export const GOERLI_TESTNET_ADDRESS =
   '0x1e843bea1086b1a14ca1fe17b49ae669b1d76cb3'
 
 export const KOVAN_TESTNET_ADDRESS =
-  '0x933800205031F3aebD4FCfC82c91B48166ff2AaA'
+  '0x0c63c07c6577799daf292b331252dd8094c0bb1a'
 
 export const CONTRACT_ABI = [
   {
@@ -275,6 +275,11 @@ export const CONTRACT_ABI = [
         components: [
           {
             internalType: 'uint256',
+            name: 'streamId',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
             name: 'deposit',
             type: 'uint256',
           },
@@ -339,6 +344,11 @@ export const CONTRACT_ABI = [
     outputs: [
       {
         components: [
+          {
+            internalType: 'uint256',
+            name: 'streamId',
+            type: 'uint256',
+          },
           {
             internalType: 'uint256',
             name: 'deposit',
@@ -424,6 +434,11 @@ export const CONTRACT_ABI = [
     outputs: [
       {
         components: [
+          {
+            internalType: 'uint256',
+            name: 'streamId',
+            type: 'uint256',
+          },
           {
             internalType: 'uint256',
             name: 'deposit',
@@ -550,6 +565,11 @@ export const CONTRACT_ABI = [
     ],
     name: 'streams',
     outputs: [
+      {
+        internalType: 'uint256',
+        name: 'streamId',
+        type: 'uint256',
+      },
       {
         internalType: 'uint256',
         name: 'deposit',

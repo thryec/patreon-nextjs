@@ -64,7 +64,6 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
     const remainder = amountInWei.mod(timeDelta)
     if (remainder.toNumber() !== 0) {
       const roundedAmount = amountInWei.sub(remainder)
-      console.log('rounded amount: ', roundedAmount)
       setDepositAmount(roundedAmount.toString())
     } else {
       setDepositAmount(totalAmount.toString())
