@@ -1,5 +1,5 @@
-export const KOVAN_CHAIN_ID = 69
 export const OPTIMISM_CHAIN_ID = 10
+export const KOVAN_CHAIN_ID = 69
 export const GOERLI_CHAIN_ID = 5
 
 export const GOERLI_TESTNET_ADDRESS =

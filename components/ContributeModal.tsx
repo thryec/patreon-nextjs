@@ -3,7 +3,7 @@ import { XIcon } from '@heroicons/react/solid'
 import Tip from './Tip'
 import Subscribe from './Subscribe'
 import { useContract, useSigner, useAccount } from 'wagmi'
-import { TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
+import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 import { shortenAddress } from '../helpers'
 
 interface ContributeModalProps {

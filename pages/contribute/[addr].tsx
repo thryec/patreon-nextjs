@@ -6,7 +6,11 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import Spinner from '../../components/Spinner'
 import { useContractRead } from 'wagmi'
-import { TESTNET_ADDRESS, CONTRACT_ABI, KOVAN_CHAIN_ID } from '../../constants'
+import {
+  KOVAN_TESTNET_ADDRESS,
+  CONTRACT_ABI,
+  KOVAN_CHAIN_ID,
+} from '../../constants'
 
 const Contribute: NextPage = () => {
   const [profile, setProfile] = useState<any>()
@@ -18,7 +22,7 @@ const Contribute: NextPage = () => {
   const { addr } = router.query
 
   const { data, isError, isLoading } = useContractRead({
-    addressOrName: TESTNET_ADDRESS,
+    addressOrName: KOVAN_TESTNET_ADDRESS,
     contractInterface: CONTRACT_ABI,
     functionName: 'getProfile',
     args: addr,

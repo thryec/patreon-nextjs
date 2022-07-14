@@ -7,7 +7,7 @@ import Spinner from '../../components/Spinner'
 import { shortenAddress } from '../../helpers'
 import { useContractRead } from 'wagmi'
 import Image from 'next/image'
-import { TESTNET_ADDRESS, CONTRACT_ABI, KOVAN_CHAIN_ID } from '../../constants'
+import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../../constants'
 
 const Creator: NextPage = () => {
   const [profile, setProfile] = useState<any>()
@@ -18,7 +18,7 @@ const Creator: NextPage = () => {
   const { addr } = router.query
 
   const { data, isError, isLoading } = useContractRead({
-    addressOrName: TESTNET_ADDRESS,
+    addressOrName: KOVAN_TESTNET_ADDRESS,
     contractInterface: CONTRACT_ABI,
     functionName: 'getProfile',
     args: addr,
@@ -120,7 +120,7 @@ const Creator: NextPage = () => {
             </div>
             <div>
               <h1 className="text-xl text-slate-800 font-semibold">
-                Live Streams
+                Receiving
               </h1>
               <div className="space-y-4 mt-4">
                 <StreamInfo />

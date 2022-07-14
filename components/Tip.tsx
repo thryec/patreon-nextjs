@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import { ethers } from 'ethers'
 import { useContractWrite, useAccount } from 'wagmi'
-import { TESTNET_ADDRESS, CONTRACT_ABI, KOVAN_CHAIN_ID } from '../constants'
+import {
+  KOVAN_TESTNET_ADDRESS,
+  CONTRACT_ABI,
+  KOVAN_CHAIN_ID,
+} from '../constants'
 
 interface TipProps {
   recipientAddress: any
@@ -13,7 +17,7 @@ const Tip = ({ recipientAddress, recipientName }: TipProps) => {
   const { address } = useAccount()
 
   const { write } = useContractWrite({
-    addressOrName: TESTNET_ADDRESS,
+    addressOrName: KOVAN_TESTNET_ADDRESS,
     chainId: KOVAN_CHAIN_ID,
     contractInterface: CONTRACT_ABI,
     functionName: 'tipETH',

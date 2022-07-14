@@ -3,7 +3,7 @@ import { ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
 import { useContractWrite, useAccount } from 'wagmi'
 import {
-  GOERLI_TESTNET_ADDRESS,
+  KOVAN_TESTNET_ADDRESS,
   CONTRACT_ABI,
   GOERLI_CHAIN_ID,
 } from '../constants'
@@ -33,7 +33,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
   } = useForm<FormData>({})
 
   const { write } = useContractWrite({
-    addressOrName: GOERLI_TESTNET_ADDRESS,
+    addressOrName: KOVAN_TESTNET_ADDRESS,
     chainId: GOERLI_CHAIN_ID,
     contractInterface: CONTRACT_ABI,
     functionName: 'createETHStream',

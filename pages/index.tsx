@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { ethers } from 'ethers'
 import CreatorInfo from '../components/CreatorInfo'
-import { TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
+import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 import Link from 'next/link'
 import Landing from '../components/Landing'
 import { useState, useEffect, useRef } from 'react'
@@ -13,11 +13,11 @@ const Home: NextPage = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
   const provider = new ethers.providers.JsonRpcProvider(
-    process.env.GOERLI_RPC_URL
+    process.env.KOVAN_RPC_URL
   )
 
   const contract = useContract({
-    addressOrName: TESTNET_ADDRESS,
+    addressOrName: KOVAN_TESTNET_ADDRESS,
     contractInterface: CONTRACT_ABI,
     signerOrProvider: provider,
   })
