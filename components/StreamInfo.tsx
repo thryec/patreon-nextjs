@@ -20,14 +20,25 @@ const StreamInfo = ({
   startTime,
   stopTime,
 }: StreamInfoProps) => {
+  console.log('current unix timestamp: ', Date.now())
+  const startDate = new Date(startTime * 1000).toLocaleDateString()
+  const stopDate = new Date(stopTime * 1000).toLocaleDateString()
+
   return (
-    <div className="border-violet-500 px-6 py-4 rounded-md shadow flex place-content-between items-center bg-white">
-      <span className="text-slate-600">{shortenAddress(sender)}</span>
-      <span>{ethers.utils.formatEther(remainingBalance)} ETH</span>
-      <button className="text-sm font-bold rounded-md bg-violet-500 text-white px-4 py-2 hover:bg-violet-600">
-        Withdraw
-      </button>
-    </div>
+    <tr className="bg-white text-sm border-4 border-slate-100">
+      <td className="px-4 py-2 rounded-md">{shortenAddress(sender)}</td>
+      <td className="px-4 py-2 rounded-md">{startDate}</td>
+      <td className="px-4 py-2 rounded-md">{stopDate}</td>
+      <td className="px-4 py-2 rounded-md">{deposit - remainingBalance}</td>
+      <td className="px-4 py-2 rounded-md">
+        {ethers.utils.formatEther(remainingBalance)} ETH
+      </td>
+      <td className="px-4 py-2 rounded-md">
+        <button className="text-sm font-bold rounded-md bg-violet-500 text-white px-4 py-2 hover:bg-violet-600">
+          Withdraw
+        </button>
+      </td>
+    </tr>
   )
 }
 

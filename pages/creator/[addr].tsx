@@ -156,23 +156,49 @@ const Creator: NextPage = () => {
             </div>
             <div>
               <h1 className="text-xl text-slate-800 font-semibold">
-                Receiving
+                Live Streams
               </h1>
-              <div className="space-y-4 mt-4">
-                {receivingStreams &&
-                  receivingStreams.map((stream: any, index: any) => (
-                    <StreamInfo
-                      key={index}
-                      sender={stream.sender}
-                      recipient={stream.recipient}
-                      isActive={stream.isActive}
-                      deposit={stream.deposit}
-                      remainingBalance={stream.remainingBalance}
-                      startTime={stream.startTime}
-                      stopTime={stream.stopTime}
-                    />
-                  ))}
-              </div>
+              {/* table  */}
+              <table className="table-auto mt-4">
+                <thead className="bg-white border-b-2 border-slate-200">
+                  <tr>
+                    <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                      Contributor
+                    </th>
+                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                      Start Time
+                    </th>
+                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                      End Time
+                    </th>
+                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                      Amount Claimed
+                    </th>
+                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                      Remaining Amount
+                    </th>
+                    <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {receivingStreams &&
+                    receivingStreams.map((stream: any, index: any) => (
+                      <StreamInfo
+                        key={index}
+                        sender={stream.sender}
+                        recipient={stream.recipient}
+                        isActive={stream.isActive}
+                        deposit={stream.deposit}
+                        remainingBalance={stream.remainingBalance}
+                        startTime={stream.startTime}
+                        stopTime={stream.stopTime}
+                      />
+                    ))}
+                </tbody>
+              </table>
+              {/* table  */}
             </div>
           </div>
         </div>
