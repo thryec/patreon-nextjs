@@ -13,7 +13,7 @@ const Creator: NextPage = () => {
   const [profile, setProfile] = useState<any>()
   const [ipfsHash, setIpfsHash] = useState<any>()
   const [isFetched, setIsFetched] = useState<boolean>()
-  const [receivingStreams, setReceivingStreams] = useState([])
+  const [receivingStreams, setReceivingStreams] = useState<any>([])
   const { address } = useAccount()
 
   const router = useRouter()
@@ -35,16 +35,15 @@ const Creator: NextPage = () => {
     if (!!data) {
       const res = await fetch(ipfsHash)
       const info = await res.json()
-      // console.log('profile info: ', info)
       setProfile(info)
     }
   }
 
   useEffect(() => {
-    if (!!profile) {
+    if (!!profile && !!receivingStreams) {
       setIsFetched(true)
     }
-  }, [profile])
+  }, [profile, receivingStreams])
 
   useEffect(() => {
     if (!!ipfsHash) {
@@ -55,20 +54,14 @@ const Creator: NextPage = () => {
   useEffect(() => {
     if (!!data) {
       setIpfsHash(data[0])
-    }
-  }, [data])
-
-  useEffect(() => {
-    if (!!data) {
-      console.log('stream data: ', data[1])
-      // setReceivingStreams(data[1])
+      setReceivingStreams(data[1])
     }
   }, [data])
 
   return (
     <div>
       {isFetched ? (
-        <div className="flex mx-72 h-screen">
+        <div className="flex 2xl:mx-96 xl:mx-72 lg:mx-60 sm:mx-10 h-screen">
           <div className="w-1/3">
             <Image
               src={profile.avatar}
@@ -166,7 +159,19 @@ const Creator: NextPage = () => {
                 Receiving
               </h1>
               <div className="space-y-4 mt-4">
-                <StreamInfo />
+                {receivingStreams &&
+                  receivingStreams.map((stream: any, index: any) => (
+                    <StreamInfo
+                      key={index}
+                      sender={stream.sender}
+                      recipient={stream.recipient}
+                      isActive={stream.isActive}
+                      deposit={stream.deposit}
+                      remainingBalance={stream.remainingBalance}
+                      startTime={stream.startTime}
+                      stopTime={stream.stopTime}
+                    />
+                  ))}
               </div>
             </div>
           </div>
