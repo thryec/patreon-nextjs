@@ -6,7 +6,7 @@ export const GOERLI_TESTNET_ADDRESS =
   '0x1e843bea1086b1a14ca1fe17b49ae669b1d76cb3'
 
 export const KOVAN_TESTNET_ADDRESS =
-  '0xD20F8d928E8EdBb3c7e5855B78950221eb75fbB7'
+  '0x933800205031F3aebD4FCfC82c91B48166ff2AaA'
 
 export const CONTRACT_ABI = [
   {
@@ -118,6 +118,19 @@ export const CONTRACT_ABI = [
     ],
     name: 'SenderCancelStream',
     type: 'event',
+  },
+  {
+    inputs: [],
+    name: '_streamIds',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '_value',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
   },
   {
     inputs: [
@@ -252,6 +265,138 @@ export const CONTRACT_ABI = [
     inputs: [
       {
         internalType: 'address',
+        name: 'recipient',
+        type: 'address',
+      },
+    ],
+    name: 'getAllStreamsByRecipient',
+    outputs: [
+      {
+        components: [
+          {
+            internalType: 'uint256',
+            name: 'deposit',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
+            name: 'ratePerSecond',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
+            name: 'remainingBalance',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
+            name: 'startTime',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
+            name: 'stopTime',
+            type: 'uint256',
+          },
+          {
+            internalType: 'address',
+            name: 'recipient',
+            type: 'address',
+          },
+          {
+            internalType: 'address',
+            name: 'sender',
+            type: 'address',
+          },
+          {
+            internalType: 'bool',
+            name: 'exists',
+            type: 'bool',
+          },
+          {
+            internalType: 'bool',
+            name: 'isActive',
+            type: 'bool',
+          },
+        ],
+        internalType: 'struct Patreon.Stream[]',
+        name: '',
+        type: 'tuple[]',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: 'sender',
+        type: 'address',
+      },
+    ],
+    name: 'getAllStreamsBySender',
+    outputs: [
+      {
+        components: [
+          {
+            internalType: 'uint256',
+            name: 'deposit',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
+            name: 'ratePerSecond',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
+            name: 'remainingBalance',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
+            name: 'startTime',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
+            name: 'stopTime',
+            type: 'uint256',
+          },
+          {
+            internalType: 'address',
+            name: 'recipient',
+            type: 'address',
+          },
+          {
+            internalType: 'address',
+            name: 'sender',
+            type: 'address',
+          },
+          {
+            internalType: 'bool',
+            name: 'exists',
+            type: 'bool',
+          },
+          {
+            internalType: 'bool',
+            name: 'isActive',
+            type: 'bool',
+          },
+        ],
+        internalType: 'struct Patreon.Stream[]',
+        name: '',
+        type: 'tuple[]',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
         name: 'user',
         type: 'address',
       },
@@ -316,7 +461,12 @@ export const CONTRACT_ABI = [
           },
           {
             internalType: 'bool',
-            name: 'isEntity',
+            name: 'exists',
+            type: 'bool',
+          },
+          {
+            internalType: 'bool',
+            name: 'isActive',
             type: 'bool',
           },
         ],
@@ -437,7 +587,12 @@ export const CONTRACT_ABI = [
       },
       {
         internalType: 'bool',
-        name: 'isEntity',
+        name: 'exists',
+        type: 'bool',
+      },
+      {
+        internalType: 'bool',
+        name: 'isActive',
         type: 'bool',
       },
     ],

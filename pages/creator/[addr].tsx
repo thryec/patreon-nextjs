@@ -103,6 +103,32 @@ const Creator: NextPage = () => {
                   </a>
                 </div>
               )}
+              {!!profile.github && (
+                <div className="space-y-2">
+                  <h5 className="text-slate-500">GitHub</h5>
+                  <a
+                    href={profile.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline"
+                  >
+                    @{profile.github.substring(19, profile.github.length)}
+                  </a>
+                </div>
+              )}
+              {!!profile.youtube && (
+                <div className="space-y-2">
+                  <h5 className="text-slate-500">Youtube</h5>
+                  <a
+                    href={profile.youtube}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline"
+                  >
+                    @{profile.youtube.substring(26, profile.youtube.length)}
+                  </a>
+                </div>
+              )}
             </div>
           </div>
           <div className="w-2/3 space-y-16">

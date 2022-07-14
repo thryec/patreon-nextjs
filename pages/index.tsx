@@ -39,13 +39,11 @@ const Home: NextPage = () => {
   }
 
   useEffect(() => {
-    // if (contract) {
     const fetchData = async () => {
       await fetchAllProfiles()
       setIsLoaded(true)
     }
     fetchData()
-    // }
   }, [])
 
   const profileCards = profileData.map((el: any) => {

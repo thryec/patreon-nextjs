@@ -12,8 +12,7 @@ const Header = () => {
       </Link>
 
       <div>
-        {/* <ConnectButton chainStatus="none" showBalance={false} /> */}
-        <ConnectButton chainStatus="none" />
+        <ConnectButton showBalance={false} />
       </div>
     </div>
   )
