@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import StreamInfo from '../../components/StreamInfo'
 import Spinner from '../../components/Spinner'
 import { shortenAddress } from '../../helpers'
-import { useContractRead } from 'wagmi'
+import { useContractRead, useAccount } from 'wagmi'
 import Image from 'next/image'
 import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../../constants'
 
@@ -13,6 +13,7 @@ const Creator: NextPage = () => {
   const [profile, setProfile] = useState<any>()
   const [ipfsHash, setIpfsHash] = useState<any>()
   const [isFetched, setIsFetched] = useState<boolean>()
+  const { address } = useAccount()
 
   const router = useRouter()
   const { addr } = router.query
@@ -67,11 +68,14 @@ const Creator: NextPage = () => {
             <span className="text-sm text-slate-500 mb-4 block">
               {shortenAddress(profile.walletAddress)}
             </span>
-            <Link href={'../contribute/' + addr} passHref>
-              <button className="px-4 py-2 bg-violet-500 rounded-md text-white font-bold block">
-                subscribe!
-              </button>
-            </Link>
+            {addr !== address && (
+              <Link href={'../contribute/' + addr} passHref>
+                <button className="px-4 py-2 bg-violet-500 rounded-md text-white font-bold block">
+                  subscribe!
+                </button>
+              </Link>
+            )}
+
             <div className="space-y-4 mt-6">
               {!!profile.twitter && (
                 <div className="space-y-2">

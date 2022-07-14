@@ -5,7 +5,7 @@ import { useContractWrite, useAccount } from 'wagmi'
 import {
   KOVAN_TESTNET_ADDRESS,
   CONTRACT_ABI,
-  GOERLI_CHAIN_ID,
+  KOVAN_CHAIN_ID,
 } from '../constants'
 
 interface SubscribeProps {
@@ -34,7 +34,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
 
   const { write } = useContractWrite({
     addressOrName: KOVAN_TESTNET_ADDRESS,
-    chainId: GOERLI_CHAIN_ID,
+    chainId: KOVAN_CHAIN_ID,
     contractInterface: CONTRACT_ABI,
     functionName: 'createETHStream',
     args: [recipientAddress, startTime, endTime],
@@ -50,6 +50,8 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
     },
     onSuccess(data) {
       console.log('Success', data)
+      // const receipt = await data.wait()
+      // console.log('receipt: ', receipt)
     },
   })
 
@@ -125,7 +127,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
         </div>
         <div className="flex justify-center">
           <button
-            className="px-6 py-2 bg-blue-500 rounded-md text-white font-bold block"
+            className="px-6 py-2 bg-violet-500 rounded-md text-white font-bold block"
             type="submit"
           >
             Subscribe
