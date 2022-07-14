@@ -55,7 +55,7 @@ const Tip = ({ recipientAddress, recipientName }: TipProps) => {
         <span className="text-slate-800 text-lg font-semibold">ETH!</span>
         <div className="flex justify-center">
           <button
-            className="px-6 py-2 bg-blue-500 rounded-md text-white font-bold block"
+            className="px-6 py-2 bg-violet-500 rounded-md text-white font-bold block"
             onClick={() => write()}
           >
             Tip

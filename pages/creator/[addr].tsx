@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import StreamInfo from '../../components/StreamInfo'
 import Spinner from '../../components/Spinner'
 import { shortenAddress } from '../../helpers'
-import { useContractRead, useAccount } from 'wagmi'
+import { useContractReads, useAccount } from 'wagmi'
 import Image from 'next/image'
 import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../../constants'
 
@@ -13,16 +13,22 @@ const Creator: NextPage = () => {
   const [profile, setProfile] = useState<any>()
   const [ipfsHash, setIpfsHash] = useState<any>()
   const [isFetched, setIsFetched] = useState<boolean>()
+  const [receivingStreams, setReceivingStreams] = useState([])
   const { address } = useAccount()
 
   const router = useRouter()
   const { addr } = router.query
 
-  const { data, isError, isLoading } = useContractRead({
+  const contract = {
     addressOrName: KOVAN_TESTNET_ADDRESS,
     contractInterface: CONTRACT_ABI,
-    functionName: 'getProfile',
-    args: addr,
+  }
+
+  const { data, isError, isLoading } = useContractReads({
+    contracts: [
+      { ...contract, functionName: 'getProfile', args: addr },
+      { ...contract, functionName: 'getAllStreamsByRecipient', args: addr },
+    ],
   })
 
   const fetchIpfsInfo = async () => {
@@ -48,7 +54,14 @@ const Creator: NextPage = () => {
 
   useEffect(() => {
     if (!!data) {
-      setIpfsHash(data)
+      setIpfsHash(data[0])
+    }
+  }, [data])
+
+  useEffect(() => {
+    if (!!data) {
+      console.log('stream data: ', data[1])
+      // setReceivingStreams(data[1])
     }
   }, [data])
 

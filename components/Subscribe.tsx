@@ -79,7 +79,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
     )
     const blockNumber = await provider.getBlockNumber()
     const timestamp = (await provider.getBlock(blockNumber)).timestamp
-    return timestamp
+    return timestamp + 60
   }
 
   useEffect(() => {
