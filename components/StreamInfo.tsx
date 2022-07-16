@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { shortenAddress } from '../helpers'
 import { useContractWrite, useAccount, useContractReads } from 'wagmi'
 import {
@@ -27,6 +27,8 @@ const StreamInfo = ({
   startTime,
   stopTime,
 }: StreamInfoProps) => {
+  const [isLoaded, setIsLoaded] = useState<boolean>(false)
+  const [withdrawableEther, setWithdrawableEther] = useState<string>()
   const { address } = useAccount()
 
   const { write } = useContractWrite({
@@ -72,7 +74,9 @@ const StreamInfo = ({
 
   useEffect(() => {
     if (!!data) {
-      console.log('data', data.toString())
+      const ether = (parseInt(data.toString()) / 10 ** 18).toPrecision(2)
+      setWithdrawableEther(ether)
+      setIsLoaded(true)
     }
   }, [data])
 
@@ -81,7 +85,8 @@ const StreamInfo = ({
       <td className="px-4 py-2">{shortenAddress(sender)}</td>
       <td className="px-4 py-2">{startDate}</td>
       <td className="px-4 py-2">{stopDate}</td>
-      <td className="px-4 py-2">{deposit - remainingBalance}</td>
+      {isLoaded && <td className="px-4 py-2">{withdrawableEther} ETH</td>}
+
       <td className="px-4 py-2">{remainingEther} ETH</td>
       <td className="px-4 py-2">
         <button className="text-sm font-bold rounded-md bg-violet-500 text-white px-4 py-2 hover:bg-violet-600">

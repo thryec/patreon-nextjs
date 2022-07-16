@@ -178,7 +178,7 @@ const Creator: NextPage = () => {
                       End Time
                     </th>
                     <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
-                      Amount Claimed
+                      Claimble Amount
                     </th>
                     <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
                       Remaining Amount
