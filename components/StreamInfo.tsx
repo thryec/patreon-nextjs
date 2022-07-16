@@ -1,6 +1,6 @@
-import { ethers } from 'ethers'
+import { useEffect } from 'react'
 import { shortenAddress } from '../helpers'
-import { useContractWrite, useAccount } from 'wagmi'
+import { useContractWrite, useAccount, useContractReads } from 'wagmi'
 import {
   KOVAN_TESTNET_ADDRESS,
   CONTRACT_ABI,
@@ -21,6 +21,7 @@ interface StreamInfoProps {
 const StreamInfo = ({
   streamId,
   sender,
+  recipient,
   deposit,
   remainingBalance,
   startTime,
@@ -48,12 +49,32 @@ const StreamInfo = ({
     },
   })
 
+  const contract = {
+    addressOrName: KOVAN_TESTNET_ADDRESS,
+    contractInterface: CONTRACT_ABI,
+  }
+
+  const { data, isError, isLoading } = useContractReads({
+    contracts: [
+      {
+        ...contract,
+        functionName: 'currentETHBalanceOf',
+        args: [streamId, recipient],
+      },
+    ],
+  })
+
   const startDate = new Date(startTime * 1000).toLocaleDateString()
   const stopDate = new Date(stopTime * 1000).toLocaleDateString()
   const remainingEther = (JSON.parse(remainingBalance) / 10 ** 18).toPrecision(
     2
   )
-  console.log('remaining ether: ', remainingEther)
+
+  useEffect(() => {
+    if (!!data) {
+      console.log('data', data.toString())
+    }
+  }, [data])
 
   return (
     <tr className="bg-white text-sm border-4 border-slate-100">
