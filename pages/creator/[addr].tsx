@@ -61,7 +61,7 @@ const Creator: NextPage = () => {
   return (
     <div>
       {isFetched ? (
-        <div className="flex 2xl:mx-96 xl:mx-72 lg:mx-60 sm:mx-10 h-screen">
+        <div className="flex 2xl:mx-96 xl:mx-72 lg:mx-40 md:mx-20 h-screen">
           <div className="w-1/3">
             <Image
               src={profile.avatar}
@@ -165,7 +165,7 @@ const Creator: NextPage = () => {
                 Live Streams
               </h1>
               {/* table  */}
-              <table className="table-auto mt-4">
+              <table className="table-fixed mt-4">
                 <thead className="bg-white border-b-2 border-slate-200">
                   <tr>
                     <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
