@@ -29,6 +29,7 @@ const StreamInfo = ({
 }: StreamInfoProps) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
   const [withdrawableEther, setWithdrawableEther] = useState<string>()
+  const [withdrawableWei, setWithdrawableWei] = useState<string>()
   const { address } = useAccount()
 
   const { write } = useContractWrite({
@@ -36,7 +37,7 @@ const StreamInfo = ({
     chainId: KOVAN_CHAIN_ID,
     contractInterface: CONTRACT_ABI,
     functionName: 'recipientWithdrawFromStream',
-    args: [streamId],
+    args: [streamId, withdrawableWei],
     overrides: {
       from: address,
     },
@@ -76,6 +77,7 @@ const StreamInfo = ({
     if (!!data) {
       const ether = (parseInt(data.toString()) / 10 ** 18).toPrecision(2)
       setWithdrawableEther(ether)
+      setWithdrawableWei(data.toString())
       setIsLoaded(true)
     }
   }, [data])
@@ -89,7 +91,10 @@ const StreamInfo = ({
 
       <td className="px-4 py-2">{remainingEther} ETH</td>
       <td className="px-4 py-2">
-        <button className="text-sm font-bold rounded-md bg-violet-500 text-white px-4 py-2 hover:bg-violet-600">
+        <button
+          onClick={() => write()}
+          className="text-sm font-bold rounded-md bg-violet-500 text-white px-4 py-2 hover:bg-violet-600"
+        >
           Withdraw
         </button>
       </td>
