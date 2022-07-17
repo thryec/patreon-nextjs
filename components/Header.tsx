@@ -1,8 +1,11 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import Link from 'next/link'
 import Logo from '../components/Logo'
+import { useAccount } from 'wagmi'
 
 const Header = () => {
+  const { isConnected } = useAccount()
+
   return (
     <div className="flex place-content-between items-center py-12 px-32">
       <Link href="/" passHref>
@@ -10,9 +13,17 @@ const Header = () => {
           <Logo />
         </span>
       </Link>
-
-      <div>
-        <ConnectButton showBalance={false} />
+      <div className="flex items-center">
+        <div className="mr-4">
+          <ConnectButton showBalance={false} />
+        </div>
+        {isConnected && (
+          <Link href="/profile" passHref>
+            <button className="cursor-pointer underline underline-offset-2">
+              My Profile
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   )
