@@ -146,6 +146,8 @@ const Creator: NextPage = () => {
               <div>
                 <h1 className="text-xl text-slate-800 font-semibold">
                   ETH Received
+                  {/* get all streams by receiver, sum(deposit - remaining balance) */}
+                  {/* how to track tipped ETH? remove tipETH function? */}
                 </h1>
                 <div className="rounded-md p-8 m-2 font-bold text-xl bg-white">
                   10 ETH
@@ -154,6 +156,7 @@ const Creator: NextPage = () => {
               <div>
                 <h1 className="text-xl text-slate-800 font-semibold">
                   Claimable ETH
+                  {/* sum all claimable eth in children  */}
                 </h1>
                 <div className="rounded-md p-8 m-2 font-bold text-xl bg-white">
                   10 ETH

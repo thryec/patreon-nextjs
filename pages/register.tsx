@@ -4,7 +4,7 @@ import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import Loading from '../components/LoadingModal'
-import Success from '../components/SuccessModal'
+import RegisterSuccess from '../components/RegisterSucessModal'
 import { create } from 'ipfs-http-client'
 import { useContract, useSigner, useAccount } from 'wagmi'
 
@@ -24,7 +24,7 @@ type FormData = {
 
 const Register: NextPage = () => {
   const [loadingModal, setLoadingModal] = useState<boolean>()
-  const [successModal, setSuccessModal] = useState<boolean>()
+  const [registerSuccessModal, setRegisterSuccessModal] = useState<boolean>()
   const [imageURL, setImageURL] = useState('')
 
   const {
@@ -64,7 +64,7 @@ const Register: NextPage = () => {
       console.log('txn', receipt)
       if (receipt) {
         setLoadingModal(false)
-        setSuccessModal(true)
+        setRegisterSuccessModal(true)
       }
     } catch (err) {
       console.log('error adding profile:', err)
@@ -94,8 +94,11 @@ const Register: NextPage = () => {
     <div className="flex justify-center items-center w-full pb-32">
       <div>
         {loadingModal && <Loading setLoadingModal={setLoadingModal} />}
-        {successModal && (
-          <Success setSuccessModal={setSuccessModal} walletAddress={address} />
+        {registerSuccessModal && (
+          <RegisterSuccess
+            setRegisterSuccessModal={setRegisterSuccessModal}
+            walletAddress={address}
+          />
         )}
         <h1 className="text-4xl font-extrabold text-center mb-4">
           Join the community.

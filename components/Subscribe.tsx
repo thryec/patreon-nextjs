@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
 import { useContractWrite, useAccount } from 'wagmi'
+import Loading from './LoadingModal'
+import CreateSuccess from './CreateSucessModal'
+import Error from './ErrorModal'
 import {
   KOVAN_TESTNET_ADDRESS,
   CONTRACT_ABI,
@@ -22,7 +25,11 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
   const [depositAmount, setDepositAmount] = useState<any>('0')
   const [startTime, setStartTime] = useState<any>()
   const [endTime, setEndTime] = useState<any>()
-
+  const [loadingModal, setLoadingModal] = useState<boolean>()
+  const [errorModal, setErrorModal] = useState<boolean>()
+  const [createSuccessModal, setCreateSuccessModal] = useState<boolean>()
+  const [errorMessage, setErrorMessage] = useState<any>()
+  const [txHash, setTxHash] = useState<string>()
   const { address } = useAccount()
 
   const {
@@ -44,12 +51,19 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
     },
     onMutate({ args, overrides }) {
       console.log('Mutate', { args, overrides })
+      setLoadingModal(true)
     },
     onError(error) {
       console.log('Error', error)
+      setLoadingModal(false)
+      setErrorMessage(error)
+      setErrorModal(true)
     },
     onSuccess(data) {
       console.log('Success', data)
+      setTxHash(data.hash)
+      setLoadingModal(false)
+      setCreateSuccessModal(true)
     },
   })
 
@@ -87,6 +101,17 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
 
   return (
     <div className="space-y-2">
+      {loadingModal && <Loading setLoadingModal={setLoadingModal} />}
+      {createSuccessModal && (
+        <CreateSuccess
+          setCreateSuccessModal={setCreateSuccessModal}
+          txHash={txHash}
+        />
+      )}
+      {errorModal && (
+        <Error setErrorModal={setErrorModal} errorMessage={errorMessage} />
+      )}
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <p>
