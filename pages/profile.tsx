@@ -1,11 +1,81 @@
 import type { NextPage } from 'next'
-import { useAccount } from 'wagmi'
+import { useState, useEffect } from 'react'
+import { useContractReads, useAccount } from 'wagmi'
+import SenderStreamInfo from '../components/SenderStreamInfo'
+import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 
 const Profile: NextPage = () => {
   const { address, isConnected } = useAccount()
+  const [sendingStreams, setSendingStreams] = useState<any>([])
+  const [isFetched, setIsFetched] = useState<boolean>()
+
+  const contract = {
+    addressOrName: KOVAN_TESTNET_ADDRESS,
+    contractInterface: CONTRACT_ABI,
+  }
+
+  const { data, isError, isLoading } = useContractReads({
+    contracts: [
+      {
+        ...contract,
+        functionName: 'getAllStreamsBySender',
+        args: address,
+      },
+    ],
+  })
+
+  useEffect(() => {
+    if (!!data) {
+      console.log('data: ', data[0])
+      setSendingStreams(data[0])
+    }
+  }, [data])
+
   return (
     <div className="flex justify-center h-screen bg-gray-100 ">
-      Current User Profile
+      <div>
+        <h1 className="text-xl text-slate-800 font-semibold">Live Streams</h1>
+        <table className="table-fixed mt-4">
+          <thead className="bg-white border-b-2 border-slate-200">
+            <tr>
+              <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                Recipient
+              </th>
+              <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                Start Time
+              </th>
+              <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                End Time
+              </th>
+              <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                Sent Amount
+              </th>
+              <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                Remaining Amount
+              </th>
+              <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {sendingStreams &&
+              sendingStreams.map((stream: any, index: any) => (
+                <SenderStreamInfo
+                  key={stream.streamId}
+                  streamId={stream.streamId}
+                  sender={stream.sender}
+                  recipient={stream.recipient}
+                  isActive={stream.isActive}
+                  deposit={stream.deposit}
+                  remainingBalance={stream.remainingBalance}
+                  startTime={stream.startTime}
+                  stopTime={stream.stopTime}
+                />
+              ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }
