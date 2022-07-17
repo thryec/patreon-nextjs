@@ -2,8 +2,6 @@ import { useState } from 'react'
 import { XIcon } from '@heroicons/react/solid'
 import Tip from './Tip'
 import Subscribe from './Subscribe'
-import { useContract, useSigner, useAccount } from 'wagmi'
-import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 import { shortenAddress } from '../helpers'
 
 interface ContributeModalProps {
@@ -18,8 +16,6 @@ const ContributeModal = ({
   creatorName,
 }: ContributeModalProps) => {
   const [recurring, setRecurring] = useState<boolean>(true)
-
-  const { data: signer, isError, isLoading } = useSigner()
 
   return (
     <div className="fixed left-0 top-0 flex items-center inset-0 z-50 outline-none">

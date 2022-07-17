@@ -56,7 +56,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
     onError(error) {
       console.log('Error', error)
       setLoadingModal(false)
-      setErrorMessage(error)
+      setErrorMessage(error.message)
       setErrorModal(true)
     },
     onSuccess(data) {
@@ -109,7 +109,11 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
         />
       )}
       {errorModal && (
-        <Error setErrorModal={setErrorModal} errorMessage={errorMessage} />
+        <Error
+          setErrorModal={setErrorModal}
+          errorMessage={errorMessage}
+          creatorAddress={recipientAddress}
+        />
       )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
