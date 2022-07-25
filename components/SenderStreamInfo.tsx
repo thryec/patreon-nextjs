@@ -28,8 +28,9 @@ const StreamInfo = ({
   stopTime,
 }: StreamInfoProps) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
-  const [withdrawableEther, setWithdrawableEther] = useState<string>()
+  const [recipientShare, setRecipientShare] = useState<any>()
   const [withdrawableWei, setWithdrawableWei] = useState<string>()
+  const [hasEnded, setHasEnded] = useState<boolean>(false)
   const { address } = useAccount()
 
   const { write } = useContractWrite({
@@ -74,9 +75,16 @@ const StreamInfo = ({
   )
 
   useEffect(() => {
+    const todaysDate = new Date(Date.now())
+    if (todaysDate > new Date(stopTime * 1000)) {
+      setHasEnded(true)
+    }
+  }, [])
+
+  useEffect(() => {
     if (!!data) {
       const ether = (parseInt(data.toString()) / 10 ** 18).toPrecision(2)
-      setWithdrawableEther(ether)
+      setRecipientShare(ether)
       setWithdrawableWei(data.toString())
       setIsLoaded(true)
     }
@@ -84,19 +92,27 @@ const StreamInfo = ({
 
   return (
     <tr className="bg-white text-sm border-4 border-slate-100">
-      <td className="px-4 py-2">{shortenAddress(sender)}</td>
+      <td className="px-4 py-2">{shortenAddress(recipient)}</td>
       <td className="px-4 py-2">{startDate}</td>
       <td className="px-4 py-2">{stopDate}</td>
-      {isLoaded && <td className="px-4 py-2">{withdrawableEther} ETH</td>}
+      {isLoaded && <td className="px-4 py-2">{recipientShare} ETH</td>}
 
-      <td className="px-4 py-2">{remainingEther} ETH</td>
       <td className="px-4 py-2">
-        <button
-          onClick={() => write()}
-          className="text-sm font-bold rounded-md bg-violet-500 text-white px-4 py-2 hover:bg-violet-600"
-        >
-          Cancel
-        </button>
+        {parseInt(remainingEther) - parseInt(recipientShare)} ETH
+      </td>
+      <td className="px-4 py-2">
+        {hasEnded ? (
+          <button className="text-sm font-bold rounded-md bg-slate-300 text-white px-4 py-2 ">
+            Stream Ended
+          </button>
+        ) : (
+          <button
+            onClick={() => write()}
+            className="text-sm font-bold rounded-md bg-violet-500 text-white px-4 py-2 hover:bg-violet-600"
+          >
+            Cancel
+          </button>
+        )}
       </td>
     </tr>
   )

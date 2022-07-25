@@ -91,12 +91,18 @@ const StreamInfo = ({
 
       <td className="px-4 py-2">{remainingEther} ETH</td>
       <td className="px-4 py-2">
-        <button
-          onClick={() => write()}
-          className="text-sm font-bold rounded-md bg-violet-500 text-white px-4 py-2 hover:bg-violet-600"
-        >
-          Withdraw
-        </button>
+        {address === recipient ? (
+          <button
+            onClick={() => write()}
+            className="text-sm font-bold rounded-md bg-violet-500 text-white px-4 py-2 hover:bg-violet-600"
+          >
+            Withdraw
+          </button>
+        ) : (
+          <button className="text-sm font-bold rounded-md bg-slate-300 text-white px-4 py-2">
+            Withdraw
+          </button>
+        )}
       </td>
     </tr>
   )

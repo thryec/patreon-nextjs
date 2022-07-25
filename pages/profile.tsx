@@ -32,10 +32,10 @@ const Profile: NextPage = () => {
   }, [data])
 
   return (
-    <div className="flex justify-center h-screen bg-gray-100 ">
+    <div className="flex justify-center h-screen bg-gray-100">
       <div>
         <h1 className="text-2xl text-slate-800 font-semibold uppercase">
-          Live Streams
+          Sending Streams
         </h1>
         <table className="table-fixed mt-4">
           <thead className="border-b-2 border-slate-400">
@@ -44,16 +44,16 @@ const Profile: NextPage = () => {
                 Recipient
               </th>
               <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
-                Start Time
+                Start Date
               </th>
               <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
-                End Time
+                End Date
               </th>
               <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
-                Sent Amount
+                Sent
               </th>
               <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
-                Remaining Amount
+                Remaining
               </th>
               <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
                 Action
@@ -62,7 +62,7 @@ const Profile: NextPage = () => {
           </thead>
           <tbody>
             {sendingStreams &&
-              sendingStreams.map((stream: any, index: any) => (
+              sendingStreams.map((stream: any) => (
                 <SenderStreamInfo
                   key={stream.streamId}
                   streamId={stream.streamId}
