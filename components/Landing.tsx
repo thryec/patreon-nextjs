@@ -27,7 +27,7 @@ const Landing = ({ handleSupporterClick }: LandingProps) => {
             className="bg-violet-500 py-2 px-3 rounded-lg text-xl text-white font-bold"
             onClick={handleSupporterClick}
           >
-            I&apos;m a Suppporter
+            I&apos;m a Contributor
           </button>
         </div>
       </div>

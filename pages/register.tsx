@@ -91,7 +91,7 @@ const Register: NextPage = () => {
   }
 
   return (
-    <div className="flex justify-center items-center w-full pb-32">
+    <div className="flex justify-center h-screen w-full ">
       <div>
         {loadingModal && <Loading setLoadingModal={setLoadingModal} />}
         {registerSuccessModal && (

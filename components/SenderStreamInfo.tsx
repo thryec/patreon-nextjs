@@ -36,8 +36,8 @@ const StreamInfo = ({
     addressOrName: KOVAN_TESTNET_ADDRESS,
     chainId: KOVAN_CHAIN_ID,
     contractInterface: CONTRACT_ABI,
-    functionName: 'recipientWithdrawFromStream',
-    args: [streamId, withdrawableWei],
+    functionName: 'senderCancelStream',
+    args: [streamId],
     overrides: {
       from: address,
     },

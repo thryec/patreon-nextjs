@@ -34,26 +34,28 @@ const Profile: NextPage = () => {
   return (
     <div className="flex justify-center h-screen bg-gray-100 ">
       <div>
-        <h1 className="text-xl text-slate-800 font-semibold">Live Streams</h1>
+        <h1 className="text-2xl text-slate-800 font-semibold uppercase">
+          Live Streams
+        </h1>
         <table className="table-fixed mt-4">
-          <thead className="bg-white border-b-2 border-slate-200">
+          <thead className="border-b-2 border-slate-400">
             <tr>
-              <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+              <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
                 Recipient
               </th>
-              <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+              <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
                 Start Time
               </th>
-              <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+              <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
                 End Time
               </th>
-              <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+              <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
                 Sent Amount
               </th>
-              <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+              <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
                 Remaining Amount
               </th>
-              <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+              <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
                 Action
               </th>
             </tr>

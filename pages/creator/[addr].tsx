@@ -13,6 +13,7 @@ const Creator: NextPage = () => {
   const [profile, setProfile] = useState<any>()
   const [ipfsHash, setIpfsHash] = useState<any>()
   const [isFetched, setIsFetched] = useState<boolean>()
+  const [profileExists, setProfileExists] = useState<boolean>()
   const [receivingStreams, setReceivingStreams] = useState<any>([])
   const { address } = useAccount()
 
@@ -24,7 +25,7 @@ const Creator: NextPage = () => {
     contractInterface: CONTRACT_ABI,
   }
 
-  const { data, isError, isLoading } = useContractReads({
+  const { data, isError, isLoading, status } = useContractReads({
     contracts: [
       { ...contract, functionName: 'getProfile', args: addr },
       { ...contract, functionName: 'getAllStreamsByRecipient', args: addr },
@@ -47,7 +48,11 @@ const Creator: NextPage = () => {
 
   useEffect(() => {
     if (!!ipfsHash) {
+      setProfileExists(true)
       fetchIpfsInfo()
+    } else if (ipfsHash === '') {
+      setIsFetched(true)
+      setProfileExists(false)
     }
   }, [ipfsHash])
 
@@ -60,7 +65,7 @@ const Creator: NextPage = () => {
 
   return (
     <div>
-      {isFetched ? (
+      {isFetched && profileExists ? (
         <div className="flex 2xl:mx-96 xl:mx-72 lg:mx-40 md:mx-20 h-screen">
           <div className="w-1/3">
             <Image
@@ -156,7 +161,7 @@ const Creator: NextPage = () => {
               <div>
                 <h1 className="text-xl text-slate-800 font-semibold">
                   Claimable ETH
-                  {/* sum all claimable eth in children  */}
+                  {/* sum all claimable eth in */}
                 </h1>
                 <div className="rounded-md p-8 m-2 font-bold text-xl bg-white">
                   10 ETH
@@ -210,6 +215,19 @@ const Creator: NextPage = () => {
               </table>
               {/* table  */}
             </div>
+          </div>
+        </div>
+      ) : isFetched ? (
+        <div className="flex justify-center h-screen">
+          <div className="text-xl  space-y-4">
+            <p className="font-semibold">
+              You don&apos;t have a Creator Profile yet :(
+            </p>
+            <Link href="/register" passHref>
+              <p className="underline cursor-pointer text-center">
+                Get one here!
+              </p>
+            </Link>
           </div>
         </div>
       ) : (
