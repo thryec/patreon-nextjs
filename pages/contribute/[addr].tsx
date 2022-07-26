@@ -17,7 +17,6 @@ const Contribute: NextPage = () => {
   const [profile, setProfile] = useState<any>()
   const [ipfsHash, setIpfsHash] = useState<any>()
   const [isFetched, setIsFetched] = useState<boolean>()
-
   const [recurring, setRecurring] = useState<boolean>(true)
   const router = useRouter()
   const { addr } = router.query
@@ -59,14 +58,9 @@ const Contribute: NextPage = () => {
     <div>
       {isFetched ? (
         <div className="w-full max-w-lg p-5 relative mx-auto my-auto h-screen">
-          <div className="flex place-content-between">
-            <h1 className="font-bold text-2xl mb-3">
-              Contribute to{' '}
-              {addr && (
-                <code className="font-light text-xl">
-                  {shortenAddress(addr)}
-                </code>
-              )}
+          <div className="flex justify-center ">
+            <h1 className="font-bold text-4xl mb-3 text-center">
+              Contribute to {profile && <span>{profile.name}</span>}!
             </h1>
           </div>
           <div className="flex place-content-center space-x-8 mb-4">

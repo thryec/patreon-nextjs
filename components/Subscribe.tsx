@@ -27,7 +27,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
   const [endTime, setEndTime] = useState<any>()
   const [loadingModal, setLoadingModal] = useState<boolean>()
   const [errorModal, setErrorModal] = useState<boolean>()
-  const [txnSuccessModal, setTxnSuccessModal] = useState<boolean>(true)
+  const [txnSuccessModal, setTxnSuccessModal] = useState<boolean>()
   const [errorMessage, setErrorMessage] = useState<any>()
   const [txHash, setTxHash] = useState<string>()
   const { address } = useAccount()
@@ -100,7 +100,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
   }, [depositAmount])
 
   return (
-    <div className="space-y-2">
+    <div>
       {loadingModal && <Loading setLoadingModal={setLoadingModal} />}
       {txnSuccessModal && (
         <TxnSuccess setTxnSuccessModal={setTxnSuccessModal} txHash={txHash} />
@@ -112,41 +112,40 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
           creatorAddress={recipientAddress}
         />
       )}
-
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <p>
-            I want to subscribe to{' '}
-            <code className="font-semibold underline">{recipientName}</code> for
-            <input
-              type="number"
-              step="0.01"
-              className="border border-slate-200 rounded-md my-2 mx-3 px-3 py-2"
-              {...register('ethAmount', { required: true })}
-            />
-            {errors.ethAmount && (
-              <div className="text-pink-500">
-                Please do not leave this field blank
-              </div>
-            )}
-            <span className="text-slate-800 text-lg font-semibold">ETH</span> /
-            week, for
-            <input
-              type="number"
-              step="1"
-              className="border border-slate-200 rounded-md my-2 mx-3 px-3 py-2"
-              placeholder="0"
-              {...register('weeks', { required: true })}
-            />
-            {errors.weeks && (
-              <div className="text-pink-500">
-                Please do not leave this field blank
-              </div>
-            )}
-            <span className="text-slate-800 text-lg font-semibold">
-              Week(s)
-            </span>
-          </p>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <div className="text-xl flex justify-center">
+          <div>
+            <div>
+              <input
+                type="number"
+                step="0.01"
+                placeholder="0.00"
+                className="border border-slate-200 rounded-md my-2 mx-3 px-2 py-2"
+                {...register('ethAmount', { required: true })}
+              />
+              {errors.ethAmount && (
+                <div className="text-pink-500">
+                  Please do not leave this field blank
+                </div>
+              )}
+              <span className="text-slate-800 font-semibold"> ETH / week</span>
+            </div>
+            <div>
+              <input
+                type="number"
+                step="1"
+                className="border border-slate-200 rounded-md my-2 mx-3 px-2 py-2"
+                placeholder="0"
+                {...register('weeks', { required: true })}
+              />
+              {errors.weeks && (
+                <div className="text-pink-500">
+                  Please do not leave this field blank
+                </div>
+              )}
+              <span className="text-slate-800 font-semibold">Week(s)</span>
+            </div>
+          </div>
         </div>
         <div className="flex justify-center">
           <button

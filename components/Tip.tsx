@@ -40,9 +40,7 @@ const Tip = ({ recipientAddress, recipientName }: TipProps) => {
 
   return (
     <div className="flex justify-center">
-      <div>
-        I want to tip{' '}
-        <code className="font-semibold underline">{recipientName}</code>{' '}
+      <div className="text-xl">
         <input
           type="number"
           step="0.01"
@@ -52,7 +50,7 @@ const Tip = ({ recipientAddress, recipientName }: TipProps) => {
           onChange={handleChange}
           className="border border-slate-200 rounded-md my-4 mr-3 px-3 py-2"
         />
-        <span className="text-slate-800 text-lg font-semibold">ETH!</span>
+        <span className="text-slate-800 font-semibold">ETH</span>
         <div className="flex justify-center">
           <button
             className="px-6 py-2 bg-violet-500 rounded-md text-white font-bold block"
