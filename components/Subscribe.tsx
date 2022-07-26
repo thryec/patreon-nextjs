@@ -27,7 +27,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
   const [endTime, setEndTime] = useState<any>()
   const [loadingModal, setLoadingModal] = useState<boolean>()
   const [errorModal, setErrorModal] = useState<boolean>()
-  const [createSuccessModal, setCreateSuccessModal] = useState<boolean>()
+  const [createSuccessModal, setCreateSuccessModal] = useState<boolean>(true)
   const [errorMessage, setErrorMessage] = useState<any>()
   const [txHash, setTxHash] = useState<string>()
   const { address } = useAccount()

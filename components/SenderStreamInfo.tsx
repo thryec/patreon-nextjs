@@ -23,6 +23,7 @@ const StreamInfo = ({
   sender,
   recipient,
   deposit,
+  isActive,
   remainingBalance,
   startTime,
   stopTime,
@@ -53,6 +54,8 @@ const StreamInfo = ({
     },
   })
 
+  console.log('is active: ', isActive)
+
   const contract = {
     addressOrName: KOVAN_TESTNET_ADDRESS,
     contractInterface: CONTRACT_ABI,
@@ -70,9 +73,10 @@ const StreamInfo = ({
 
   const startDate = new Date(startTime * 1000).toLocaleDateString()
   const stopDate = new Date(stopTime * 1000).toLocaleDateString()
-  const remainingEther = (JSON.parse(remainingBalance) / 10 ** 18).toPrecision(
-    2
-  )
+  const initialDeposit = (
+    JSON.parse(deposit.toString()) /
+    10 ** 18
+  ).toPrecision(2)
 
   useEffect(() => {
     const todaysDate = new Date(Date.now())
@@ -95,13 +99,11 @@ const StreamInfo = ({
       <td className="px-4 py-2">{shortenAddress(recipient)}</td>
       <td className="px-4 py-2">{startDate}</td>
       <td className="px-4 py-2">{stopDate}</td>
-      {isLoaded && <td className="px-4 py-2">{recipientShare} ETH</td>}
+      <td className="px-4 py-2">{initialDeposit} ETH</td>
+      <td className="px-4 py-2">{isLoaded && recipientShare} ETH</td>
 
       <td className="px-4 py-2">
-        {parseInt(remainingEther) - parseInt(recipientShare)} ETH
-      </td>
-      <td className="px-4 py-2">
-        {hasEnded ? (
+        {hasEnded || !isActive ? (
           <button className="text-sm font-bold rounded-md bg-slate-300 text-white px-4 py-2 ">
             Stream Ended
           </button>

@@ -7,7 +7,6 @@ import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 const Profile: NextPage = () => {
   const { address, isConnected } = useAccount()
   const [sendingStreams, setSendingStreams] = useState<any>([])
-  const [isFetched, setIsFetched] = useState<boolean>()
 
   const contract = {
     addressOrName: KOVAN_TESTNET_ADDRESS,
@@ -50,10 +49,10 @@ const Profile: NextPage = () => {
                 End Date
               </th>
               <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
-                Sent
+                Initial Deposit
               </th>
               <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
-                Remaining
+                Sent
               </th>
               <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
                 Action
