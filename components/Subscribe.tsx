@@ -3,7 +3,7 @@ import { ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
 import { useContractWrite, useAccount } from 'wagmi'
 import Loading from './LoadingModal'
-import CreateSuccess from './CreateSucessModal'
+import TxnSuccess from './TxnSucessModal'
 import Error from './ErrorModal'
 import {
   KOVAN_TESTNET_ADDRESS,
@@ -27,7 +27,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
   const [endTime, setEndTime] = useState<any>()
   const [loadingModal, setLoadingModal] = useState<boolean>()
   const [errorModal, setErrorModal] = useState<boolean>()
-  const [createSuccessModal, setCreateSuccessModal] = useState<boolean>(true)
+  const [txnSuccessModal, setTxnSuccessModal] = useState<boolean>(true)
   const [errorMessage, setErrorMessage] = useState<any>()
   const [txHash, setTxHash] = useState<string>()
   const { address } = useAccount()
@@ -63,7 +63,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
       console.log('Success', data)
       setTxHash(data.hash)
       setLoadingModal(false)
-      setCreateSuccessModal(true)
+      setTxnSuccessModal(true)
     },
   })
 
@@ -102,11 +102,8 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
   return (
     <div className="space-y-2">
       {loadingModal && <Loading setLoadingModal={setLoadingModal} />}
-      {createSuccessModal && (
-        <CreateSuccess
-          setCreateSuccessModal={setCreateSuccessModal}
-          txHash={txHash}
-        />
+      {txnSuccessModal && (
+        <TxnSuccess setTxnSuccessModal={setTxnSuccessModal} txHash={txHash} />
       )}
       {errorModal && (
         <Error
