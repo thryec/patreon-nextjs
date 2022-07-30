@@ -6,7 +6,7 @@ interface LandingProps {
 
 const Landing = ({ handleSupporterClick }: LandingProps) => {
   return (
-    <div className="flex justify-center space-x-6 md:pt-24 lg:pt-32 h-screen px-20">
+    <div className="flex justify-center space-x-6 md:pt-10 lg:pt-14 h-screen lg:px-48 px-52 md:px-48">
       <div>
         <div className="text-7xl font-extrabold cursor-pointer space-y-6">
           <p className="text-center">
@@ -19,7 +19,7 @@ const Landing = ({ handleSupporterClick }: LandingProps) => {
             </span>
           </p>
         </div>
-        <div className="flex justify-center space-x-8 pt-20">
+        <div className="flex justify-center space-x-10 pt-24">
           <Link href="/register" passHref>
             <button className="bg-violet-500 py-3 px-4 rounded-lg text-xl text-white font-bold">
               I&apos;m a Creator

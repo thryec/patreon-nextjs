@@ -59,10 +59,16 @@ const Home: NextPage = () => {
   })
 
   return (
-    <div className="flex justify-center max-h-screen">
-      <div>
+    <div className="flex justify-center h-screen">
+      <div className="">
         <Landing handleSupporterClick={handleSupporterClick} />
-        <div className="bg-gray-100 h-screen w-screen pt-20" ref={ref}>
+        <div
+          className="bg-gray-100 h-screen w-screen pt-16 border-t-2 border-slate-200"
+          ref={ref}
+        >
+          <h1 className="text-center text-5xl font-extrabold pb-20">
+            Discover Creators.
+          </h1>
           <div className="grid grid-cols-3 gap-10 px-60">
             {isLoaded && profileCards}
           </div>
