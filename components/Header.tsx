@@ -15,7 +15,7 @@ const Header = () => {
       </Link>
       <div className="flex items-center">
         <div className="mr-4">
-          <ConnectButton showBalance={false} />
+          <ConnectButton showBalance={false} accountStatus="address" />
         </div>
         {isConnected && (
           <Link href="/profile" passHref>

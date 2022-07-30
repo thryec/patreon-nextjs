@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
         <Head>
-          <title>Circle Of Life</title>
+          <title>circle of fife</title>
         </Head>
         <div className="bg-gray-100 ">
           <Header />

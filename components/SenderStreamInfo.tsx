@@ -54,8 +54,6 @@ const StreamInfo = ({
     },
   })
 
-  console.log('is active: ', isActive)
-
   const contract = {
     addressOrName: KOVAN_TESTNET_ADDRESS,
     contractInterface: CONTRACT_ABI,

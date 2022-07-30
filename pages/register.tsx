@@ -128,7 +128,7 @@ const Register: NextPage = () => {
                   </div>
                 ) : (
                   <div className="flex items-center justify-center w-full mt-2">
-                    <label className="flex flex-col border-2 border-violet-300 border-dashed w-full rounded-lg h-32 group">
+                    <label className="flex flex-col border-2 border-slate-300 border-dashed w-full rounded-lg h-32 group">
                       <div className="flex flex-col items-center justify-center pt-7 cursor-pointer">
                         <svg
                           className="w-10 h-10"
@@ -161,7 +161,7 @@ const Register: NextPage = () => {
                 <label className="block mb-1 font-semibold text-sm">Name</label>
                 <input
                   type="text"
-                  className="border border-violet-300 outline-none rounded-md w-full mt-2 px-4 py-2"
+                  className="border border-slate-300 outline-none rounded-md w-full mt-2 px-4 py-2"
                   {...register('name', { required: true })}
                 />
                 {errors.name && (
@@ -175,7 +175,7 @@ const Register: NextPage = () => {
                   Description
                 </label>
                 <textarea
-                  className="border border-violet-300 outline-none rounded-md w-full mt-2 px-4 py-2"
+                  className="border border-slate-300 outline-none rounded-md w-full mt-2 px-4 py-2 h-40"
                   {...register('description', { required: true })}
                 />
                 {errors.name && (
@@ -185,7 +185,7 @@ const Register: NextPage = () => {
                 )}
               </div>
             </div>
-            <div className="px-10 pt-8 rounded-xl w-screen max-w-sm">
+            <div className="px-10 pt-8 rounded-xl w-screen max-w-sm place-content-evenly">
               <div className="space-y-6">
                 <div>
                   <label className="block mb-1 font-semibold text-sm">
@@ -193,7 +193,7 @@ const Register: NextPage = () => {
                   </label>
                   <input
                     type="text"
-                    className="border border-violet-300 outline-none rounded-md w-full mt-2 px-4 py-2"
+                    className="border border-slate-300 outline-none rounded-md w-full mt-2 px-4 py-2"
                     {...register('twitter')}
                   />
                 </div>
@@ -203,7 +203,7 @@ const Register: NextPage = () => {
                   </label>
                   <input
                     type="text"
-                    className="border border-violet-300 outline-none rounded-md w-full mt-2 px-4 py-2"
+                    className="border border-slate-300 outline-none rounded-md w-full mt-2 px-4 py-2"
                     {...register('instagram')}
                   />
                 </div>
@@ -213,7 +213,7 @@ const Register: NextPage = () => {
                   </label>
                   <input
                     type="text"
-                    className="border border-violet-300 outline-none rounded-md w-full mt-2 px-4 py-2"
+                    className="border border-slate-300 outline-none rounded-md w-full mt-2 px-4 py-2"
                     {...register('youtube')}
                   />
                 </div>
@@ -223,7 +223,7 @@ const Register: NextPage = () => {
                   </label>
                   <input
                     type="text"
-                    className="border border-violet-300 outline-none rounded-md w-full mt-2 px-4 py-2"
+                    className="border border-slate-300 outline-none rounded-md w-full mt-2 px-4 py-2"
                     {...register('github')}
                   />
                 </div>
