@@ -5,7 +5,7 @@ import SenderStreamInfo from '../components/SenderStreamInfo'
 import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 
 const Profile: NextPage = () => {
-  const { address, isConnected } = useAccount()
+  const { address } = useAccount()
   const [sendingStreams, setSendingStreams] = useState<any>([])
 
   const contract = {
@@ -26,6 +26,13 @@ const Profile: NextPage = () => {
         args: address,
       },
     ],
+    cacheOnBlock: true,
+    onSuccess(data) {
+      console.log('Success', data)
+    },
+    onError(error) {
+      console.log('Error', error)
+    },
   })
 
   useEffect(() => {

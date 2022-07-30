@@ -108,23 +108,27 @@ const Register: NextPage = () => {
           <div className="flex justify-center">
             <div className="space-y-6 px-10 pt-8 rounded-xl w-screen max-w-sm">
               <div>
-                <label className="tracking-wider font-semibold text-sm">
+                <label className="tracking-wider font-semibold text-sm mb-2 block">
                   Profile Picture
                 </label>
                 {imageURL ? (
-                  <div>
-                    <Image
-                      src={imageURL}
-                      width="200px"
-                      height="200px"
-                      alt="profile"
-                    />
-                    <input
-                      type="file"
-                      accept=".jpeg,.jpg,.png,.gif"
-                      {...register('avatar')}
-                      onChange={onFileUpload}
-                    />
+                  <div className="flex justify-center">
+                    <label className="mt-2">
+                      <Image
+                        src={imageURL}
+                        width="150x"
+                        height="150x"
+                        alt="profile"
+                        className="rounded-full block hover:opacity-75 cursor-pointer"
+                      />
+                      <input
+                        type="file"
+                        accept=".jpeg,.jpg,.png,.gif"
+                        {...register('avatar')}
+                        onChange={onFileUpload}
+                        className="hidden"
+                      />
+                    </label>
                   </div>
                 ) : (
                   <div className="flex items-center justify-center w-full mt-2">
