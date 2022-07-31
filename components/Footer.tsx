@@ -15,7 +15,7 @@ const Footer = () => {
           <Image src={twitter} height={35} width={35} alt="twitter logo" />
         </a>
         <a
-          href="https://twitter.com/circleofliife"
+          href="https://github.com/thryec/patreon-foundry"
           target="_blank"
           rel="noreferrer"
         >

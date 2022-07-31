@@ -6,15 +6,15 @@ interface LandingProps {
 
 const Landing = ({ handleSupporterClick }: LandingProps) => {
   return (
-    <div className="flex justify-center space-x-6 md:pt-10 lg:pt-14 h-screen lg:px-48 px-52 md:px-48">
+    <div className="flex justify-center space-x-6 pt-12 h-screen px-52 md:px-48">
       <div>
-        <div className="text-8xl font-extrabold space-y-6">
+        <div className="text-8xl font-black space-y-6">
           <p className="text-center">
-            <span className="text-transparent bg-clip-text font-bold bg-gradient-to-r from-green-400 to-blue-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
               Circle Of Life
             </span>
           </p>
-          <p className="text-center font-bold">
+          <p className="text-center">
             Support your favourite creators with ETH.
           </p>
         </div>

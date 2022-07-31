@@ -7,7 +7,7 @@ const Header = () => {
   const { isConnected } = useAccount()
 
   return (
-    <div className="flex place-content-between items-center pt-10 pb-12 px-32">
+    <div className="flex place-content-between items-center pt-10 pb-8 px-32">
       <Link href="/" passHref>
         <span className="cursor-pointer">
           <Logo />
