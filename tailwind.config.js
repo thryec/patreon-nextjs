@@ -6,9 +6,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Montserrat', 'san-serif'],
+        body: ['Montserrat', 'sans-serif'],
         header: ['Messapia', 'sans-serif'],
         Inter: ['Inter', 'sans-serif'],
+        alegreya: ['Alegreya', 'serif'],
+        inconsolata: ['Inconsolata', 'monospace'],
       },
       colors: {
         midnight: '#1b2536',

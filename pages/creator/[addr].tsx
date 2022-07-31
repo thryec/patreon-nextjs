@@ -76,7 +76,7 @@ const Creator: NextPage = () => {
               className="rounded-full"
             />
             <h1 className="text-3xl font-semibold mt-10">{profile.name}</h1>
-            <span className="text-sm text-slate-500 mb-4 block">
+            <span className="text-slate-500 mb-4 block">
               {shortenAddress(profile.walletAddress)}
             </span>
             {addr !== address && (
@@ -176,22 +176,22 @@ const Creator: NextPage = () => {
               <table className="table-fixed mt-4">
                 <thead className="bg-white border-b-2 border-slate-200">
                   <tr>
-                    <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                    <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-700 uppercase">
                       Contributor
                     </th>
-                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-700 uppercase">
                       Start Time
                     </th>
-                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-700 uppercase">
                       End Time
                     </th>
-                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-700 uppercase">
                       Claimble Amount
                     </th>
-                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-700 uppercase">
                       Remaining Amount
                     </th>
-                    <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-xs font-semibold text-slate-700 uppercase">
+                    <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-700 uppercase">
                       Action
                     </th>
                   </tr>

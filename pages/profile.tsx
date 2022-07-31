@@ -69,22 +69,22 @@ const Profile: NextPage = () => {
           <table className="table-fixed mt-4">
             <thead className="border-b-2 border-slate-400">
               <tr>
-                <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
+                <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-800 uppercase">
                   Recipient
                 </th>
-                <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
+                <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-800 uppercase">
                   Start Date
                 </th>
-                <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
+                <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-800 uppercase">
                   End Date
                 </th>
-                <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
+                <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-800 uppercase">
                   Initial Deposit
                 </th>
-                <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
+                <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-800 uppercase">
                   Sent
                 </th>
-                <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
+                <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-800 uppercase">
                   Action
                 </th>
               </tr>
@@ -114,22 +114,22 @@ const Profile: NextPage = () => {
           <table className="table-fixed mt-4">
             <thead className="border-b-2 border-slate-400">
               <tr>
-                <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
+                <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-800 uppercase">
                   Recipient
                 </th>
-                <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
+                <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-800 uppercase">
                   Start Date
                 </th>
-                <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
+                <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-800 uppercase">
                   End Date
                 </th>
-                <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
+                <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-800 uppercase">
                   Initial Deposit
                 </th>
-                <th className="px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
+                <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-800 uppercase">
                   Sent
                 </th>
-                <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left text-sm font-semibold text-slate-800 uppercase">
+                <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-800 uppercase">
                   Action
                 </th>
               </tr>

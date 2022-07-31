@@ -19,7 +19,7 @@ const Header = () => {
         </div>
         {isConnected && (
           <Link href="/profile" passHref>
-            <button className="cursor-pointer underline underline-offset-2">
+            <button className="cursor-pointer text-xl hover:underline hover:underline-offset-4">
               My Profile
             </button>
           </Link>

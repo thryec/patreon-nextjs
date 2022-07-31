@@ -35,7 +35,7 @@ const CreatorInfo = (creator: CreatorProps) => {
             />
             <h1 className="text-xl font-bold inline"> {creator.name}</h1>
           </div>
-          <span className="text-sm text-slate-500">
+          <span className=" text-slate-500">
             {shortenAddress(creator.address)}
           </span>
         </div>

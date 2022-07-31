@@ -37,7 +37,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           accentColor: '#8B5CF6',
           accentColorForeground: 'white',
           borderRadius: 'medium',
-          fontStack: 'system',
         })}
       >
         <Head>

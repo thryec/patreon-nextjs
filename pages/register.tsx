@@ -111,7 +111,7 @@ const Register: NextPage = () => {
           <div className="flex justify-center">
             <div className="space-y-6 px-10 pt-8 rounded-xl w-screen max-w-sm">
               <div>
-                <label className="tracking-wider font-semibold text-sm mb-2 block">
+                <label className="tracking-wider font-semibold mb-2 block">
                   Profile Picture
                 </label>
                 {imageURL ? (
@@ -165,7 +165,7 @@ const Register: NextPage = () => {
                 )}
               </div>
               <div>
-                <label className="block mb-1 font-semibold text-sm">Name</label>
+                <label className="block mb-1 font-semibold ">Name</label>
                 <input
                   type="text"
                   className="border border-slate-300 outline-none rounded-md w-full mt-2 px-4 py-2"
@@ -178,9 +178,7 @@ const Register: NextPage = () => {
                 )}
               </div>
               <div>
-                <label className="block mb-1 font-semibold text-sm">
-                  Description
-                </label>
+                <label className="block mb-1 font-semibold ">Description</label>
                 <textarea
                   className="border border-slate-300 outline-none rounded-md w-full mt-2 px-4 py-2 h-40"
                   {...register('description', { required: true })}
@@ -195,9 +193,7 @@ const Register: NextPage = () => {
             <div className="px-10 pt-8 rounded-xl w-screen max-w-sm place-content-evenly">
               <div className="space-y-6">
                 <div>
-                  <label className="block mb-1 font-semibold text-sm">
-                    Twitter
-                  </label>
+                  <label className="block mb-1 font-semibold ">Twitter</label>
                   <input
                     type="text"
                     className="border border-slate-300 outline-none rounded-md w-full mt-2 px-4 py-2"
@@ -205,9 +201,7 @@ const Register: NextPage = () => {
                   />
                 </div>
                 <div>
-                  <label className="block mb-1 font-semibold text-sm">
-                    Instagram
-                  </label>
+                  <label className="block mb-1 font-semibold ">Instagram</label>
                   <input
                     type="text"
                     className="border border-slate-300 outline-none rounded-md w-full mt-2 px-4 py-2"
@@ -215,9 +209,7 @@ const Register: NextPage = () => {
                   />
                 </div>
                 <div>
-                  <label className="block mb-1 font-semibold text-sm">
-                    YouTube
-                  </label>
+                  <label className="block mb-1 font-semibold ">YouTube</label>
                   <input
                     type="text"
                     className="border border-slate-300 outline-none rounded-md w-full mt-2 px-4 py-2"
@@ -225,9 +217,7 @@ const Register: NextPage = () => {
                   />
                 </div>
                 <div>
-                  <label className="block mb-1 font-semibold text-sm">
-                    GitHub
-                  </label>
+                  <label className="block mb-1 font-semibold ">GitHub</label>
                   <input
                     type="text"
                     className="border border-slate-300 outline-none rounded-md w-full mt-2 px-4 py-2"

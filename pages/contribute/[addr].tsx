@@ -57,23 +57,22 @@ const Contribute: NextPage = () => {
   return (
     <div>
       {isFetched ? (
-        <div className="w-full max-w-lg p-5 relative mx-auto my-auto h-screen">
-          <div className="flex justify-center ">
-            <h1 className="font-bold text-4xl mb-3 text-center">
-              Contribute to {profile && <span>{profile.name}</span>}!
-            </h1>
-          </div>
-          <div className="flex place-content-center space-x-8 mb-4">
+        <div className="w-full max-w-lg relative mx-auto my-auto h-screen">
+          <h1 className="font-bold text-5xl mb-16 text-center">
+            Contribute to {profile && <span>{profile.name}</span>}
+          </h1>
+
+          <div className="flex place-content-center space-x-8 mb-4 text-xl">
             {recurring ? (
               <button
-                className="border-2 border-white bg-slate-100 rounded-lg px-4 py-2 font-bold"
+                className="border-2 border-white bg-slate-200 rounded-lg px-4 py-2 font-semibold"
                 onClick={() => setRecurring(true)}
               >
                 Subscribe
               </button>
             ) : (
               <button
-                className="hover:border-2 hover:border-slate-100 border-2 border-white rounded-lg px-4 py-2 font-bold"
+                className="hover:border-2 hover:border-slate-200 border-2 border-white rounded-lg px-4 py-2 font-semibold"
                 onClick={() => setRecurring(true)}
               >
                 Subscribe
@@ -81,14 +80,14 @@ const Contribute: NextPage = () => {
             )}
             {recurring ? (
               <button
-                className="hover:border-2 hover:border-slate-100 border-2 border-white rounded-lg px-4 py-2 font-bold"
+                className="hover:border-2 hover:border-slate-100 border-2 border-white rounded-lg px-4 py-2 font-semibold"
                 onClick={() => setRecurring(false)}
               >
                 Tip
               </button>
             ) : (
               <button
-                className="border-2 border-white bg-slate-100 rounded-lg px-4 py-2 font-bold"
+                className="border-2 border-white bg-slate-100 rounded-lg px-4 py-2 font-semibold"
                 onClick={() => setRecurring(false)}
               >
                 Tip

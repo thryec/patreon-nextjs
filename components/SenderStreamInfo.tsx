@@ -93,7 +93,7 @@ const StreamInfo = ({
   }, [data])
 
   return (
-    <tr className="bg-white text-sm border-4 border-slate-100">
+    <tr className="bg-white border-4 border-slate-100">
       <td className="px-4 py-2">{shortenAddress(recipient)}</td>
       <td className="px-4 py-2">{startDate}</td>
       <td className="px-4 py-2">{stopDate}</td>
@@ -102,13 +102,13 @@ const StreamInfo = ({
 
       <td className="px-4 py-2">
         {hasEnded || !isActive ? (
-          <button className="text-sm font-bold rounded-md bg-slate-300 text-white px-4 py-2 ">
+          <button className="font-bold rounded-md bg-slate-300 text-white px-4 py-2 ">
             Stream Ended
           </button>
         ) : (
           <button
             onClick={() => write()}
-            className="text-sm font-bold rounded-md bg-violet-500 text-white px-4 py-2 hover:bg-violet-600"
+            className="font-bold rounded-md bg-violet-500 text-white px-4 py-2 hover:bg-violet-600"
           >
             Cancel
           </button>

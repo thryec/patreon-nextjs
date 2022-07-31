@@ -20,12 +20,12 @@ const Landing = ({ handleSupporterClick }: LandingProps) => {
         </div>
         <div className="flex justify-center space-x-10 pt-24">
           <Link href="/register" passHref>
-            <button className="bg-violet-500 py-3 px-4 rounded-lg text-xl text-white font-semibold">
+            <button className="bg-violet-500 py-3 px-4 rounded-lg text-2xl text-white font-semibold">
               I&apos;m a Creator
             </button>
           </Link>
           <button
-            className="bg-violet-500 py-2 px-3 rounded-lg text-xl text-white font-semibold"
+            className="bg-violet-500 py-2 px-3 rounded-lg text-2xl text-white font-semibold"
             onClick={handleSupporterClick}
           >
             I&apos;m a Contributor
