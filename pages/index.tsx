@@ -83,7 +83,7 @@ const Home: NextPage = () => {
         </div>
         <div className="bg-gray-100 h-screen w-screen pt-16 border-t-4 border-slate-200">
           <h1 className="text-center text-6xl font-extrabold pb-20">
-            Join the Waitlist
+            Join the waitlist.
           </h1>
           <WaitlistForm />
           <Footer />

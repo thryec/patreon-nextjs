@@ -14,7 +14,7 @@ const Landing = ({ handleSupporterClick }: LandingProps) => {
               Circle Of Life
             </span>
           </p>
-          <p className="text-center">
+          <p className="text-center font-bold">
             Support your favourite creators with ETH.
           </p>
         </div>
