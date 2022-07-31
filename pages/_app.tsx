@@ -3,7 +3,11 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import type { AppProps } from 'next/app'
 import '@rainbow-me/rainbowkit/styles.css'
-import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
+import {
+  getDefaultWallets,
+  RainbowKitProvider,
+  lightTheme,
+} from '@rainbow-me/rainbowkit'
 import { chain, configureChains, createClient, WagmiConfig } from 'wagmi'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
@@ -27,9 +31,17 @@ const wagmiClient = createClient({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
+      <RainbowKitProvider
+        chains={chains}
+        theme={lightTheme({
+          accentColor: '#8B5CF6',
+          accentColorForeground: 'white',
+          borderRadius: 'medium',
+          fontStack: 'system',
+        })}
+      >
         <Head>
-          <title>circle of fife</title>
+          <title>circle of life</title>
         </Head>
         <div className="bg-gray-100 ">
           <Header />
