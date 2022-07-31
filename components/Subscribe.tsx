@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
-import { useContractWrite, useAccount } from 'wagmi'
+import { useContractWrite, useAccount, useSigner } from 'wagmi'
 import Loading from './LoadingModal'
 import TxnSuccess from './TxnSucessModal'
 import Error from './ErrorModal'
@@ -31,6 +31,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
   const [errorMessage, setErrorMessage] = useState<any>()
   const [txHash, setTxHash] = useState<string>()
   const { address } = useAccount()
+  const { data: signer } = useSigner()
 
   const {
     register,
@@ -68,6 +69,10 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
   })
 
   const onSubmit = async (data: any) => {
+    if (!signer) {
+      alert('Connect your wallet first!')
+      return
+    }
     const timeDelta = data.weeks * 7 * 24 * 60 * 60
     const currentBlocktime = await getCurrentBlockTimestamp()
     const endBlocktime = currentBlocktime + timeDelta

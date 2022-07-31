@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ethers } from 'ethers'
-import { useContractWrite, useAccount } from 'wagmi'
+import { useContractWrite, useAccount, useSigner } from 'wagmi'
 import {
   KOVAN_TESTNET_ADDRESS,
   CONTRACT_ABI,
@@ -15,6 +15,7 @@ interface TipProps {
 const Tip = ({ recipientAddress, recipientName }: TipProps) => {
   const [ethAmount, setEthAmount] = useState<any>('0.0')
   const { address } = useAccount()
+  const { data: signer } = useSigner()
 
   const { write } = useContractWrite({
     addressOrName: KOVAN_TESTNET_ADDRESS,
@@ -25,6 +26,12 @@ const Tip = ({ recipientAddress, recipientName }: TipProps) => {
     overrides: {
       from: address,
       value: ethers.utils.parseEther(ethAmount),
+    },
+    onMutate() {
+      if (!signer) {
+        alert('Connect your wallet first!')
+        return
+      }
     },
     onError(error) {
       console.log('Error', error)

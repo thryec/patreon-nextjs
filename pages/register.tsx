@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import Loading from '../components/LoadingModal'
 import RegisterSuccess from '../components/RegisterSucessModal'
 import { create } from 'ipfs-http-client'
-import { useContract, useSigner, useAccount } from 'wagmi'
+import { useContract, useSigner, useAccount, useConnect, chain } from 'wagmi'
 
 const url: string | any = 'https://ipfs.infura.io:5001/api/v0'
 const client = create(url)
@@ -40,6 +40,9 @@ const Register: NextPage = () => {
   })
 
   const { data: signer, isError, isLoading } = useSigner()
+  const { connect, connectors } = useConnect({
+    chainId: chain.optimism.id,
+  })
   const { address } = useAccount()
 
   const contract = useContract({
@@ -50,7 +53,7 @@ const Register: NextPage = () => {
 
   const onSubmit = async (data: any) => {
     if (!signer) {
-      alert('Please Connect Wallet')
+      alert('Connect your wallet first!')
       return
     }
     data.walletAddress = address
