@@ -19,21 +19,19 @@ const WaitlistForm = () => {
   }
 
   return (
-    <div>
-      <div className="text-center">
-        <form onSubmit={submitForm}>
-          <label htmlFor="email">Email</label>
-          <input type="text" />
-          <label htmlFor="type">How will you be using this platform?</label>
-          <select onChange={(e) => setType(e.target.value)}>
-            <option value="creator">creator</option>
-            <option selected value="contributor">
-              contributor
-            </option>
-            <option value="both">both</option>
-          </select>
-        </form>
-      </div>
+    <div className="text-center">
+      <form onSubmit={submitForm}>
+        <label htmlFor="email">Email</label>
+        <input type="text" />
+        <label htmlFor="type">How will you be using this platform?</label>
+        <select onChange={(e) => setType(e.target.value)}>
+          <option value="creator">creator</option>
+          <option selected value="contributor">
+            contributor
+          </option>
+          <option value="both">both</option>
+        </select>
+      </form>
     </div>
   )
 }

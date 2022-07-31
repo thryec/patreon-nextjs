@@ -64,7 +64,7 @@ const Profile: NextPage = () => {
       <div className="space-y-10">
         <div>
           <h1 className="text-2xl text-slate-800 font-semibold uppercase">
-            Streams I'm sending
+            Streams I&apos;m sending
           </h1>
           <table className="table-fixed mt-4">
             <thead className="border-b-2 border-slate-400">
@@ -109,7 +109,7 @@ const Profile: NextPage = () => {
         </div>
         <div>
           <h1 className="text-2xl text-slate-800 font-semibold uppercase">
-            Streams I'm Receiving
+            Streams I&apos;m Receiving
           </h1>
           <table className="table-fixed mt-4">
             <thead className="border-b-2 border-slate-400">
