@@ -5,7 +5,7 @@ import Image from 'next/image'
 const Footer = () => {
   return (
     <div className="text-center pb-20 border-t-4 border-slate-200">
-      <h1 className="text-6xl font-extrabold py-14">Connect.</h1>
+      <h1 className="text-6xl font-extrabold py-14">Connect</h1>
       <div className="space-x-10">
         <a
           href="https://twitter.com/circleofliife"

@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { ethers } from 'ethers'
 import { useContractWrite, useAccount, useSigner } from 'wagmi'
+import Loading from './LoadingModal'
+import TxnSuccess from './TxnSucessModal'
+import Error from './ErrorModal'
 import {
   KOVAN_TESTNET_ADDRESS,
   CONTRACT_ABI,
@@ -14,6 +17,12 @@ interface TipProps {
 
 const Tip = ({ recipientAddress, recipientName }: TipProps) => {
   const [ethAmount, setEthAmount] = useState<any>('0.0')
+  const [loadingModal, setLoadingModal] = useState<boolean>()
+  const [errorModal, setErrorModal] = useState<boolean>()
+  const [txnSuccessModal, setTxnSuccessModal] = useState<boolean>()
+  const [errorMessage, setErrorMessage] = useState<any>()
+  const [txHash, setTxHash] = useState<string>()
+
   const { address } = useAccount()
   const { data: signer } = useSigner()
 
@@ -32,12 +41,19 @@ const Tip = ({ recipientAddress, recipientName }: TipProps) => {
         alert('Connect your wallet first!')
         return
       }
+      setLoadingModal(true)
     },
     onError(error) {
       console.log('Error', error)
+      setLoadingModal(false)
+      setErrorMessage(error.message)
+      setErrorModal(true)
     },
     onSuccess(data) {
       console.log('Success', data)
+      setTxHash(data.hash)
+      setLoadingModal(false)
+      setTxnSuccessModal(true)
     },
   })
 
@@ -47,7 +63,18 @@ const Tip = ({ recipientAddress, recipientName }: TipProps) => {
 
   return (
     <div className="flex justify-center">
-      <div className="text-xl">
+      {loadingModal && <Loading setLoadingModal={setLoadingModal} />}
+      {txnSuccessModal && (
+        <TxnSuccess setTxnSuccessModal={setTxnSuccessModal} txHash={txHash} />
+      )}
+      {errorModal && (
+        <Error
+          setErrorModal={setErrorModal}
+          errorMessage={errorMessage}
+          creatorAddress={recipientAddress}
+        />
+      )}
+      <div className="text-xl space-y-10 inline-block align-middle">
         <input
           type="number"
           step="0.01"

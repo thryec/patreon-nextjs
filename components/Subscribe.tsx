@@ -52,6 +52,10 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
     },
     onMutate({ args, overrides }) {
       console.log('Mutate', { args, overrides })
+      if (!signer) {
+        alert('Connect your wallet first!')
+        return
+      }
       setLoadingModal(true)
     },
     onError(error) {
@@ -111,13 +115,9 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
         <TxnSuccess setTxnSuccessModal={setTxnSuccessModal} txHash={txHash} />
       )}
       {errorModal && (
-        <Error
-          setErrorModal={setErrorModal}
-          errorMessage={errorMessage}
-          creatorAddress={recipientAddress}
-        />
+        <Error setErrorModal={setErrorModal} errorMessage={errorMessage} />
       )}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
         <div className="text-xl flex justify-center">
           <div>
             <div>
@@ -152,7 +152,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center text-xl">
           <button
             className="px-6 py-2 bg-violet-500 rounded-md text-white font-bold block"
             type="submit"

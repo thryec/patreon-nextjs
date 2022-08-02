@@ -103,8 +103,8 @@ const Register: NextPage = () => {
             walletAddress={address}
           />
         )}
-        <h1 className="text-4xl font-extrabold text-center mb-4">
-          Join the community.
+        <h1 className="text-5xl font-extrabold text-center mb-4">
+          Join the community
         </h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -227,12 +227,12 @@ const Register: NextPage = () => {
               </div>
             </div>
           </div>
-          <div className="flex justify-center mt-6">
+          <div className="flex justify-center mt-8">
             <button
-              className="bg-violet-500 py-2 px-8 rounded-lg text-white font-bold"
+              className="bg-violet-500 py-2 px-8 rounded-lg text-2xl text-white font-bold"
               type="submit"
             >
-              CREATE
+              Create
             </button>
           </div>
         </form>

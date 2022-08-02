@@ -15,7 +15,7 @@ const Landing = ({ handleSupporterClick }: LandingProps) => {
             </span>
           </p>
           <p className="text-center">
-            Support your favourite creators with ETH.
+            Support your favourite creators with ETH
           </p>
         </div>
         <div className="flex justify-center space-x-10 pt-24">
