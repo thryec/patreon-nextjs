@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import { shortenAddress } from '../helpers'
 import { useContractWrite, useAccount, useContractReads } from 'wagmi'
+import Loading from './LoadingModal'
+import TxnSuccess from './TxnSucessModal'
+import Error from './ErrorModal'
 import {
   KOVAN_TESTNET_ADDRESS,
   CONTRACT_ABI,
@@ -30,6 +33,11 @@ const StreamInfo = ({
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
   const [withdrawableEther, setWithdrawableEther] = useState<string>()
   const [withdrawableWei, setWithdrawableWei] = useState<string>()
+  const [loadingModal, setLoadingModal] = useState<boolean>()
+  const [errorModal, setErrorModal] = useState<boolean>()
+  const [txnSuccessModal, setTxnSuccessModal] = useState<boolean>()
+  const [errorMessage, setErrorMessage] = useState<any>()
+  const [txHash, setTxHash] = useState<string>()
   const { address } = useAccount()
 
   const { write } = useContractWrite({
@@ -43,12 +51,19 @@ const StreamInfo = ({
     },
     onMutate({ args, overrides }) {
       console.log('Mutate', { args, overrides })
+      setLoadingModal(true)
     },
     onError(error) {
       console.log('Error', error)
+      setLoadingModal(false)
+      setErrorMessage(error.message)
+      setErrorModal(true)
     },
     onSuccess(data) {
       console.log('Success', data)
+      setTxHash(data.hash)
+      setLoadingModal(false)
+      setTxnSuccessModal(true)
     },
   })
 
@@ -84,6 +99,13 @@ const StreamInfo = ({
 
   return (
     <tr className="bg-white border-4 border-slate-100">
+      {loadingModal && <Loading setLoadingModal={setLoadingModal} />}
+      {txnSuccessModal && (
+        <TxnSuccess setTxnSuccessModal={setTxnSuccessModal} txHash={txHash} />
+      )}
+      {errorModal && (
+        <Error setErrorModal={setErrorModal} errorMessage={errorMessage} />
+      )}
       <td className="px-4 py-2">{shortenAddress(sender)}</td>
       <td className="px-4 py-2">{startDate}</td>
       <td className="px-4 py-2">{stopDate}</td>
