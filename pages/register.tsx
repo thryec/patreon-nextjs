@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import Loading from '../components/LoadingModal'
 import RegisterSuccess from '../components/RegisterSucessModal'
+import Error from '../components/ErrorModal'
 import { create } from 'ipfs-http-client'
 import { useContract, useSigner, useAccount, useConnect, chain } from 'wagmi'
 
@@ -25,6 +26,8 @@ type FormData = {
 const Register: NextPage = () => {
   const [loadingModal, setLoadingModal] = useState<boolean>()
   const [registerSuccessModal, setRegisterSuccessModal] = useState<boolean>()
+  const [errorModal, setErrorModal] = useState<boolean>()
+  const [errorMessage, setErrorMessage] = useState<any>()
   const [imageURL, setImageURL] = useState('')
 
   const {
@@ -61,16 +64,17 @@ const Register: NextPage = () => {
       setLoadingModal(true)
       const { cid } = await client.add({ content: JSON.stringify(data) })
       const url = `https://ipfs.infura.io/ipfs/${cid}`
-      console.log('address: ', address, 'url: ', url)
       const txn = await contract.addProfile(address, url)
       const receipt = await txn.wait()
-      console.log('txn', receipt)
       if (receipt) {
         setLoadingModal(false)
         setRegisterSuccessModal(true)
       }
-    } catch (err) {
-      console.log('error adding profile:', err)
+    } catch (error: any) {
+      console.log('error adding profile:', error)
+      setLoadingModal(false)
+      setErrorMessage(error.message)
+      setErrorModal(true)
     }
   }
 
@@ -102,6 +106,9 @@ const Register: NextPage = () => {
             setRegisterSuccessModal={setRegisterSuccessModal}
             walletAddress={address}
           />
+        )}
+        {errorModal && (
+          <Error setErrorModal={setErrorModal} errorMessage={errorMessage} />
         )}
         <h1 className="text-5xl font-extrabold text-center mb-4">
           Join the community
