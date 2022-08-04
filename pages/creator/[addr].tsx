@@ -149,26 +149,8 @@ const Creator: NextPage = () => {
             </div>
           </div>
           <div className="w-2/3 space-y-10">
-            <div className="flex place-content-around">
-              <div>
-                <h1 className="text-2xl font-semibold">
-                  ETH Received
-                  {/* get all streams by receiver, sum(deposit - remaining balance) */}
-                  {/* how to track tipped ETH? remove tipETH function? */}
-                </h1>
-                <div className="rounded-md p-8 m-2 font-bold text-2xl bg-white">
-                  10 ETH
-                </div>
-              </div>
-              <div>
-                <h1 className="text-2xl font-semibold">
-                  Claimable ETH
-                  {/* sum all claimable eth in */}
-                </h1>
-                <div className="rounded-md p-8 m-2 font-bold text-2xl bg-white">
-                  10 ETH
-                </div>
-              </div>
+            <div className="flex place-content-around text-xl">
+              link to creator content here
             </div>
             <div>
               <h1 className="text-2xl  font-semibold">Live Streams</h1>
