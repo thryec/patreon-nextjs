@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import { useContractWrite, useAccount, useSigner } from 'wagmi'
 import Loading from './LoadingModal'
 import TxnSuccess from './TxnSucessModal'
 import Error from './ErrorModal'
+import { useForm } from 'react-hook-form'
 import {
   KOVAN_TESTNET_ADDRESS,
   CONTRACT_ABI,
@@ -15,8 +16,12 @@ interface TipProps {
   recipientName: any
 }
 
+type FormData = {
+  ethAmount: string
+}
+
 const Tip = ({ recipientAddress, recipientName }: TipProps) => {
-  const [ethAmount, setEthAmount] = useState<any>('0.0')
+  const [ethAmount, setEthAmount] = useState<any>('0')
   const [loadingModal, setLoadingModal] = useState<boolean>()
   const [errorModal, setErrorModal] = useState<boolean>()
   const [txnSuccessModal, setTxnSuccessModal] = useState<boolean>()
@@ -25,6 +30,13 @@ const Tip = ({ recipientAddress, recipientName }: TipProps) => {
 
   const { address } = useAccount()
   const { data: signer } = useSigner()
+
+  const {
+    register,
+    getValues,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({})
 
   const { write } = useContractWrite({
     addressOrName: KOVAN_TESTNET_ADDRESS,
@@ -57,9 +69,16 @@ const Tip = ({ recipientAddress, recipientName }: TipProps) => {
     },
   })
 
-  const handleChange = (e: any) => {
-    setEthAmount(e.target.value)
+  const onSubmit = async () => {
+    const eth = getValues('ethAmount')
+    setEthAmount(eth)
   }
+
+  useEffect(() => {
+    if (ethAmount !== '0') {
+      write()
+    }
+  }, [ethAmount])
 
   return (
     <div className="flex justify-center">
@@ -75,16 +94,19 @@ const Tip = ({ recipientAddress, recipientName }: TipProps) => {
           type="number"
           step="0.01"
           placeholder="0.00"
-          name="amount"
-          value={ethAmount}
-          onChange={handleChange}
+          {...register('ethAmount', { required: true })}
           className="border border-slate-200 rounded-md my-4 mr-3 px-3 py-2"
         />
+        {errors.ethAmount && (
+          <div className="text-pink-500">
+            Please do not leave this field blank
+          </div>
+        )}
         <span className="text-slate-800 font-semibold">ETH</span>
         <div className="flex justify-center">
           <button
             className="px-6 py-2 bg-violet-500 rounded-md text-white font-bold block"
-            onClick={() => write()}
+            onClick={handleSubmit(onSubmit)}
           >
             Tip
           </button>

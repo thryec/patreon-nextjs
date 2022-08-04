@@ -13,7 +13,7 @@ const Error = ({ setErrorModal, errorMessage }: ErrorModalProps) => {
         onClick={() => setErrorModal(false)}
       />
       <div className="w-full max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg bg-white flex justify-center">
-        <div className="text-lg text-center space-y-4">
+        <div className="text-xl text-center space-y-4">
           <span className="text-red-500">Error: {errorMessage}</span>
         </div>
       </div>

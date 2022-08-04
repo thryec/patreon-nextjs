@@ -36,7 +36,6 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<FormData>({})
 
