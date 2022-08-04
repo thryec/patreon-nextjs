@@ -68,11 +68,7 @@ const Tip = ({ recipientAddress, recipientName }: TipProps) => {
         <TxnSuccess setTxnSuccessModal={setTxnSuccessModal} txHash={txHash} />
       )}
       {errorModal && (
-        <Error
-          setErrorModal={setErrorModal}
-          errorMessage={errorMessage}
-          creatorAddress={recipientAddress}
-        />
+        <Error setErrorModal={setErrorModal} errorMessage={errorMessage} />
       )}
       <div className="text-xl space-y-10 inline-block align-middle">
         <input

@@ -91,7 +91,7 @@ const Profile: NextPage = () => {
     <div className="flex justify-center h-screen bg-gray-100">
       <div className="w-1/6 mr-8 space-y-8">
         {isFetched && profileExists ? (
-          <div className="w-1/3">
+          <div>
             <Image
               src={profile.avatar}
               width="150px"
@@ -100,8 +100,14 @@ const Profile: NextPage = () => {
               className="rounded-full"
             />
             <h1 className="text-4xl font-bold mt-10">{profile.name}</h1>
-            <span className="text-lg text-slate-500 mb-4 block">
+            <span className="text-lg text-slate-500 block">
               {shortenAddress(profile.walletAddress)}
+            </span>
+            <span className="text-md text-slate-500 cursor-pointer hover:underline hover:underline-offset-4">
+              [edit]{' '}
+            </span>
+            <span className="text-md text-slate-500 cursor-pointer hover:underline hover:underline-offset-4">
+              [delete]
             </span>
             <div className="space-y-4 mt-6 text-lg">
               {!!profile.twitter && (
@@ -162,6 +168,8 @@ const Profile: NextPage = () => {
               )}
             </div>
           </div>
+        ) : isFetched ? (
+          <div className="w-1/3">Spruce up your profile! </div>
         ) : (
           <div className="space-y-8">
             <h1 className="text-3xl font-semibold uppercase">My Stats</h1>
