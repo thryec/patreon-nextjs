@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import StreamInfo from '../../components/StreamInfo'
+import ReceiverStreamInfo from '../../components/ReceiverStreamInfo'
 import Spinner from '../../components/Spinner'
 import { shortenAddress } from '../../helpers'
 import { useContractReads, useAccount } from 'wagmi'
@@ -20,6 +20,8 @@ const Creator: NextPage = () => {
   const router = useRouter()
   const { addr } = router.query
 
+  console.log('connected address: ', address, 'router address: ', addr)
+
   const contract = {
     addressOrName: KOVAN_TESTNET_ADDRESS,
     contractInterface: CONTRACT_ABI,
@@ -30,6 +32,9 @@ const Creator: NextPage = () => {
       { ...contract, functionName: 'getProfile', args: addr },
       { ...contract, functionName: 'getAllStreamsByRecipient', args: addr },
     ],
+    onError(error) {
+      console.log('Error', error)
+    },
   })
 
   const fetchIpfsInfo = async () => {
@@ -75,19 +80,18 @@ const Creator: NextPage = () => {
               alt="avatar"
               className="rounded-full"
             />
-            <h1 className="text-3xl font-semibold mt-10">{profile.name}</h1>
-            <span className="text-slate-500 mb-4 block">
+            <h1 className="text-4xl font-bold mt-10">{profile.name}</h1>
+            <span className="text-lg text-slate-500 mb-4 block">
               {shortenAddress(profile.walletAddress)}
             </span>
             {addr !== address && (
               <Link href={'../contribute/' + addr} passHref>
-                <button className="px-4 py-2 bg-violet-500 rounded-md text-white font-bold block">
+                <button className="text-xl px-4 py-2 bg-violet-500 rounded-md text-white font-bold block">
                   subscribe!
                 </button>
               </Link>
             )}
-
-            <div className="space-y-4 mt-6">
+            <div className="space-y-4 mt-6 text-lg">
               {!!profile.twitter && (
                 <div className="space-y-2">
                   <h5 className="text-slate-500">Twitter</h5>
@@ -149,57 +153,55 @@ const Creator: NextPage = () => {
           <div className="w-2/3 space-y-10">
             <div className="flex place-content-around">
               <div>
-                <h1 className="text-xl text-slate-800 font-semibold">
+                <h1 className="text-2xl font-semibold">
                   ETH Received
                   {/* get all streams by receiver, sum(deposit - remaining balance) */}
                   {/* how to track tipped ETH? remove tipETH function? */}
                 </h1>
-                <div className="rounded-md p-8 m-2 font-bold text-xl bg-white">
+                <div className="rounded-md p-8 m-2 font-bold text-2xl bg-white">
                   10 ETH
                 </div>
               </div>
               <div>
-                <h1 className="text-xl text-slate-800 font-semibold">
+                <h1 className="text-2xl font-semibold">
                   Claimable ETH
                   {/* sum all claimable eth in */}
                 </h1>
-                <div className="rounded-md p-8 m-2 font-bold text-xl bg-white">
+                <div className="rounded-md p-8 m-2 font-bold text-2xl bg-white">
                   10 ETH
                 </div>
               </div>
             </div>
             <div>
-              <h1 className="text-xl text-slate-800 font-semibold">
-                Live Streams
-              </h1>
+              <h1 className="text-2xl  font-semibold">Live Streams</h1>
               {/* table  */}
-              <table className="table-fixed mt-4">
+              <table className="table-auto mt-4">
                 <thead className="bg-white border-b-2 border-slate-200">
                   <tr>
-                    <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-700 uppercase">
+                    <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-900 uppercase">
                       Contributor
                     </th>
-                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-700 uppercase">
+                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-900 uppercase">
                       Start Time
                     </th>
-                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-700 uppercase">
+                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-900 uppercase">
                       End Time
                     </th>
-                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-700 uppercase">
+                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-900 uppercase">
                       Claimble Amount
                     </th>
-                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-700 uppercase">
+                    <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-900 uppercase">
                       Remaining Amount
                     </th>
-                    <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-700 uppercase">
+                    <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left font-semibold text-slate-900 uppercase">
                       Action
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {receivingStreams &&
-                    receivingStreams.map((stream: any, index: any) => (
-                      <StreamInfo
+                    receivingStreams.map((stream: any) => (
+                      <ReceiverStreamInfo
                         key={stream.streamId}
                         streamId={stream.streamId}
                         sender={stream.sender}
@@ -218,14 +220,14 @@ const Creator: NextPage = () => {
           </div>
         </div>
       ) : isFetched ? (
-        <div className="flex justify-center h-screen">
-          <div className="text-xl  space-y-4">
+        <div className="flex justify-center h-screen mt-20">
+          <div className="text-2xl space-y-4">
             <p className="font-semibold">
-              You don&apos;t have a Creator Profile yet :(
+              You don&apos;t have an existing Creator Profile
             </p>
             <Link href="/register" passHref>
               <p className="underline cursor-pointer text-center">
-                Get one here!
+                Get one now!
               </p>
             </Link>
           </div>

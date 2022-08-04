@@ -10,7 +10,7 @@ import {
   KOVAN_CHAIN_ID,
 } from '../constants'
 
-interface StreamInfoProps {
+interface ReceiverStreamInfoProps {
   streamId: number
   sender: string
   recipient: string
@@ -21,7 +21,7 @@ interface StreamInfoProps {
   stopTime: number
 }
 
-const StreamInfo = ({
+const ReceiverStreamInfo = ({
   streamId,
   sender,
   recipient,
@@ -29,7 +29,7 @@ const StreamInfo = ({
   remainingBalance,
   startTime,
   stopTime,
-}: StreamInfoProps) => {
+}: ReceiverStreamInfoProps) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
   const [withdrawableEther, setWithdrawableEther] = useState<string>()
   const [withdrawableWei, setWithdrawableWei] = useState<string>()
@@ -130,4 +130,4 @@ const StreamInfo = ({
   )
 }
 
-export default StreamInfo
+export default ReceiverStreamInfo
