@@ -10,8 +10,8 @@ import Image from 'next/image'
 import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../../constants'
 
 const Creator: NextPage = () => {
-  const [profile, setProfile] = useState<any>()
   const [ipfsHash, setIpfsHash] = useState<any>()
+  const [profile, setProfile] = useState<any>()
   const [isFetched, setIsFetched] = useState<boolean>()
   const [profileExists, setProfileExists] = useState<boolean>()
   const [receivingStreams, setReceivingStreams] = useState<any>([])
@@ -19,8 +19,6 @@ const Creator: NextPage = () => {
 
   const router = useRouter()
   const { addr } = router.query
-
-  console.log('connected address: ', address, 'router address: ', addr)
 
   const contract = {
     addressOrName: KOVAN_TESTNET_ADDRESS,
