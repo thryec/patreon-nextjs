@@ -70,7 +70,7 @@ const Tip = ({ recipientAddress, recipientName }: TipProps) => {
       {errorModal && (
         <Error setErrorModal={setErrorModal} errorMessage={errorMessage} />
       )}
-      <div className="text-xl space-y-10 inline-block align-middle">
+      <div className="text-2xl space-y-10 inline-block align-middle">
         <input
           type="number"
           step="0.01"

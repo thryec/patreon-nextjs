@@ -1,8 +1,6 @@
 import Link from 'next/link'
-import { useState } from 'react'
-import ContributeModal from './ContributeModal'
-import { shortenAddress, shortenDescription } from '../helpers'
 import Image from 'next/image'
+import { shortenAddress, shortenDescription } from '../helpers'
 
 interface CreatorProps {
   address: string
@@ -14,7 +12,7 @@ interface CreatorProps {
 const CreatorInfo = (creator: CreatorProps) => {
   return (
     <Link href={'/creator/' + creator.address} passHref>
-      <div className="border-4 rounded-lg border-violet-300 p-7 space-y-5 cursor-pointer h-80">
+      <div className="rounded-xl border-violet-200 border-2 p-7 space-y-5 cursor-pointer h-80 shadow-lg shadow-violet-200/70 hover:scale-105 transition ease-in-out delay-100">
         <div className="flex place-content-between items-center">
           <div className="flex items-center space-x-6">
             <Image

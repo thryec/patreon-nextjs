@@ -61,8 +61,7 @@ const Contribute: NextPage = () => {
           <h1 className="font-bold text-5xl mb-14 text-center">
             Contribute to {profile && <span>{profile.name}</span>}
           </h1>
-
-          <div className="flex place-content-center space-x-12 mb-4 text-xl">
+          <div className="flex place-content-center space-x-12 mb-10 text-2xl">
             {recurring ? (
               <button
                 className="bg-slate-200 rounded-lg px-4 py-2 font-semibold"

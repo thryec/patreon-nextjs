@@ -118,8 +118,8 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
         <Error setErrorModal={setErrorModal} errorMessage={errorMessage} />
       )}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
-        <div className="text-xl flex justify-center">
-          <div>
+        <div className="text-2xl flex justify-center">
+          <div className="space-y-4">
             <div>
               <input
                 type="number"
@@ -152,7 +152,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center text-xl">
+        <div className="flex justify-center text-2xl">
           <button
             className="px-6 py-2 bg-violet-500 rounded-md text-white font-bold block"
             type="submit"
