@@ -6,7 +6,7 @@ export const shortenDescription = (str: any) => {
   if (str.length < 180) {
     return str
   } else {
-    return str.substring(0, 180) + '.....'
+    return str.substring(0, 150) + '.....'
   }
 }
 

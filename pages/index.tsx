@@ -69,7 +69,7 @@ const Home: NextPage = () => {
   })
 
   return (
-    <div className="flex justify-center h-screen font-inconsolata">
+    <div className="flex justify-center h-screen">
       <div>
         <Landing handleSupporterClick={handleSupporterClick} />
         <div

@@ -76,13 +76,22 @@ const WaitlistForm = () => {
             )}
           </div>
         </div>
-        <button
-          type="submit"
-          className="bg-violet-500 py-2 px-3 mt-14 rounded-lg text-2xl text-white font-semibold items-center"
-        >
-          {loading && <SmallSpinner />}
-          Submit
-        </button>
+        {loading ? (
+          <button
+            type="submit"
+            className="bg-violet-500 py-2 px-3 mt-14 rounded-lg text-2xl text-white font-semibold items-center opacity-90"
+          >
+            Submit
+            <SmallSpinner />
+          </button>
+        ) : (
+          <button
+            type="submit"
+            className="bg-violet-500 py-2 px-3 mt-14 rounded-lg text-2xl text-white font-semibold items-center"
+          >
+            Submit
+          </button>
+        )}
       </form>
     </div>
   )

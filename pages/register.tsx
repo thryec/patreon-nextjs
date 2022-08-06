@@ -115,7 +115,7 @@ const Register: NextPage = () => {
         </h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex justify-center">
+          <div className="flex justify-center text-lg">
             <div className="space-y-6 px-10 pt-8 rounded-xl w-screen max-w-sm">
               <div>
                 <label className="tracking-wider font-semibold mb-2 block">

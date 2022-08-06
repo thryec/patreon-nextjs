@@ -12,15 +12,15 @@ interface CreatorProps {
 const CreatorInfo = (creator: CreatorProps) => {
   return (
     <Link href={'/creator/' + creator.address} passHref>
-      <div className="rounded-xl border-violet-200 border-2 p-7 space-y-5 cursor-pointer h-80 shadow-lg shadow-violet-200/70 hover:scale-105 transition ease-in-out delay-100">
+      <div className="rounded-xl border-violet-200 border-4 p-7 space-y-5 cursor-pointer h-80 hover:shadow-xl hover:shadow-violet-200/70 transition ease-in-out">
         <div className="flex place-content-between items-center">
           <div className="flex items-center space-x-6">
             <Image
               src={creator.profilePicture}
               alt={creator.name}
               className="rounded-full"
-              width="80px"
-              height="80px"
+              width="100px"
+              height="100px"
             />
             <h1 className="text-2xl font-bold inline"> {creator.name}</h1>
           </div>
@@ -28,7 +28,9 @@ const CreatorInfo = (creator: CreatorProps) => {
             {shortenAddress(creator.address)}
           </span>
         </div>
-        <div className="text-lg">{shortenDescription(creator.description)}</div>
+        <div className="text-lg text-slate-700">
+          {shortenDescription(creator.description)}
+        </div>
       </div>
     </Link>
   )

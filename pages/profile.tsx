@@ -172,7 +172,13 @@ const Profile: NextPage = () => {
                 </div>
               </div>
             ) : profileFetched ? (
-              <div className="w-1/3">Spruce up your profile! </div>
+              <div className="text-lg">
+                Spruce up your profile{' '}
+                <span className="underline underline-offset-4">
+                  <Link href="/register">here</Link>
+                </span>
+                !
+              </div>
             ) : (
               <div className="space-y-8">
                 <h1 className="text-3xl font-semibold uppercase">My Stats</h1>
