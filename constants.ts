@@ -6,7 +6,7 @@ export const GOERLI_TESTNET_ADDRESS =
   '0x1e843bea1086b1a14ca1fe17b49ae669b1d76cb3'
 
 export const KOVAN_TESTNET_ADDRESS =
-  '0x0c63c07c6577799daf292b331252dd8094c0bb1a'
+  '0xea40f0bc713e17d37362e2cc1bd35c6f9fd67b15'
 
 export const CONTRACT_ABI = [
   {
