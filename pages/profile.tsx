@@ -82,7 +82,7 @@ const Profile: NextPage = () => {
 
   if (!address) {
     return (
-      <div className="flex justify-center h-screen bg-gray-100">
+      <div className="flex justify-center h-screen">
         Please connect your wallet first!
       </div>
     )
@@ -91,7 +91,7 @@ const Profile: NextPage = () => {
   return (
     <div>
       {dataFetched ? (
-        <div className="flex justify-center h-screen bg-gray-100">
+        <div className="flex justify-center h-screen">
           <div className="w-1/6 mr-8 space-y-8">
             {profileFetched && profileExists ? (
               <div>

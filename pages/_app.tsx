@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <title>Circle Of Life</title>
           <link rel="icon" href="/thick.png" />
         </Head>
-        <div className="bg-gray-100 ">
+        <div>
           <Header />
           <Component {...pageProps} />
         </div>

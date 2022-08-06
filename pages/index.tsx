@@ -73,7 +73,7 @@ const Home: NextPage = () => {
       <div>
         <Landing handleSupporterClick={handleSupporterClick} />
         <div
-          className="bg-gray-100 h-screen w-screen pt-16 border-t-4 border-slate-200"
+          className="h-screen w-screen pt-16 border-t-4 border-slate-200"
           ref={ref}
         >
           <h1 className="text-center text-6xl font-extrabold pb-20">
@@ -81,7 +81,7 @@ const Home: NextPage = () => {
           </h1>
           <div className="grid grid-cols-3 gap-12 px-60">{profileCards}</div>
         </div>
-        <div className="bg-gray-100 h-screen w-screen pt-16 border-t-4 border-slate-200">
+        <div className="h-screen w-screen pt-16 border-t-4 border-slate-200">
           <h1 className="text-center text-6xl font-extrabold pb-20">
             Join the waitlist
           </h1>
