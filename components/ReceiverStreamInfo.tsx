@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { shortenAddress } from '../helpers'
-import { useContractWrite, useAccount, useContractReads } from 'wagmi'
+import { useContractWrite, useAccount, useContractReads, chain } from 'wagmi'
 import Loading from './LoadingModal'
 import TxnSuccess from './TxnSucessModal'
 import Error from './ErrorModal'
@@ -78,6 +78,7 @@ const ReceiverStreamInfo = ({
         ...contract,
         functionName: 'currentETHBalanceOf',
         args: [streamId, recipient],
+        chainId: chain.optimismKovan.id,
       },
     ],
   })

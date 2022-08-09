@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Spinner from '../components/Spinner'
 import { useState, useEffect } from 'react'
-import { useContractReads, useAccount } from 'wagmi'
+import { useContractReads, useAccount, chain } from 'wagmi'
 import SenderStreamInfo from '../components/SenderStreamInfo'
 import ReceiverStreamInfo from '../components/ReceiverStreamInfo'
 import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
@@ -30,13 +30,20 @@ const Profile: NextPage = () => {
         ...contract,
         functionName: 'getAllStreamsBySender',
         args: address,
+        chainId: chain.optimismKovan.id,
       },
       {
         ...contract,
         functionName: 'getAllStreamsByRecipient',
         args: address,
+        chainId: chain.optimismKovan.id,
       },
-      { ...contract, functionName: 'getProfile', args: address },
+      {
+        ...contract,
+        functionName: 'getProfile',
+        args: address,
+        chainId: chain.optimismKovan.id,
+      },
     ],
     cacheOnBlock: true,
     onSuccess(data) {

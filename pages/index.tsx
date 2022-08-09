@@ -12,10 +12,6 @@ const Home: NextPage = () => {
   const ref = useRef<HTMLDivElement>(null)
   const [profileData, setProfileData] = useState<any>([])
 
-  const provider = new ethers.providers.JsonRpcProvider(
-    process.env.KOVAN_RPC_URL
-  )
-
   const contract = {
     addressOrName: KOVAN_TESTNET_ADDRESS,
     contractInterface: CONTRACT_ABI,

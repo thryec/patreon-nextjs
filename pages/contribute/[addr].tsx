@@ -1,17 +1,12 @@
 import type { NextPage } from 'next'
 import Tip from '../../components/Tip'
 import Subscribe from '../../components/Subscribe'
-import { shortenAddress } from '../../helpers'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import Spinner from '../../components/Spinner'
-import { useContractRead } from 'wagmi'
+import { useContractRead, chain } from 'wagmi'
 
-import {
-  KOVAN_TESTNET_ADDRESS,
-  CONTRACT_ABI,
-  KOVAN_CHAIN_ID,
-} from '../../constants'
+import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../../constants'
 
 const Contribute: NextPage = () => {
   const [profile, setProfile] = useState<any>()
@@ -26,6 +21,7 @@ const Contribute: NextPage = () => {
     contractInterface: CONTRACT_ABI,
     functionName: 'getProfile',
     args: addr,
+    chainId: chain.optimismKovan.id,
   })
 
   const fetchIpfsInfo = async () => {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { shortenAddress } from '../helpers'
-import { useContractWrite, useAccount, useContractReads } from 'wagmi'
+import { useContractWrite, useAccount, useContractReads, chain } from 'wagmi'
 import {
   KOVAN_TESTNET_ADDRESS,
   CONTRACT_ABI,
@@ -65,6 +65,7 @@ const StreamInfo = ({
         ...contract,
         functionName: 'currentETHBalanceOf',
         args: [streamId, recipient],
+        chainId: chain.optimismKovan.id,
       },
     ],
   })

@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import ReceiverStreamInfo from '../../components/ReceiverStreamInfo'
 import Spinner from '../../components/Spinner'
 import { shortenAddress } from '../../helpers'
-import { useContractReads, useAccount } from 'wagmi'
+import { useContractReads, useAccount, chain } from 'wagmi'
 import Image from 'next/image'
 import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../../constants'
 
@@ -27,8 +27,18 @@ const Creator: NextPage = () => {
 
   const { data, isError, isLoading, status } = useContractReads({
     contracts: [
-      { ...contract, functionName: 'getProfile', args: addr },
-      { ...contract, functionName: 'getAllStreamsByRecipient', args: addr },
+      {
+        ...contract,
+        functionName: 'getProfile',
+        args: addr,
+        chainId: chain.optimismKovan.id,
+      },
+      {
+        ...contract,
+        functionName: 'getAllStreamsByRecipient',
+        args: addr,
+        chainId: chain.optimismKovan.id,
+      },
     ],
     onError(error) {
       console.log('Error', error)
