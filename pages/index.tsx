@@ -6,7 +6,7 @@ import Landing from '../components/Landing'
 import Footer from '../components/Footer'
 import WaitlistForm from '../components/WaitlistForm'
 import { useState, useEffect, useRef } from 'react'
-import { useContractReads } from 'wagmi'
+import { useContractReads, chain } from 'wagmi'
 
 const Home: NextPage = () => {
   const ref = useRef<HTMLDivElement>(null)
@@ -26,6 +26,7 @@ const Home: NextPage = () => {
       {
         ...contract,
         functionName: 'getAllProfiles',
+        chainId: chain.optimismKovan.id,
       },
     ],
     onSuccess(data) {
