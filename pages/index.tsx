@@ -26,7 +26,7 @@ const Home: NextPage = () => {
       },
     ],
     onSuccess(data) {
-      console.log('Success', data)
+      console.log('Success', data[0])
     },
     onError(error) {
       console.log('Error', error)
@@ -35,7 +35,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (!!data) {
-      console.log('data: ', data[0])
+      console.log('data: ', data[0][0])
       const result: any = []
       data[0].map(async (el: string) => {
         const data = await fetch(el)

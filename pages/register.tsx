@@ -9,7 +9,7 @@ import Error from '../components/ErrorModal'
 import { create } from 'ipfs-http-client'
 import { useContract, useSigner, useAccount, useConnect, chain } from 'wagmi'
 
-const url: string | any = 'https://ipfs.infura.io:5001/api/v0'
+const url: string | any = 'https://circleoflife.infura-ipfs.io'
 const client = create(url)
 
 type FormData = {
