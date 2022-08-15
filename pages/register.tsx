@@ -7,10 +7,21 @@ import Loading from '../components/LoadingModal'
 import RegisterSuccess from '../components/RegisterSucessModal'
 import Error from '../components/ErrorModal'
 import { create } from 'ipfs-http-client'
-import { useContract, useSigner, useAccount, useConnect, chain } from 'wagmi'
+import { useContract, useSigner, useAccount } from 'wagmi'
 
-const url: string | any = 'https://circleoflife.infura-ipfs.io'
-const client = create(url)
+const projectId = process.env.INFURA_PROJECTID
+const projectSecret = process.env.INFURA_PROJECTSECRET
+const auth =
+  'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64')
+
+const client = create({
+  host: 'ipfs.infura.io',
+  protocol: 'https',
+  port: 5001,
+  headers: {
+    authorization: auth,
+  },
+})
 
 type FormData = {
   name: string
@@ -38,14 +49,11 @@ const Register: NextPage = () => {
   } = useForm<FormData>({
     defaultValues: {
       avatar:
-        'https://ipfs.infura.io/ipfs/bafkrohcwcm5gxrmu4xps2gtdgq23giyhj2fy3ws7tbvbkooel33a',
+        'https://ipfs.io/ipfs/bafkrohcwcm5gxrmu4xps2gtdgq23giyhj2fy3ws7tbvbkooel33a',
     },
   })
 
   const { data: signer, isError, isLoading } = useSigner()
-  const { connect, connectors } = useConnect({
-    chainId: chain.optimism.id,
-  })
   const { address } = useAccount()
 
   const contract = useContract({
@@ -63,7 +71,7 @@ const Register: NextPage = () => {
     try {
       setLoadingModal(true)
       const { cid } = await client.add({ content: JSON.stringify(data) })
-      const url = `https://ipfs.infura.io/ipfs/${cid}`
+      const url = `https://ipfs.io/ipfs/${cid}`
       const txn = await contract.addProfile(address, url)
       const receipt = await txn.wait()
       if (receipt) {
@@ -88,7 +96,7 @@ const Register: NextPage = () => {
           hashAlg: 'sha3-224',
         }
       )
-      const url = `https://ipfs.infura.io/ipfs/${cid}`
+      const url = `https://ipfs.io/ipfs/${cid}`
       console.log('url: ', url)
       setImageURL(url)
       setValue('avatar', url)
@@ -98,7 +106,7 @@ const Register: NextPage = () => {
   }
 
   return (
-    <div className="flex justify-center h-screen w-full ">
+    <div className="flex justify-center h-screen w-full">
       <div>
         {loadingModal && <Loading setLoadingModal={setLoadingModal} />}
         {registerSuccessModal && (

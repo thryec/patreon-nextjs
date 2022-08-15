@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import { ethers } from 'ethers'
 import CreatorInfo from '../components/CreatorInfo'
 import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 import Landing from '../components/Landing'
@@ -35,7 +34,6 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (!!data) {
-      console.log('data: ', data[0][0])
       const result: any = []
       data[0].map(async (el: string) => {
         const data = await fetch(el)
