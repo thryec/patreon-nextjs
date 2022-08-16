@@ -24,12 +24,14 @@ const Landing = ({ handleSupporterClick }: LandingProps) => {
               I&apos;m a Creator
             </button>
           </Link>
-          <button
-            className="bg-violet-500 py-2 px-3 rounded-lg text-2xl text-white font-semibold"
-            onClick={handleSupporterClick}
-          >
-            I&apos;m a Contributor
-          </button>
+          <Link href="/sub" passHref>
+            <button
+              className="bg-violet-500 py-2 px-3 rounded-lg text-2xl text-white font-semibold"
+              // onClick={handleSupporterClick}
+            >
+              I&apos;m a Contributor
+            </button>
+          </Link>
         </div>
       </div>
     </div>

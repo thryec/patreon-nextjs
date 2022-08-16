@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import Head from 'next/head'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import type { AppProps } from 'next/app'
 import '@rainbow-me/rainbowkit/styles.css'
 import {
@@ -25,16 +26,24 @@ const optimismGoerli: Chain = {
     default: 'https://goerli.optimism.io/',
   },
   blockExplorers: {
-    default: { name: 'BlockScout', url: 'https://blockscout.com/optimism/goerli/' },
+    default: {
+      name: 'BlockScout',
+      url: 'https://blockscout.com/optimism/goerli/',
+    },
   },
   testnet: false,
 }
 
 const { chains, provider } = configureChains(
-  [chain.optimismKovan, optimismGoerli, chain.optimism, chain.mainnet, chain.polygon],
+  [
+    chain.optimismKovan,
+    optimismGoerli,
+    chain.optimism,
+    chain.mainnet,
+    chain.polygon,
+  ],
   [alchemyProvider({ alchemyId: process.env.ALCHEMY_ID }), publicProvider()]
 )
-
 
 const { connectors } = getDefaultWallets({
   appName: 'Decentralised Patreon',
@@ -62,10 +71,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           <title>Circle Of Life</title>
           <link rel="icon" href="/thick.png" />
         </Head>
-        <div>
-          <Header />
-          <Component {...pageProps} />
-        </div>
+
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
       </RainbowKitProvider>
     </WagmiConfig>
   )

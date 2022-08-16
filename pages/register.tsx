@@ -4,6 +4,7 @@ import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import Loading from '../components/LoadingModal'
+import Footer from '../components/Footer'
 import Error from '../components/ErrorModal'
 import RegisterSuccess from '../components/RegisterSucessModal'
 

@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import Loading from '../components/LoadingModal'
 import TxnSuccess from '../components/TxnSucessModal'
 import Error from '../components/ErrorModal'
-import { useContractWrite, useAccount, useSigner } from 'wagmi'
+import { useContractWrite, useAccount, useSigner, useEnsAddress } from 'wagmi'
 import {
   KOVAN_TESTNET_ADDRESS,
   CONTRACT_ABI,
@@ -20,6 +20,7 @@ type FormData = {
 
 const Subscribe: NextPage = () => {
   const [depositAmount, setDepositAmount] = useState<any>('0')
+  const [recipient, setRecipient] = useState<any>()
   const [startTime, setStartTime] = useState<any>()
   const [endTime, setEndTime] = useState<any>()
   const [loadingModal, setLoadingModal] = useState<boolean>()
@@ -30,10 +31,9 @@ const Subscribe: NextPage = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<FormData>({})
-
-  const recipientAddress = ''
 
   const { address } = useAccount()
   const { data: signer } = useSigner()
@@ -43,7 +43,7 @@ const Subscribe: NextPage = () => {
     chainId: KOVAN_CHAIN_ID,
     contractInterface: CONTRACT_ABI,
     functionName: 'createETHStream',
-    args: [recipientAddress, startTime, endTime],
+    args: [recipient, startTime, endTime],
     overrides: {
       from: address,
       value: depositAmount,
@@ -80,6 +80,9 @@ const Subscribe: NextPage = () => {
     const endBlocktime = currentBlocktime + timeDelta
     setStartTime(currentBlocktime)
     setEndTime(endBlocktime)
+    const recipient = getValues('recipient')
+    console.log('recipient: ', recipient)
+    setRecipient(recipient)
     const totalAmount = (data.ethAmount * data.weeks).toString()
     const amountInWei = ethers.utils.parseUnits(totalAmount, 'ether')
     const remainder = amountInWei.mod(timeDelta)
@@ -117,7 +120,7 @@ const Subscribe: NextPage = () => {
           <Error setErrorModal={setErrorModal} errorMessage={errorMessage} />
         )}
         <h1 className="text-5xl font-extrabold text-center mb-14">
-          Quick Subscribe!
+          Subscribe To A Creator
         </h1>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
           <div className="text-xl flex justify-center">
@@ -125,7 +128,7 @@ const Subscribe: NextPage = () => {
               <div>
                 <input
                   type="string"
-                  placeholder="ditto.ens"
+                  placeholder="wagmi.ens"
                   className="border border-slate-200 rounded-md my-2 mx-3 px-2 py-2"
                   {...register('recipient', { required: true })}
                 />
