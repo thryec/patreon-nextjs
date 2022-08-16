@@ -97,12 +97,12 @@ const Tip = ({ recipientAddress, recipientName }: TipProps) => {
           {...register('ethAmount', { required: true })}
           className="border border-slate-200 rounded-md my-4 mr-3 px-3 py-2"
         />
+        <span className="text-slate-800 font-semibold">ETH</span>
         {errors.ethAmount && (
           <div className="text-pink-500">
             Please do not leave this field blank
           </div>
         )}
-        <span className="text-slate-800 font-semibold">ETH</span>
         <div className="flex justify-center">
           <button
             className="px-6 py-2 bg-violet-500 rounded-md text-white font-bold block"

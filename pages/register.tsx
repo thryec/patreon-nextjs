@@ -4,8 +4,9 @@ import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import Loading from '../components/LoadingModal'
-import RegisterSuccess from '../components/RegisterSucessModal'
 import Error from '../components/ErrorModal'
+import RegisterSuccess from '../components/RegisterSucessModal'
+
 import { create } from 'ipfs-http-client'
 import { useContract, useSigner, useAccount } from 'wagmi'
 

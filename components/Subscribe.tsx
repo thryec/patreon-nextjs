@@ -127,12 +127,12 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
                 className="border border-slate-200 rounded-md my-2 mx-3 px-2 py-2"
                 {...register('ethAmount', { required: true })}
               />
+              <span className="text-slate-800 font-semibold"> ETH / week</span>
               {errors.ethAmount && (
                 <div className="text-pink-500">
                   Please do not leave this field blank
                 </div>
               )}
-              <span className="text-slate-800 font-semibold"> ETH / week</span>
             </div>
             <div>
               <input
@@ -142,12 +142,12 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
                 placeholder="0"
                 {...register('weeks', { required: true })}
               />
+              <span className="text-slate-800 font-semibold">Week(s)</span>
               {errors.weeks && (
                 <div className="text-pink-500">
                   Please do not leave this field blank
                 </div>
               )}
-              <span className="text-slate-800 font-semibold">Week(s)</span>
             </div>
           </div>
         </div>
