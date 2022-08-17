@@ -90,7 +90,7 @@ const Subscribe = ({ recipientAddress, recipientName }: SubscribeProps) => {
 
   const getCurrentBlockTimestamp = async () => {
     const provider = new ethers.providers.JsonRpcProvider(
-      process.env.GOERLI_RPC_URL
+      process.env.MAINNET_RPC_URL
     )
     const blockNumber = await provider.getBlockNumber()
     const timestamp = (await provider.getBlock(blockNumber)).timestamp
