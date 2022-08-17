@@ -7,6 +7,7 @@ import TxnSuccess from '../components/TxnSucessModal'
 import Error from '../components/ErrorModal'
 import { useContractWrite, useAccount, useSigner, useEnsAddress } from 'wagmi'
 import { POLYGON_ADDRESS, CONTRACT_ABI, POLYGON_CHAIN_ID } from '../constants'
+import { validateAddress } from '../helpers'
 
 type FormData = {
   recipient: string
@@ -33,6 +34,15 @@ const Subscribe: NextPage = () => {
 
   const { address } = useAccount()
   const { data: signer } = useSigner()
+
+  const mainnetProvider = new ethers.providers.JsonRpcProvider(
+    process.env.MAINNET_RPC_URL
+  )
+
+  const fetchENS = async () => {
+    let addr = await mainnetProvider.resolveName('chloet.eth')
+    console.log('addr: ', addr)
+  }
 
   const { write } = useContractWrite({
     addressOrName: POLYGON_ADDRESS,
@@ -92,12 +102,16 @@ const Subscribe: NextPage = () => {
 
   const getCurrentBlockTimestamp = async () => {
     const provider = new ethers.providers.JsonRpcProvider(
-      process.env.KOVAN_RPC_URL
+      process.env.POLYGON_RPC_URL
     )
     const blockNumber = await provider.getBlockNumber()
     const timestamp = (await provider.getBlock(blockNumber)).timestamp
     return timestamp + 60
   }
+
+  useEffect(() => {
+    fetchENS()
+  }, [])
 
   useEffect(() => {
     if (depositAmount !== '0') {
@@ -124,7 +138,7 @@ const Subscribe: NextPage = () => {
               <div>
                 <input
                   type="string"
-                  placeholder="wagmi.ens"
+                  placeholder="wagmi.ens / 0xABC0000000000000000000000000000000000000"
                   className="border border-slate-200 rounded-md my-2 mx-3 px-2 py-2"
                   {...register('recipient', { required: true })}
                 />

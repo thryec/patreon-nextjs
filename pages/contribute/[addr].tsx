@@ -4,7 +4,7 @@ import Subscribe from '../../components/Subscribe'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import Spinner from '../../components/Spinner'
-import { useContractRead, chain } from 'wagmi'
+import { useContractRead } from 'wagmi'
 import {
   POLYGON_ADDRESS,
   CONTRACT_ABI,
