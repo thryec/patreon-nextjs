@@ -1,12 +1,15 @@
 export const OPTIMISM_CHAIN_ID = 10
 export const KOVAN_CHAIN_ID = 69
 export const GOERLI_CHAIN_ID = 5
+export const POLYGON_CHAIN_ID = 137
 
 export const GOERLI_TESTNET_ADDRESS =
   '0x1e843bea1086b1a14ca1fe17b49ae669b1d76cb3'
 
 export const KOVAN_TESTNET_ADDRESS =
   '0xea40f0bc713e17d37362e2cc1bd35c6f9fd67b15'
+
+export const POLYGON_ADDRESS = '0x53Db5FcdF875cfe71BC0a937BA8A0916b9f6C12B'
 
 export const CONTRACT_ABI = [
   {
@@ -120,19 +123,6 @@ export const CONTRACT_ABI = [
     type: 'event',
   },
   {
-    inputs: [],
-    name: '_streamIds',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '_value',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
     inputs: [
       {
         internalType: 'address',
@@ -186,17 +176,17 @@ export const CONTRACT_ABI = [
     inputs: [
       {
         internalType: 'address',
-        name: '_recipient',
+        name: 'recipient',
         type: 'address',
       },
       {
         internalType: 'uint256',
-        name: '_startTime',
+        name: 'startTime',
         type: 'uint256',
       },
       {
         internalType: 'uint256',
-        name: '_stopTime',
+        name: 'stopTime',
         type: 'uint256',
       },
     ],
@@ -215,12 +205,12 @@ export const CONTRACT_ABI = [
     inputs: [
       {
         internalType: 'uint256',
-        name: '_streamId',
+        name: 'streamId',
         type: 'uint256',
       },
       {
         internalType: 'address',
-        name: '_who',
+        name: 'who',
         type: 'address',
       },
     ],
@@ -233,19 +223,6 @@ export const CONTRACT_ABI = [
       },
     ],
     stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'user',
-        type: 'address',
-      },
-    ],
-    name: 'deleteProfile',
-    outputs: [],
-    stateMutability: 'nonpayable',
     type: 'function',
   },
   {
@@ -423,10 +400,23 @@ export const CONTRACT_ABI = [
     type: 'function',
   },
   {
+    inputs: [],
+    name: 'getProfileCount',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
     inputs: [
       {
         internalType: 'uint256',
-        name: '_streamId',
+        name: 'streamId',
         type: 'uint256',
       },
     ],
@@ -501,6 +491,38 @@ export const CONTRACT_ABI = [
         type: 'address',
       },
     ],
+    name: 'identities',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'profileIds',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '_value',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
     name: 'profiles',
     outputs: [
       {
@@ -516,12 +538,12 @@ export const CONTRACT_ABI = [
     inputs: [
       {
         internalType: 'uint256',
-        name: '_streamId',
+        name: 'streamId',
         type: 'uint256',
       },
       {
         internalType: 'uint256',
-        name: '_amount',
+        name: 'amount',
         type: 'uint256',
       },
     ],
@@ -540,7 +562,7 @@ export const CONTRACT_ABI = [
     inputs: [
       {
         internalType: 'uint256',
-        name: '_streamId',
+        name: 'streamId',
         type: 'uint256',
       },
     ],
@@ -553,6 +575,19 @@ export const CONTRACT_ABI = [
       },
     ],
     stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'streamIds',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '_value',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
     type: 'function',
   },
   {
@@ -623,7 +658,7 @@ export const CONTRACT_ABI = [
     inputs: [
       {
         internalType: 'uint256',
-        name: '_streamId',
+        name: 'streamId',
         type: 'uint256',
       },
     ],
@@ -642,7 +677,7 @@ export const CONTRACT_ABI = [
     inputs: [
       {
         internalType: 'address',
-        name: '_recipient',
+        name: 'recipient',
         type: 'address',
       },
     ],

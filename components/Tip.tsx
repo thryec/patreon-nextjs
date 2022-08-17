@@ -5,11 +5,7 @@ import Loading from './LoadingModal'
 import TxnSuccess from './TxnSucessModal'
 import Error from './ErrorModal'
 import { useForm } from 'react-hook-form'
-import {
-  KOVAN_TESTNET_ADDRESS,
-  CONTRACT_ABI,
-  KOVAN_CHAIN_ID,
-} from '../constants'
+import { POLYGON_ADDRESS, CONTRACT_ABI, POLYGON_CHAIN_ID } from '../constants'
 
 interface TipProps {
   recipientAddress: any
@@ -39,8 +35,8 @@ const Tip = ({ recipientAddress, recipientName }: TipProps) => {
   } = useForm<FormData>({})
 
   const { write } = useContractWrite({
-    addressOrName: KOVAN_TESTNET_ADDRESS,
-    chainId: KOVAN_CHAIN_ID,
+    addressOrName: POLYGON_ADDRESS,
+    chainId: POLYGON_CHAIN_ID,
     contractInterface: CONTRACT_ABI,
     functionName: 'tipETH',
     args: [recipientAddress],

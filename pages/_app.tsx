@@ -36,11 +36,11 @@ const optimismGoerli: Chain = {
 
 const { chains, provider } = configureChains(
   [
+    chain.polygon,
     chain.optimismKovan,
     optimismGoerli,
     chain.optimism,
     chain.mainnet,
-    chain.polygon,
   ],
   [alchemyProvider({ alchemyId: process.env.ALCHEMY_ID }), publicProvider()]
 )
@@ -71,7 +71,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           <title>Circle Of Life</title>
           <link rel="icon" href="/thick.png" />
         </Head>
-
         <Header />
         <Component {...pageProps} />
         <Footer />

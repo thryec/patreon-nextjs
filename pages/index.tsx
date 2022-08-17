@@ -1,18 +1,18 @@
 import type { NextPage } from 'next'
 import CreatorInfo from '../components/CreatorInfo'
-import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
+import { POLYGON_ADDRESS, CONTRACT_ABI, POLYGON_CHAIN_ID } from '../constants'
 import Landing from '../components/Landing'
 import Footer from '../components/Footer'
 import WaitlistForm from '../components/WaitlistForm'
 import { useState, useEffect, useRef } from 'react'
-import { useContractReads, chain } from 'wagmi'
+import { useContractReads } from 'wagmi'
 
 const Home: NextPage = () => {
   const ref = useRef<HTMLDivElement>(null)
   const [profileData, setProfileData] = useState<any>([])
 
   const contract = {
-    addressOrName: KOVAN_TESTNET_ADDRESS,
+    addressOrName: POLYGON_ADDRESS,
     contractInterface: CONTRACT_ABI,
   }
 
@@ -21,7 +21,7 @@ const Home: NextPage = () => {
       {
         ...contract,
         functionName: 'getAllProfiles',
-        chainId: chain.optimismKovan.id,
+        chainId: POLYGON_CHAIN_ID,
       },
     ],
     onSuccess(data) {
@@ -33,7 +33,7 @@ const Home: NextPage = () => {
   })
 
   useEffect(() => {
-    if (!!data) {
+    if (!!data && data.length !== 0) {
       const result: any = []
       data[0].map(async (el: string) => {
         const data = await fetch(el)

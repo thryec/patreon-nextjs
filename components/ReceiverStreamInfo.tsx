@@ -4,11 +4,7 @@ import { useContractWrite, useAccount, useContractReads, chain } from 'wagmi'
 import Loading from './LoadingModal'
 import TxnSuccess from './TxnSucessModal'
 import Error from './ErrorModal'
-import {
-  KOVAN_TESTNET_ADDRESS,
-  CONTRACT_ABI,
-  KOVAN_CHAIN_ID,
-} from '../constants'
+import { POLYGON_ADDRESS, CONTRACT_ABI, POLYGON_CHAIN_ID } from '../constants'
 
 interface ReceiverStreamInfoProps {
   streamId: number
@@ -41,8 +37,8 @@ const ReceiverStreamInfo = ({
   const { address } = useAccount()
 
   const { write } = useContractWrite({
-    addressOrName: KOVAN_TESTNET_ADDRESS,
-    chainId: KOVAN_CHAIN_ID,
+    addressOrName: POLYGON_ADDRESS,
+    chainId: POLYGON_CHAIN_ID,
     contractInterface: CONTRACT_ABI,
     functionName: 'recipientWithdrawFromStream',
     args: [streamId, withdrawableWei],
@@ -68,7 +64,7 @@ const ReceiverStreamInfo = ({
   })
 
   const contract = {
-    addressOrName: KOVAN_TESTNET_ADDRESS,
+    addressOrName: POLYGON_ADDRESS,
     contractInterface: CONTRACT_ABI,
   }
 
@@ -78,7 +74,7 @@ const ReceiverStreamInfo = ({
         ...contract,
         functionName: 'currentETHBalanceOf',
         args: [streamId, recipient],
-        chainId: chain.optimismKovan.id,
+        chainId: POLYGON_CHAIN_ID,
       },
     ],
   })

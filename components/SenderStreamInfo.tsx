@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react'
 import { shortenAddress } from '../helpers'
 import { useContractWrite, useAccount, useContractReads, chain } from 'wagmi'
-import {
-  KOVAN_TESTNET_ADDRESS,
-  CONTRACT_ABI,
-  KOVAN_CHAIN_ID,
-} from '../constants'
+import { POLYGON_ADDRESS, CONTRACT_ABI, POLYGON_CHAIN_ID } from '../constants'
 
 interface StreamInfoProps {
   streamId: number
@@ -35,8 +31,8 @@ const StreamInfo = ({
   const { address } = useAccount()
 
   const { write } = useContractWrite({
-    addressOrName: KOVAN_TESTNET_ADDRESS,
-    chainId: KOVAN_CHAIN_ID,
+    addressOrName: POLYGON_ADDRESS,
+    chainId: POLYGON_CHAIN_ID,
     contractInterface: CONTRACT_ABI,
     functionName: 'senderCancelStream',
     args: [streamId],
@@ -55,7 +51,7 @@ const StreamInfo = ({
   })
 
   const contract = {
-    addressOrName: KOVAN_TESTNET_ADDRESS,
+    addressOrName: POLYGON_ADDRESS,
     contractInterface: CONTRACT_ABI,
   }
 
@@ -65,7 +61,7 @@ const StreamInfo = ({
         ...contract,
         functionName: 'currentETHBalanceOf',
         args: [streamId, recipient],
-        chainId: chain.optimismKovan.id,
+        chainId: POLYGON_CHAIN_ID,
       },
     ],
   })

@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import { useContractReads, useAccount, chain } from 'wagmi'
 import SenderStreamInfo from '../components/SenderStreamInfo'
 import ReceiverStreamInfo from '../components/ReceiverStreamInfo'
-import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
+import { POLYGON_ADDRESS, CONTRACT_ABI, POLYGON_CHAIN_ID } from '../constants'
 import { shortenAddress } from '../helpers'
 
 const Profile: NextPage = () => {
@@ -21,7 +21,7 @@ const Profile: NextPage = () => {
   const [receivingStreams, setReceivingStreams] = useState<any>([])
 
   const contract = {
-    addressOrName: KOVAN_TESTNET_ADDRESS,
+    addressOrName: POLYGON_ADDRESS,
     contractInterface: CONTRACT_ABI,
   }
 
@@ -31,19 +31,19 @@ const Profile: NextPage = () => {
         ...contract,
         functionName: 'getAllStreamsBySender',
         args: address,
-        chainId: chain.optimismKovan.id,
+        chainId: POLYGON_CHAIN_ID,
       },
       {
         ...contract,
         functionName: 'getAllStreamsByRecipient',
         args: address,
-        chainId: chain.optimismKovan.id,
+        chainId: POLYGON_CHAIN_ID,
       },
       {
         ...contract,
         functionName: 'getProfile',
         args: address,
-        chainId: chain.optimismKovan.id,
+        chainId: POLYGON_CHAIN_ID,
       },
     ],
     cacheOnBlock: true,
@@ -277,10 +277,10 @@ const Profile: NextPage = () => {
                       End Date
                     </th>
                     <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold uppercase">
-                      Initial Deposit
+                      Withdrawable ETH
                     </th>
                     <th className="px-4 py-2 border-b-2 border-slate-200 text-left font-semibold uppercase">
-                      Sent
+                      Remaining ETH
                     </th>
                     <th className="rounded-lg px-4 py-2 border-b-2 border-slate-200 text-left font-semibold uppercase">
                       Action

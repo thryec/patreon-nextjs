@@ -14,7 +14,7 @@ const TxnSuccess = ({ setTxnSuccessModal, txHash }: TxnSuccessModalProps) => {
         <div>
           Success! View your transaction{' '}
           <a
-            href={`https://kovan-optimistic.etherscan.io/tx/${txHash}`}
+            href={`https://polygonscan.com/tx/${txHash}`}
             target="_blank"
             rel="noreferrer"
           >

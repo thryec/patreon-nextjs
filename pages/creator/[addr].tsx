@@ -7,7 +7,11 @@ import Spinner from '../../components/Spinner'
 import { shortenAddress } from '../../helpers'
 import { useContractReads, useAccount, chain } from 'wagmi'
 import Image from 'next/image'
-import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../../constants'
+import {
+  POLYGON_ADDRESS,
+  CONTRACT_ABI,
+  POLYGON_CHAIN_ID,
+} from '../../constants'
 
 const Creator: NextPage = () => {
   const [ipfsHash, setIpfsHash] = useState<any>()
@@ -21,7 +25,7 @@ const Creator: NextPage = () => {
   const { addr } = router.query
 
   const contract = {
-    addressOrName: KOVAN_TESTNET_ADDRESS,
+    addressOrName: POLYGON_ADDRESS,
     contractInterface: CONTRACT_ABI,
   }
 
@@ -31,13 +35,13 @@ const Creator: NextPage = () => {
         ...contract,
         functionName: 'getProfile',
         args: addr,
-        chainId: chain.optimismKovan.id,
+        chainId: POLYGON_CHAIN_ID,
       },
       {
         ...contract,
         functionName: 'getAllStreamsByRecipient',
         args: addr,
-        chainId: chain.optimismKovan.id,
+        chainId: POLYGON_CHAIN_ID,
       },
     ],
     onError(error) {

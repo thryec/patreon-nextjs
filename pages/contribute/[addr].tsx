@@ -5,8 +5,11 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import Spinner from '../../components/Spinner'
 import { useContractRead, chain } from 'wagmi'
-
-import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../../constants'
+import {
+  POLYGON_ADDRESS,
+  CONTRACT_ABI,
+  POLYGON_CHAIN_ID,
+} from '../../constants'
 
 const Contribute: NextPage = () => {
   const [profile, setProfile] = useState<any>()
@@ -17,11 +20,11 @@ const Contribute: NextPage = () => {
   const { addr } = router.query
 
   const { data, isError, isLoading } = useContractRead({
-    addressOrName: KOVAN_TESTNET_ADDRESS,
+    addressOrName: POLYGON_ADDRESS,
     contractInterface: CONTRACT_ABI,
     functionName: 'getProfile',
     args: addr,
-    chainId: chain.optimismKovan.id,
+    chainId: POLYGON_CHAIN_ID,
   })
 
   const fetchIpfsInfo = async () => {

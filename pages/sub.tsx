@@ -6,11 +6,7 @@ import Loading from '../components/LoadingModal'
 import TxnSuccess from '../components/TxnSucessModal'
 import Error from '../components/ErrorModal'
 import { useContractWrite, useAccount, useSigner, useEnsAddress } from 'wagmi'
-import {
-  KOVAN_TESTNET_ADDRESS,
-  CONTRACT_ABI,
-  KOVAN_CHAIN_ID,
-} from '../constants'
+import { POLYGON_ADDRESS, CONTRACT_ABI, POLYGON_CHAIN_ID } from '../constants'
 
 type FormData = {
   recipient: string
@@ -39,8 +35,8 @@ const Subscribe: NextPage = () => {
   const { data: signer } = useSigner()
 
   const { write } = useContractWrite({
-    addressOrName: KOVAN_TESTNET_ADDRESS,
-    chainId: KOVAN_CHAIN_ID,
+    addressOrName: POLYGON_ADDRESS,
+    chainId: POLYGON_CHAIN_ID,
     contractInterface: CONTRACT_ABI,
     functionName: 'createETHStream',
     args: [recipient, startTime, endTime],
@@ -96,7 +92,7 @@ const Subscribe: NextPage = () => {
 
   const getCurrentBlockTimestamp = async () => {
     const provider = new ethers.providers.JsonRpcProvider(
-      process.env.GOERLI_RPC_URL
+      process.env.KOVAN_RPC_URL
     )
     const blockNumber = await provider.getBlockNumber()
     const timestamp = (await provider.getBlock(blockNumber)).timestamp

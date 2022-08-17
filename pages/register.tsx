@@ -1,10 +1,9 @@
 import type { NextPage } from 'next'
 import { useState } from 'react'
-import { KOVAN_TESTNET_ADDRESS, CONTRACT_ABI } from '../constants'
+import { POLYGON_ADDRESS, CONTRACT_ABI } from '../constants'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import Loading from '../components/LoadingModal'
-import Footer from '../components/Footer'
 import Error from '../components/ErrorModal'
 import RegisterSuccess from '../components/RegisterSucessModal'
 
@@ -59,7 +58,7 @@ const Register: NextPage = () => {
   const { address } = useAccount()
 
   const contract = useContract({
-    addressOrName: KOVAN_TESTNET_ADDRESS,
+    addressOrName: POLYGON_ADDRESS,
     contractInterface: CONTRACT_ABI,
     signerOrProvider: signer,
   })
