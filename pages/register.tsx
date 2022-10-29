@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form'
 import Loading from '../components/LoadingModal'
 import Error from '../components/ErrorModal'
 import RegisterSuccess from '../components/RegisterSucessModal'
-
 import { create } from 'ipfs-http-client'
 import { useContract, useSigner, useAccount } from 'wagmi'
 

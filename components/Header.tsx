@@ -2,7 +2,6 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import Link from 'next/link'
 import Logo from '../components/Logo'
 import { UserIcon } from '@heroicons/react/outline'
-
 import { useAccount } from 'wagmi'
 
 const Header = () => {

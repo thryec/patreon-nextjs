@@ -82,7 +82,6 @@ const Home: NextPage = () => {
           </h1>
           <WaitlistForm />
           <h1 className="text-center text-6xl font-extrabold py-14">Connect</h1>
-          {/* <Footer /> */}
         </div>
       </div>
     </div>
